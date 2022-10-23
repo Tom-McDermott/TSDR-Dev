@@ -1,0 +1,27 @@
+
+October 14, 2022   Eth-TSDR-06
+
+1. Error in building C code.
+
+If there are includes that can't be resolved, this can be caused by
+indexes that are out of date.  Changing Qsys and regenerating the BSP
+(and hence system.h) causes the problem where the source code is correct
+but the includes in system.h can't be resolved.
+
+To fix this, select the project and right-click --> Index --> Rebuild.
+Also may need to --> ReResolve Unresolved Includes.
+The do a Project --> Clean
+
+----------------------------------------------
+
+2. The Board Support Package (settings.bsp) has a hard-coded path. Line 7
+must be edited to point to the directory where the bsp file is located.
+
+<BspGeneratedLocation>/home/tom/Eth-TSDR-06/devkit_simple_socket_server-17_project/software/MOD_socket_server_bsp</BspGeneratedLocation>
+
+Otherwise it will attempt to overwrite the wrong directory when the
+BSP is regenerated (anytime the Qsys peripherals change).
+
+----------------------------------------------
+
+
