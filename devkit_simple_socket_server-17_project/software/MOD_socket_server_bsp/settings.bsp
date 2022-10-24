@@ -4,8 +4,8 @@
         <BspVersion>default</BspVersion>
         <BspGeneratedTimeStamp>Aug 10, 2022 8:55:13 AM</BspGeneratedTimeStamp>
         <BspGeneratedUnixTimeStamp>1660146913324</BspGeneratedUnixTimeStamp>
-        <BspGeneratedLocation>/home/tom/Eth-TSDR-06/devkit_simple_socket_server-17_project/software/MOD_socket_server_bsp</BspGeneratedLocation>
-        <BspSettingsFile>/home/tom/Eth-TSDR-06/devkit_simple_socket_server-17_project/software/MOD_socket_server_bsp/settings.bsp</BspSettingsFile>
+        <BspGeneratedLocation>/home/tom/TSDR-Dev/devkit_simple_socket_server-17_project/software/MOD_socket_server_bsp</BspGeneratedLocation>
+        <BspSettingsFile>/home/tom/TSDR-Dev/devkit_simple_socket_server-17_project/software/MOD_socket_server_bsp/settings.bsp</BspSettingsFile>
         <SopcDesignFile>../../q_sys.sopcinfo</SopcDesignFile>
         <JdiFile>default</JdiFile>
         <Cpu>cpu</Cpu>
