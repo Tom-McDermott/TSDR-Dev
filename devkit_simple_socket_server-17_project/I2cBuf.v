@@ -12,15 +12,17 @@ Open-drain buffers for I2C_SCL and I2C_DAT
 //`define I2CBUF_H
 
 module I2CBUF (
-	input wire sda_oe,
-	inout wire sda,
-	input wire scl_oe,
-	inout wire scl
+	input  wire sda_oe,
+	inout  wire sda,
+	output  wire sda_in,
+	input  wire scl_oe,
+	inout  wire scl,
+	output  wire scl_in
 );
 
-assign i2c_serial_scl_in = scl;
+assign scl_in = scl;
 assign scl = scl_oe ? 1'b0 : 1'bz;
-assign i2c_serial_sda_in = sda;
+assign sda_in = sda;
 assign sda = sda_oe ? 1'b0 : 1'bz;
 
 

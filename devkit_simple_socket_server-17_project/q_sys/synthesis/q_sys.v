@@ -261,14 +261,8 @@ module q_sys (
 	wire  [15:0] mm_interconnect_0_spi_rxm_spi_control_port_writedata;        // mm_interconnect_0:spi_rxm_spi_control_port_writedata -> spi_rxm:data_from_cpu
 	wire         irq_mapper_receiver0_irq;                                    // msgdma_tx:csr_irq_irq -> irq_mapper:receiver0_irq
 	wire         irq_mapper_receiver1_irq;                                    // msgdma_rx:csr_irq_irq -> irq_mapper:receiver1_irq
-	wire         irq_mapper_receiver3_irq;                                    // i2c_rxm_id:intr -> irq_mapper:receiver3_irq
-	wire         irq_mapper_receiver4_irq;                                    // i2c_rxm_ctrl:intr -> irq_mapper:receiver4_irq
-	wire         irq_mapper_receiver5_irq;                                    // i2c_ckm_id:intr -> irq_mapper:receiver5_irq
-	wire         irq_mapper_receiver6_irq;                                    // i2c_ckm_c0:intr -> irq_mapper:receiver6_irq
-	wire         irq_mapper_receiver7_irq;                                    // i2c_ckm_c1:intr -> irq_mapper:receiver7_irq
-	wire         irq_mapper_receiver8_irq;                                    // jtag_uart:av_irq -> irq_mapper:receiver8_irq
-	wire         irq_mapper_receiver9_irq;                                    // sys_clk_timer:irq -> irq_mapper:receiver9_irq
-	wire         irq_mapper_receiver10_irq;                                   // spi_rxm:irq -> irq_mapper:receiver10_irq
+	wire         irq_mapper_receiver3_irq;                                    // jtag_uart:av_irq -> irq_mapper:receiver3_irq
+	wire         irq_mapper_receiver4_irq;                                    // sys_clk_timer:irq -> irq_mapper:receiver4_irq
 	wire  [31:0] cpu_irq_irq;                                                 // irq_mapper:sender_irq -> cpu:irq
 	wire         irq_mapper_receiver2_irq;                                    // irq_synchronizer:sender_irq -> irq_mapper:receiver2_irq
 	wire   [0:0] irq_synchronizer_receiver_irq;                               // ext_flash:irq -> irq_synchronizer:receiver_irq
@@ -518,7 +512,7 @@ module q_sys (
 	) i2c_ckm_c0 (
 		.clk       (sys_clk_clk),                                //            clock.clk
 		.rst_n     (~rst_controller_001_reset_out_reset),        //       reset_sink.reset_n
-		.intr      (irq_mapper_receiver6_irq),                   // interrupt_sender.irq
+		.intr      (),                                           // interrupt_sender.irq
 		.addr      (mm_interconnect_0_i2c_ckm_c0_csr_address),   //              csr.address
 		.read      (mm_interconnect_0_i2c_ckm_c0_csr_read),      //                 .read
 		.write     (mm_interconnect_0_i2c_ckm_c0_csr_write),     //                 .write
@@ -543,7 +537,7 @@ module q_sys (
 	) i2c_ckm_c1 (
 		.clk       (sys_clk_clk),                                //            clock.clk
 		.rst_n     (~rst_controller_001_reset_out_reset),        //       reset_sink.reset_n
-		.intr      (irq_mapper_receiver7_irq),                   // interrupt_sender.irq
+		.intr      (),                                           // interrupt_sender.irq
 		.addr      (mm_interconnect_0_i2c_ckm_c1_csr_address),   //              csr.address
 		.read      (mm_interconnect_0_i2c_ckm_c1_csr_read),      //                 .read
 		.write     (mm_interconnect_0_i2c_ckm_c1_csr_write),     //                 .write
@@ -568,7 +562,7 @@ module q_sys (
 	) i2c_ckm_id (
 		.clk       (sys_clk_clk),                                //            clock.clk
 		.rst_n     (~rst_controller_001_reset_out_reset),        //       reset_sink.reset_n
-		.intr      (irq_mapper_receiver5_irq),                   // interrupt_sender.irq
+		.intr      (),                                           // interrupt_sender.irq
 		.addr      (mm_interconnect_0_i2c_ckm_id_csr_address),   //              csr.address
 		.read      (mm_interconnect_0_i2c_ckm_id_csr_read),      //                 .read
 		.write     (mm_interconnect_0_i2c_ckm_id_csr_write),     //                 .write
@@ -593,7 +587,7 @@ module q_sys (
 	) i2c_rxm_ctrl (
 		.clk       (sys_clk_clk),                                  //            clock.clk
 		.rst_n     (~rst_controller_001_reset_out_reset),          //       reset_sink.reset_n
-		.intr      (irq_mapper_receiver4_irq),                     // interrupt_sender.irq
+		.intr      (),                                             // interrupt_sender.irq
 		.addr      (mm_interconnect_0_i2c_rxm_ctrl_csr_address),   //              csr.address
 		.read      (mm_interconnect_0_i2c_rxm_ctrl_csr_read),      //                 .read
 		.write     (mm_interconnect_0_i2c_rxm_ctrl_csr_write),     //                 .write
@@ -618,7 +612,7 @@ module q_sys (
 	) i2c_rxm_id (
 		.clk       (sys_clk_clk),                                //            clock.clk
 		.rst_n     (~rst_controller_001_reset_out_reset),        //       reset_sink.reset_n
-		.intr      (irq_mapper_receiver3_irq),                   // interrupt_sender.irq
+		.intr      (),                                           // interrupt_sender.irq
 		.addr      (mm_interconnect_0_i2c_rxm_id_csr_address),   //              csr.address
 		.read      (mm_interconnect_0_i2c_rxm_id_csr_read),      //                 .read
 		.write     (mm_interconnect_0_i2c_rxm_id_csr_write),     //                 .write
@@ -646,7 +640,7 @@ module q_sys (
 		.av_write_n     (~mm_interconnect_0_jtag_uart_avalon_jtag_slave_write),      //                  .write_n
 		.av_writedata   (mm_interconnect_0_jtag_uart_avalon_jtag_slave_writedata),   //                  .writedata
 		.av_waitrequest (mm_interconnect_0_jtag_uart_avalon_jtag_slave_waitrequest), //                  .waitrequest
-		.av_irq         (irq_mapper_receiver8_irq)                                   //               irq.irq
+		.av_irq         (irq_mapper_receiver3_irq)                                   //               irq.irq
 	);
 
 	q_sys_led_pio led_pio (
@@ -809,7 +803,7 @@ module q_sys (
 		.read_n        (~mm_interconnect_0_spi_rxm_spi_control_port_read),      //                 .read_n
 		.spi_select    (mm_interconnect_0_spi_rxm_spi_control_port_chipselect), //                 .chipselect
 		.write_n       (~mm_interconnect_0_spi_rxm_spi_control_port_write),     //                 .write_n
-		.irq           (irq_mapper_receiver10_irq),                             //              irq.irq
+		.irq           (),                                                      //              irq.irq
 		.MISO          (spi_rxm_external_MISO),                                 //         external.export
 		.MOSI          (spi_rxm_external_MOSI),                                 //                 .export
 		.SCLK          (spi_rxm_external_SCLK),                                 //                 .export
@@ -824,7 +818,7 @@ module q_sys (
 		.readdata   (mm_interconnect_0_sys_clk_timer_s1_readdata),   //      .readdata
 		.chipselect (mm_interconnect_0_sys_clk_timer_s1_chipselect), //      .chipselect
 		.write_n    (~mm_interconnect_0_sys_clk_timer_s1_write),     //      .write_n
-		.irq        (irq_mapper_receiver9_irq)                       //   irq.irq
+		.irq        (irq_mapper_receiver4_irq)                       //   irq.irq
 	);
 
 	q_sys_sysid sysid (
@@ -1026,20 +1020,14 @@ module q_sys (
 	);
 
 	q_sys_irq_mapper irq_mapper (
-		.clk            (sys_clk_clk),                        //        clk.clk
-		.reset          (rst_controller_001_reset_out_reset), //  clk_reset.reset
-		.receiver0_irq  (irq_mapper_receiver0_irq),           //  receiver0.irq
-		.receiver1_irq  (irq_mapper_receiver1_irq),           //  receiver1.irq
-		.receiver2_irq  (irq_mapper_receiver2_irq),           //  receiver2.irq
-		.receiver3_irq  (irq_mapper_receiver3_irq),           //  receiver3.irq
-		.receiver4_irq  (irq_mapper_receiver4_irq),           //  receiver4.irq
-		.receiver5_irq  (irq_mapper_receiver5_irq),           //  receiver5.irq
-		.receiver6_irq  (irq_mapper_receiver6_irq),           //  receiver6.irq
-		.receiver7_irq  (irq_mapper_receiver7_irq),           //  receiver7.irq
-		.receiver8_irq  (irq_mapper_receiver8_irq),           //  receiver8.irq
-		.receiver9_irq  (irq_mapper_receiver9_irq),           //  receiver9.irq
-		.receiver10_irq (irq_mapper_receiver10_irq),          // receiver10.irq
-		.sender_irq     (cpu_irq_irq)                         //     sender.irq
+		.clk           (sys_clk_clk),                        //       clk.clk
+		.reset         (rst_controller_001_reset_out_reset), // clk_reset.reset
+		.receiver0_irq (irq_mapper_receiver0_irq),           // receiver0.irq
+		.receiver1_irq (irq_mapper_receiver1_irq),           // receiver1.irq
+		.receiver2_irq (irq_mapper_receiver2_irq),           // receiver2.irq
+		.receiver3_irq (irq_mapper_receiver3_irq),           // receiver3.irq
+		.receiver4_irq (irq_mapper_receiver4_irq),           // receiver4.irq
+		.sender_irq    (cpu_irq_irq)                         //    sender.irq
 	);
 
 	altera_irq_clock_crosser #(

@@ -28,8 +28,37 @@
   
  */
 
+// Instantiate the Tangerine module
 
-module Tangerine();
+
+ 
+module Tangerine (
+	input i2c_rxm_ctrl_sda_oe,
+	inout i2c_rxm_ctrl_sda,
+	input i2c_rxm_ctrl_scl_oe,
+	inout i2c_rxm_ctrl_scl,
+	
+	input i2c_rxm_id_sda_oe,
+	inout i2c_rxm_id_sda,
+	input i2c_rxm_id_scl_oe,
+	inout i2c_rxm_id_scl,
+	
+	input i2c_ckm_c0_sda_oe,
+	inout	i2c_ckm_c0_sda,
+	input i2c_ckm_c0_scl_oe,
+	inout i2c_ckm_c0_scl,
+	
+	input	i2c_ckm_c1_sda_oe,
+	inout i2c_ckm_c1_sda,
+	input i2c_ckm_c1_scl_oe,
+	inout i2c_ckm_c1_scl,
+	
+	input i2c_ckm_id_sda_oe,
+	inout i2c_ckm_id_sda,
+	input i2c_ckm_id_scl_oe,
+	inout i2c_ckm_id_scl
+
+);
 
 // Assign I2C signals to open-drain buffers so they can be wired to FPGA
 // IO pins.
@@ -37,45 +66,46 @@ module Tangerine();
 
 	// Receive Module Control relays and LEDs
 I2CBUF RXM_CTRL (
-	.sda_oe	(i2c_rxm_ctrl_i2c_serial_sda_oe),
-	.sda		(i2c_rxm_ctrl_i2c_serial_sda),
-	.scl_oe	(i2c_rxm_ctrl_i2c_serial_scl_oe),
-	.scl		(i2c_ram_ctrl_i2c_serial_scl)
+	.sda_oe	(i2c_rxm_ctrl_sda_oe),
+	.sda		(i2c_rxm_ctrl_sda),
+	.scl_oe	(i2c_rxm_ctrl_scl_oe),
+	.scl		(i2c_rxm_ctrl_scl)
 	);
 
 	// Receive Module Ident Eprom
 I2CBUF RXM_ID (
-	.sda_oe	(i2c_rxm_id_i2c_serial_sda_oe),
-	.sda		(i2c_rxm_id_i2c_serial_sda),
-	.scl_oe	(i2c_rxm_id_i2c_serial_scl_oe),
-	.scl		(i2c_ram_id_i2c_serial_scl)
+	.sda_oe	(i2c_rxm_id_sda_oe),
+	.sda		(i2c_rxm_id_sda),
+	.scl_oe	(i2c_rxm_id_scl_oe),
+	.scl		(i2c_rxm_id_scl)
 	);
 
 	// Clock Module Control C0
 I2CBUF CKM_C0 (
-	.sda_oe	(i2c_ckm_c0_i2c_serial_sda_oe),
-	.sda		(i2c_ckm_c0_i2c_serial_sda),
-	.scl_oe	(i2c_ckm_c0_i2c_serial_scl_oe),
-	.scl		(i2c_ckm_c0_i2c_serial_scl)
+	.sda_oe	(i2c_ckm_c0_sda_oe),
+	.sda		(i2c_ckm_c0_sda),
+	.scl_oe	(i2c_ckm_c0_scl_oe),
+	.scl		(i2c_ckm_c0_scl)
 	);
 
 		// Clock Module Control C1
 I2CBUF CKM_C1 (
-	.sda_oe	(i2c_ckm_c1_i2c_serial_sda_oe),
-	.sda		(i2c_ckm_c1_i2c_serial_sda),
-	.scl_oe	(i2c_ckm_c1_i2c_serial_scl_oe),
-	.scl		(i2c_ckm_c1_i2c_serial_scl)
+	.sda_oe	(i2c_ckm_c1_sda_oe),
+	.sda		(i2c_ckm_c1_sda),
+	.scl_oe	(i2c_ckm_c1_scl_oe),
+	.scl		(i2c_ckm_c1_scl)
 	);
 	
 		// CLock module Ident Eprom
 I2CBUF CKM_ID (
-	.sda_oe	(i2c_ckm_id_i2c_serial_sda_oe),
-	.sda		(i2c_ckm_id_i2c_serial_sda),
-	.scl_oe	(i2c_ckm_id_i2c_serial_scl_oe),
-	.scl		(i2c_ckm_id_i2c_serial_scl)
+	.sda_oe	(i2c_ckm_id_sda_oe),
+	.sda		(i2c_ckm_id_sda),
+	.scl_oe	(i2c_ckm_id_scl_oe),
+	.scl		(i2c_ckm_id_scl)
 	);
 	
 endmodule
+	
 	
 `endif	//TANGERINE_H
 

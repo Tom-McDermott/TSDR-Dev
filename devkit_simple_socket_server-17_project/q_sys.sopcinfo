@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="q_sys" kind="q_sys" version="1.0" fabric="QSYS">
  <!-- Format version 20.1 711 (Future versions may contain additional information.) -->
- <!-- 2022.08.10.08:41:28 -->
+ <!-- 2022.10.25.11:34:51 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1660146086</value>
+  <value>1666722890</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -4105,7 +4105,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="internalIrqMaskSystemInfo">
    <type>long</type>
-   <value>2047</value>
+   <value>31</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -5297,41 +5297,6 @@ parameters are a RESULT of the module parameters. -->
    </interrupt>
    <interrupt>
     <isBridge>false</isBridge>
-    <moduleName>i2c_rxm_id</moduleName>
-    <slaveName>interrupt_sender</slaveName>
-    <name>i2c_rxm_id.interrupt_sender</name>
-    <interruptNumber>5</interruptNumber>
-   </interrupt>
-   <interrupt>
-    <isBridge>false</isBridge>
-    <moduleName>i2c_rxm_ctrl</moduleName>
-    <slaveName>interrupt_sender</slaveName>
-    <name>i2c_rxm_ctrl.interrupt_sender</name>
-    <interruptNumber>6</interruptNumber>
-   </interrupt>
-   <interrupt>
-    <isBridge>false</isBridge>
-    <moduleName>i2c_ckm_id</moduleName>
-    <slaveName>interrupt_sender</slaveName>
-    <name>i2c_ckm_id.interrupt_sender</name>
-    <interruptNumber>7</interruptNumber>
-   </interrupt>
-   <interrupt>
-    <isBridge>false</isBridge>
-    <moduleName>i2c_ckm_c0</moduleName>
-    <slaveName>interrupt_sender</slaveName>
-    <name>i2c_ckm_c0.interrupt_sender</name>
-    <interruptNumber>8</interruptNumber>
-   </interrupt>
-   <interrupt>
-    <isBridge>false</isBridge>
-    <moduleName>i2c_ckm_c1</moduleName>
-    <slaveName>interrupt_sender</slaveName>
-    <name>i2c_ckm_c1.interrupt_sender</name>
-    <interruptNumber>9</interruptNumber>
-   </interrupt>
-   <interrupt>
-    <isBridge>false</isBridge>
     <moduleName>jtag_uart</moduleName>
     <slaveName>irq</slaveName>
     <name>jtag_uart.irq</name>
@@ -5343,13 +5308,6 @@ parameters are a RESULT of the module parameters. -->
     <slaveName>irq</slaveName>
     <name>sys_clk_timer.irq</name>
     <interruptNumber>4</interruptNumber>
-   </interrupt>
-   <interrupt>
-    <isBridge>false</isBridge>
-    <moduleName>spi_rxm</moduleName>
-    <slaveName>irq</slaveName>
-    <name>spi_rxm.irq</name>
-    <interruptNumber>10</interruptNumber>
    </interrupt>
   </interface>
   <interface name="debug_reset_request" kind="reset_source" version="20.1">
@@ -37076,7 +37034,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.TARGETCLOCK</name>
-   <value>128000u</value>
+   <value>6250000u</value>
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.TARGETSSDELAY</name>
@@ -37180,7 +37138,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="targetClockRate">
    <type>long</type>
-   <value>128000</value>
+   <value>6250000</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -37215,7 +37173,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="actualClockRate">
    <type>double</type>
-   <value>127551.0</value>
+   <value>6250000.0</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -39104,7 +39062,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.TIMESTAMP</name>
-   <value>1660146086</value>
+   <value>1666722890</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.compatible</name>
@@ -39124,7 +39082,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.timestamp</name>
-   <value>1660146086</value>
+   <value>1666722890</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.vendor</name>
@@ -39140,7 +39098,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="timestamp">
    <type>int</type>
-   <value>1660146086</value>
+   <value>1666722890</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -42367,181 +42325,6 @@ parameters are a RESULT of the module parameters. -->
   <endConnectionPoint>interrupt_sender</endConnectionPoint>
  </connection>
  <connection
-   name="cpu.irq/i2c_rxm_id.interrupt_sender"
-   kind="interrupt"
-   version="20.1"
-   start="cpu.irq"
-   end="i2c_rxm_id.interrupt_sender">
-  <parameter name="irqNumber">
-   <type>int</type>
-   <value>5</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="deviceFamily">
-   <type>java.lang.String</type>
-   <value>UNKNOWN</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="generateLegacySim">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <startModule>cpu</startModule>
-  <startConnectionPoint>irq</startConnectionPoint>
-  <endModule>i2c_rxm_id</endModule>
-  <endConnectionPoint>interrupt_sender</endConnectionPoint>
- </connection>
- <connection
-   name="cpu.irq/i2c_rxm_ctrl.interrupt_sender"
-   kind="interrupt"
-   version="20.1"
-   start="cpu.irq"
-   end="i2c_rxm_ctrl.interrupt_sender">
-  <parameter name="irqNumber">
-   <type>int</type>
-   <value>6</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="deviceFamily">
-   <type>java.lang.String</type>
-   <value>UNKNOWN</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="generateLegacySim">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <startModule>cpu</startModule>
-  <startConnectionPoint>irq</startConnectionPoint>
-  <endModule>i2c_rxm_ctrl</endModule>
-  <endConnectionPoint>interrupt_sender</endConnectionPoint>
- </connection>
- <connection
-   name="cpu.irq/i2c_ckm_id.interrupt_sender"
-   kind="interrupt"
-   version="20.1"
-   start="cpu.irq"
-   end="i2c_ckm_id.interrupt_sender">
-  <parameter name="irqNumber">
-   <type>int</type>
-   <value>7</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="deviceFamily">
-   <type>java.lang.String</type>
-   <value>UNKNOWN</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="generateLegacySim">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <startModule>cpu</startModule>
-  <startConnectionPoint>irq</startConnectionPoint>
-  <endModule>i2c_ckm_id</endModule>
-  <endConnectionPoint>interrupt_sender</endConnectionPoint>
- </connection>
- <connection
-   name="cpu.irq/i2c_ckm_c0.interrupt_sender"
-   kind="interrupt"
-   version="20.1"
-   start="cpu.irq"
-   end="i2c_ckm_c0.interrupt_sender">
-  <parameter name="irqNumber">
-   <type>int</type>
-   <value>8</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="deviceFamily">
-   <type>java.lang.String</type>
-   <value>UNKNOWN</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="generateLegacySim">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <startModule>cpu</startModule>
-  <startConnectionPoint>irq</startConnectionPoint>
-  <endModule>i2c_ckm_c0</endModule>
-  <endConnectionPoint>interrupt_sender</endConnectionPoint>
- </connection>
- <connection
-   name="cpu.irq/i2c_ckm_c1.interrupt_sender"
-   kind="interrupt"
-   version="20.1"
-   start="cpu.irq"
-   end="i2c_ckm_c1.interrupt_sender">
-  <parameter name="irqNumber">
-   <type>int</type>
-   <value>9</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="deviceFamily">
-   <type>java.lang.String</type>
-   <value>UNKNOWN</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="generateLegacySim">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <startModule>cpu</startModule>
-  <startConnectionPoint>irq</startConnectionPoint>
-  <endModule>i2c_ckm_c1</endModule>
-  <endConnectionPoint>interrupt_sender</endConnectionPoint>
- </connection>
- <connection
    name="cpu.irq/jtag_uart.irq"
    kind="interrupt"
    version="20.1"
@@ -42609,41 +42392,6 @@ parameters are a RESULT of the module parameters. -->
   <startModule>cpu</startModule>
   <startConnectionPoint>irq</startConnectionPoint>
   <endModule>sys_clk_timer</endModule>
-  <endConnectionPoint>irq</endConnectionPoint>
- </connection>
- <connection
-   name="cpu.irq/spi_rxm.irq"
-   kind="interrupt"
-   version="20.1"
-   start="cpu.irq"
-   end="spi_rxm.irq">
-  <parameter name="irqNumber">
-   <type>int</type>
-   <value>10</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="deviceFamily">
-   <type>java.lang.String</type>
-   <value>UNKNOWN</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="generateLegacySim">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <startModule>cpu</startModule>
-  <startConnectionPoint>irq</startConnectionPoint>
-  <endModule>spi_rxm</endModule>
   <endConnectionPoint>irq</endConnectionPoint>
  </connection>
  <connection
@@ -43799,7 +43547,7 @@ parameters are a RESULT of the module parameters. -->
   <version>20.1</version>
  </plugin>
  <plugin>
-  <instanceCount>11</instanceCount>
+  <instanceCount>5</instanceCount>
   <name>interrupt</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IConnection</subtype>

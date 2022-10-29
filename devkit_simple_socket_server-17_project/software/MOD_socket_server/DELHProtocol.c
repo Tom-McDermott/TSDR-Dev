@@ -559,10 +559,20 @@ int ProvisioningModuleRegisterCommand(int index, int bufflen)
 				// Bit3 = Ch2 Noise Enable 	Bit2 = Ch1 20 dB Atten  Bit1 = Ch1 10 dB Atten  Bit0 = Ch1 Noise Enable
 
 				//set the slave address
-				alt_u32 slave_addr_write = 0x70;  // PCF8574 Write address (0x71 is the corresponding read addr)
-				alt_avalon_i2c_master_target_set(i2c_dev, slave_addr_write);
+//				alt_u32 slave_addr_write = 0x70;  // PCF8574 Write address (0x71 is the corresponding read addr)
+				alt_u32 slave_addr = 0x38;  	  // PCF8574 address - the i2c driver left shifts then appends 0 for
+												  // write or 1 for read translating this to 0x70 for write, 0x71 for read
+
+				alt_avalon_i2c_master_target_set(i2c_dev, slave_addr);
 
 				status = alt_avalon_i2c_master_tx(i2c_dev, &txdata, count, ALT_AVALON_I2C_NO_INTERRUPTS);
+
+				if (status == ALT_AVALON_I2C_NACK_ERR)		// retry the write
+				{
+					printf("Received NACK error from I2C device. Retry once\n");
+					status = alt_avalon_i2c_master_tx(i2c_dev, &txdata, count, ALT_AVALON_I2C_NO_INTERRUPTS);
+				}
+
 
 				if (status != ALT_AVALON_I2C_SUCCESS)
 				{

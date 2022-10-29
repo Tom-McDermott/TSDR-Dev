@@ -4,7 +4,7 @@
  * Machine generated for CPU 'cpu' in SOPC Builder design 'q_sys'
  * SOPC Builder design path: ../../q_sys.sopcinfo
  *
- * Generated: Wed Aug 10 08:55:13 PDT 2022
+ * Generated: Tue Oct 25 11:50:19 PDT 2022
  */
 
 /*
@@ -335,8 +335,8 @@
 #define I2C_CKM_C0_BASE 0x18003d80
 #define I2C_CKM_C0_FIFO_DEPTH 4
 #define I2C_CKM_C0_FREQ 50000000
-#define I2C_CKM_C0_IRQ 8
-#define I2C_CKM_C0_IRQ_INTERRUPT_CONTROLLER_ID 0
+#define I2C_CKM_C0_IRQ -1
+#define I2C_CKM_C0_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define I2C_CKM_C0_NAME "/dev/i2c_ckm_c0"
 #define I2C_CKM_C0_SPAN 64
 #define I2C_CKM_C0_TYPE "altera_avalon_i2c"
@@ -352,8 +352,8 @@
 #define I2C_CKM_C1_BASE 0x18003d40
 #define I2C_CKM_C1_FIFO_DEPTH 4
 #define I2C_CKM_C1_FREQ 50000000
-#define I2C_CKM_C1_IRQ 9
-#define I2C_CKM_C1_IRQ_INTERRUPT_CONTROLLER_ID 0
+#define I2C_CKM_C1_IRQ -1
+#define I2C_CKM_C1_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define I2C_CKM_C1_NAME "/dev/i2c_ckm_c1"
 #define I2C_CKM_C1_SPAN 64
 #define I2C_CKM_C1_TYPE "altera_avalon_i2c"
@@ -369,8 +369,8 @@
 #define I2C_CKM_ID_BASE 0x18003dc0
 #define I2C_CKM_ID_FIFO_DEPTH 4
 #define I2C_CKM_ID_FREQ 50000000
-#define I2C_CKM_ID_IRQ 7
-#define I2C_CKM_ID_IRQ_INTERRUPT_CONTROLLER_ID 0
+#define I2C_CKM_ID_IRQ -1
+#define I2C_CKM_ID_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define I2C_CKM_ID_NAME "/dev/i2c_ckm_id"
 #define I2C_CKM_ID_SPAN 64
 #define I2C_CKM_ID_TYPE "altera_avalon_i2c"
@@ -386,8 +386,8 @@
 #define I2C_RXM_CTRL_BASE 0x18003e00
 #define I2C_RXM_CTRL_FIFO_DEPTH 4
 #define I2C_RXM_CTRL_FREQ 50000000
-#define I2C_RXM_CTRL_IRQ 6
-#define I2C_RXM_CTRL_IRQ_INTERRUPT_CONTROLLER_ID 0
+#define I2C_RXM_CTRL_IRQ -1
+#define I2C_RXM_CTRL_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define I2C_RXM_CTRL_NAME "/dev/i2c_rxm_ctrl"
 #define I2C_RXM_CTRL_SPAN 64
 #define I2C_RXM_CTRL_TYPE "altera_avalon_i2c"
@@ -403,8 +403,8 @@
 #define I2C_RXM_ID_BASE 0x18003e40
 #define I2C_RXM_ID_FIFO_DEPTH 4
 #define I2C_RXM_ID_FREQ 50000000
-#define I2C_RXM_ID_IRQ 5
-#define I2C_RXM_ID_IRQ_INTERRUPT_CONTROLLER_ID 0
+#define I2C_RXM_ID_IRQ -1
+#define I2C_RXM_ID_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define I2C_RXM_ID_NAME "/dev/i2c_rxm_id"
 #define I2C_RXM_ID_SPAN 64
 #define I2C_RXM_ID_TYPE "altera_avalon_i2c"
@@ -668,8 +668,8 @@
 #define SPI_RXM_DELAYUNITS "ns"
 #define SPI_RXM_EXTRADELAY 0
 #define SPI_RXM_INSERT_SYNC 0
-#define SPI_RXM_IRQ 10
-#define SPI_RXM_IRQ_INTERRUPT_CONTROLLER_ID 0
+#define SPI_RXM_IRQ -1
+#define SPI_RXM_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SPI_RXM_ISMASTER 1
 #define SPI_RXM_LSBFIRST 0
 #define SPI_RXM_NAME "/dev/spi_rxm"
@@ -677,7 +677,7 @@
 #define SPI_RXM_PREFIX "spi_"
 #define SPI_RXM_SPAN 32
 #define SPI_RXM_SYNC_REG_DEPTH 2
-#define SPI_RXM_TARGETCLOCK 128000u
+#define SPI_RXM_TARGETCLOCK 6250000u
 #define SPI_RXM_TARGETSSDELAY "0.0"
 #define SPI_RXM_TYPE "altera_avalon_spi"
 
@@ -720,7 +720,7 @@
 #define SYSID_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_NAME "/dev/sysid"
 #define SYSID_SPAN 8
-#define SYSID_TIMESTAMP 1660146086
+#define SYSID_TIMESTAMP 1666722890
 #define SYSID_TYPE "altera_avalon_sysid_qsys"
 
 

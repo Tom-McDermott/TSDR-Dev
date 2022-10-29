@@ -1,6 +1,4 @@
 
-`include "Tangerine.v"
-
 
 module  m10_rgmii (
         //Clock and Reset
@@ -64,7 +62,12 @@ module  m10_rgmii (
         //QSPI
         output          qspi_clk,
         inout  [3:0]    qspi_io,
-        output          qspi_csn
+        output          qspi_csn,
+		  
+		  // I2C
+		  inout	wire		rxm_ctrl_scl,
+		  inout	wire		rxm_ctrl_sda
+
         );
 
 //Heart-beat counter
@@ -196,7 +199,12 @@ q_sys               q_sys_inst (
                     .led_pio_external_connection_export                            (user_led[3:0]             ), //         led_pio_external_connection.export
                     .mem_if_ddr3_emif_0_status_local_init_done                     (local_init_done           ), //           mem_if_ddr3_emif_0_status.local_init_done
                     .mem_if_ddr3_emif_0_status_local_cal_success                   (local_cal_success         ), //                                    .local_cal_success
-                    .mem_if_ddr3_emif_0_status_local_cal_fail                      (local_cal_fail            )  //                                    .local_cal_fail
+                    .mem_if_ddr3_emif_0_status_local_cal_fail                      (local_cal_fail            ), //                                    .local_cal_fail
+						  
+						  .i2c_rxm_ctrl_i2c_serial_sda_in              						  (rxm_ctrl_sda_in), 			  //             i2c_rxm_ctrl_i2c_serial.sda_in
+						  .i2c_rxm_ctrl_i2c_serial_scl_in              						  (rxm_ctrl_scl_in), 			  //                                    .scl_in
+						  .i2c_rxm_ctrl_i2c_serial_sda_oe              						  (rxm_ctrl_sda_oe), 			  //                                    .sda_oe
+						  .i2c_rxm_ctrl_i2c_serial_scl_oe              						  (rxm_ctrl_scl_oe)  			  //                                    .scl_oe
                     );
 
 //Heart beat by 50MHz clock
@@ -211,6 +219,28 @@ always @(posedge clk_50_max10 or negedge fpga_resetn)
 //assign user_led[2] = !eth_mode_from_the_tse_mac;
 //assign user_led[3] = !local_init_done | local_cal_fail;
 assign user_led[4] = heart_beat_cnt[25];
+
+//`include "Tangerine.h"	// instantiate the Tangerine module
+
+// Instantiate just the rxm_ctrl i2c interface for now
+
+
+wire	rxm_ctrl_sda_oe;
+wire  rxm_ctrl_scl_oe;
+wire	rxm_ctrl_sda_in;
+wire  rxm_ctrl_scl_in;
+//wire  rxm_ctrl_scl;
+//wire  rxm_ctrl_sda;
+
+
+I2CBUF i1 (
+	.sda_oe	(rxm_ctrl_sda_oe),
+	.sda		(rxm_ctrl_sda),
+	.sda_in	(rxm_ctrl_sda_in),
+	.scl_oe	(rxm_ctrl_scl_oe),
+	.scl		(rxm_ctrl_scl),
+	.scl_in	(rxm_ctrl_scl_in)
+	);
 
 endmodule
 
