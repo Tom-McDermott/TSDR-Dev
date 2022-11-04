@@ -64,10 +64,13 @@ module  m10_rgmii (
         inout  [3:0]    qspi_io,
         output          qspi_csn,
 		  
-		  // I2C
+		  // I2C Receiver control
 		  inout	wire		rxm_ctrl_scl,
-		  inout	wire		rxm_ctrl_sda
-
+		  inout	wire		rxm_ctrl_sda,
+		  
+		  // I2C Receiver Ident ROM
+		  inout	wire		rxm_id_scl,
+		  inout	wire		rxm_id_sda
         );
 
 //Heart-beat counter
@@ -201,10 +204,18 @@ q_sys               q_sys_inst (
                     .mem_if_ddr3_emif_0_status_local_cal_success                   (local_cal_success         ), //                                    .local_cal_success
                     .mem_if_ddr3_emif_0_status_local_cal_fail                      (local_cal_fail            ), //                                    .local_cal_fail
 						  
+						  // Receiver Control
 						  .i2c_rxm_ctrl_i2c_serial_sda_in              						  (rxm_ctrl_sda_in), 			  //             i2c_rxm_ctrl_i2c_serial.sda_in
 						  .i2c_rxm_ctrl_i2c_serial_scl_in              						  (rxm_ctrl_scl_in), 			  //                                    .scl_in
 						  .i2c_rxm_ctrl_i2c_serial_sda_oe              						  (rxm_ctrl_sda_oe), 			  //                                    .sda_oe
-						  .i2c_rxm_ctrl_i2c_serial_scl_oe              						  (rxm_ctrl_scl_oe)  			  //                                    .scl_oe
+						  .i2c_rxm_ctrl_i2c_serial_scl_oe              						  (rxm_ctrl_scl_oe),  			  //                                    .scl_oe
+
+						  // Receiver Ident Rom
+						  .i2c_rxm_id_i2c_serial_sda_in                						  (rxm_id_sda_in),               //              i2c_rxm_id_i2c_serial.sda_in
+						  .i2c_rxm_id_i2c_serial_scl_in                						  (rxm_id_scl_in),               //                                   .scl_in
+						  .i2c_rxm_id_i2c_serial_sda_oe                						  (rxm_id_sda_oe),               //                                   .sda_oe
+						  .i2c_rxm_id_i2c_serial_scl_oe                						  (rxm_id_scl_oe)               //                                   .scl_oe
+						  
                     );
 
 //Heart beat by 50MHz clock
@@ -229,11 +240,9 @@ wire	rxm_ctrl_sda_oe;
 wire  rxm_ctrl_scl_oe;
 wire	rxm_ctrl_sda_in;
 wire  rxm_ctrl_scl_in;
-//wire  rxm_ctrl_scl;
-//wire  rxm_ctrl_sda;
 
 
-I2CBUF i1 (
+I2CBUF i2crxmctrl (
 	.sda_oe	(rxm_ctrl_sda_oe),
 	.sda		(rxm_ctrl_sda),
 	.sda_in	(rxm_ctrl_sda_in),
@@ -241,7 +250,21 @@ I2CBUF i1 (
 	.scl		(rxm_ctrl_scl),
 	.scl_in	(rxm_ctrl_scl_in)
 	);
+	
+wire	rxm_id_sda_oe;
+wire  rxm_id_scl_oe;
+wire	rxm_id_sda_in;
+wire  rxm_id_scl_in;
 
+I2CBUF i2crxmid (
+	.sda_oe	(rxm_id_sda_oe),
+	.sda		(rxm_id_sda),
+	.sda_in	(rxm_id_sda_in),
+	.scl_oe	(rxm_id_scl_oe),
+	.scl		(rxm_id_scl),
+	.scl_in	(rxm_id_scl_in)
+	);
+	
 endmodule
 
 

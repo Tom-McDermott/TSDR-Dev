@@ -282,19 +282,27 @@ int ProvChanMessage(int index, int bufflen)
 	 */
 
 	int result;
+	char resultmessage[40];
 
 	printf("Received Provisioning Channel Message: %s\n", buffer);
 
 	if (buffer[0] == 'Y' || buffer[0] == 'X')
 		result = ProvisioningLEDCommand(index, bufflen);
 
-	if (buffer[0] == 'M')
-		result = ProvisioningModuleRegisterCommand(index, bufflen);
 
-	if (result >= 0)
-	    sendto(Connections[index].fd, (void *)"AK\n", 4, 0, (struct sockaddr *) &Connections[index].client_ip, sizeof(struct sockaddr_in));
-	else
+	if (buffer[0] == 'M')
+		result = ProvisioningModuleRegisterCommand(index, buffer, resultmessage);
+
+	if (result < 0)
+	{
         sendto(Connections[index].fd, (void *)"NAK\n", 4, 0, (struct sockaddr *) &Connections[index].client_ip, sizeof(struct sockaddr_in));
+        return result;
+	}
+
+    sendto(Connections[index].fd, (void *)"AK\n", 4, 0, (struct sockaddr *) &Connections[index].client_ip, sizeof(struct sockaddr_in));
+
+    if (result > 0)
+        sendto(Connections[index].fd, (void *)resultmessage, 4, 0, (struct sockaddr *) &Connections[index].client_ip, sizeof(struct sockaddr_in));
 
 	return result;
 };
@@ -379,7 +387,172 @@ int ProvisioningLEDCommand(int index, int bufflen)
 
 };
 
-int ProvisioningModuleRegisterCommand(int index, int bufflen)
+int SI5345(struct PARSEDCMD *cmds, char resultmessage[], int itfcindex) 		// Handler for ATECC 608A ID PROM
+{
+	return -3;	// unimplemented
+}
+int ZEDF9T(struct PARSEDCMD *cmds, char resultmessage[], int itfcindex) 		// Handler for F9T GPS
+{
+	return -3;	// unimplemented
+}
+int AD9648(struct PARSEDCMD *cmds, char resultmessage[], int itfcindex) 		// Handler for ADC AD9648 SPI interface
+{
+	return -3;	// unimplemented
+}
+
+int ATECC608(struct PARSEDCMD *cmds, char resultmessage[], int itfcindex)
+{
+	// Ident ROM Microchip ATECC 608A - used just to read the unique 72-bit serial number.
+	// Write not supported.  We need to do a dummy write of 0x00 in order to wake up
+	// the device first.
+
+	ALT_AVALON_I2C_DEV_t *i2c_dev; 		//pointer to instance structure
+	ALT_AVALON_I2C_STATUS_CODE status;
+
+	i2c_dev = alt_avalon_i2c_open(ItfcTable[itfcindex].name);
+
+	if (NULL==i2c_dev)
+	{
+		printf("Device Error: Cannot find: %s\n", ItfcTable[itfcindex].name);
+		return -1;
+	}
+
+
+   // ATECC Write address (0x61 is the corresponding read addr)
+	alt_u32 slave_addr = 0x30;  	  // Right shifted by one bit
+
+	alt_avalon_i2c_master_target_set(i2c_dev, slave_addr);
+
+	if (cmds->cmd[1] == 'R')
+	{
+
+	// wakeup the device from sleep
+
+	alt_u8 txdata = 0x00;
+	alt_u32 count = 0x01;
+
+	status = alt_avalon_i2c_master_tx(i2c_dev, &txdata, count, ALT_AVALON_I2C_NO_INTERRUPTS);
+
+	// we expect the call to fail, but wake up the ATECC device. Other errors are not OK.
+
+	if (status == ALT_AVALON_I2C_NACK_ERR)
+	{
+		printf("Received NACK error from ATECC608A device. That's OK\n");
+	}
+	else if (status != ALT_AVALON_I2C_SUCCESS)
+	{
+		printf("i2c_master_tx: ATECC608A wake-up attempt error = %ld\n", status);
+		return -1; //FAIL
+	}
+
+	// To get the 72-bit serial number we need to read three 32-bit (4 hex digit) values.
+	// Each requires writing a command + CRC to the device in the correct zone. Each enables
+	// a 4-byte read. All 3 {command+CRC} have been computed externally and are declared
+	// as constants in this code.
+
+	alt_u8 rxbuffer[16];
+	alt_u32 rxcount = 4;
+
+	alt_u8 cmd1[8] = { 0x03, 0x07, 0x02, 0x00, 0x00, 0x00, 0x1E, 0x2D } ;  // first four bytes of ID
+	alt_u8 cmd2[8] = { 0x03, 0x07, 0x02, 0x00, 0x02, 0x00, 0x18, 0xAD } ;  // second four bytes of ID
+	alt_u8 cmd3[8] = { 0x03, 0x07, 0x02, 0x00, 0x03, 0x00, 0x11, 0x2D } ;  // last byte of ID + 3 don't care bytes
+
+	// If the corresponding read is all ones, then the device was not ready and the
+	// read needs to be retried.
+
+	// Read the first four bytes of the serial number
+	status = alt_avalon_i2c_master_tx(i2c_dev, cmd1, 8, ALT_AVALON_I2C_NO_INTERRUPTS);
+	status = alt_avalon_i2c_master_rx(i2c_dev, rxbuffer, rxcount, ALT_AVALON_I2C_NO_INTERRUPTS);
+
+	// Test if it returned all ones for the four byes (meaning not ready).
+	if ((buffer[0] == 0xFF ) && (buffer[1] == 0xFF) && (buffer[2] == 0xFF) && (buffer[3] == 0xFF))
+	{
+		printf("Rxm Ident PROM not ready\n");
+		// probably do some kind of retry with a max count limit
+	}
+
+	// Read the second four bytes of the serial number
+	status = alt_avalon_i2c_master_tx(i2c_dev, cmd2, 8, ALT_AVALON_I2C_NO_INTERRUPTS);
+	status = alt_avalon_i2c_master_rx(i2c_dev, &rxbuffer[4], rxcount, ALT_AVALON_I2C_NO_INTERRUPTS);
+
+	// Read the third four bytes of the serial number
+	status = alt_avalon_i2c_master_tx(i2c_dev, cmd3, 8, ALT_AVALON_I2C_NO_INTERRUPTS);
+	status = alt_avalon_i2c_master_rx(i2c_dev, &rxbuffer[8], rxcount, ALT_AVALON_I2C_NO_INTERRUPTS);
+
+	// turn the results into a readable string
+
+	return 1;		// OK - don't return AK string , instead return the string we define (RR ....)
+	}
+	if (cmds->cmd[1] == 'W')
+	{
+
+		return -3;	// unimplemented
+	}
+
+	return -1;		// unknown command
+}
+
+
+int PCF8574(struct PARSEDCMD *cmds, char resultmessage[], int itfcindex)
+{
+	// TI PCF8574 8-bit I/O latch and driver.
+
+	ALT_AVALON_I2C_DEV_t *i2c_dev; 		//pointer to instance structure
+	ALT_AVALON_I2C_STATUS_CODE status;
+
+	i2c_dev = alt_avalon_i2c_open(ItfcTable[itfcindex].name);
+
+	if (NULL==i2c_dev)
+	{
+		printf("Device Error: Cannot find: %s\n", ItfcTable[itfcindex].name);
+		return -1;
+	}
+
+	// PCF8574 Write address is 0x70, 0x71 is the corresponding read addr.
+	alt_u32 slave_addr = 0x38;  	  // PCF8574 address - the i2c driver left shifts then appends 0 for
+									  // write or 1 for read translating this to 0x70 for write, 0x71 for read
+	alt_avalon_i2c_master_target_set(i2c_dev, slave_addr);
+
+
+	if (cmds->cmd[1] == 'W')
+	{
+		alt_u8 txdata = cmds->data;
+		alt_u32 count = 0x01;				// num bytes to send
+
+		//
+		// Receive Module. All data are ACTIVE LOW.
+		// Bit7 = Red LED   		Bit6 = Green LED  		Bit5 = Ch2 20dB Atten  	Bit4 = Ch2 10 dB Atten
+		// Bit3 = Ch2 Noise Enable 	Bit2 = Ch1 20 dB Atten  Bit1 = Ch1 10 dB Atten  Bit0 = Ch1 Noise Enable
+
+
+		status = alt_avalon_i2c_master_tx(i2c_dev, &txdata, count, ALT_AVALON_I2C_NO_INTERRUPTS);
+
+		if (status == ALT_AVALON_I2C_NACK_ERR)		// retry the write
+		{
+			printf("Received NACK error from I2C device. Retry once\n");
+			status = alt_avalon_i2c_master_tx(i2c_dev, &txdata, count, ALT_AVALON_I2C_NO_INTERRUPTS);
+		}
+
+
+		if (status != ALT_AVALON_I2C_SUCCESS)
+		{
+			printf("i2c_master_tx: error = %ld\n", status);
+			return -1; //FAIL
+		}
+
+		return 0;		// OK
+
+
+	}
+	if (cmds->cmd[1] == 'R')
+	{
+		return -3;	// not yet implemented
+	}
+	return -1;		// unknown command type
+}
+
+
+int ProvisioningModuleRegisterCommand(int index, unsigned char buffer [], char resultmessage[])
 {
 
 	/* Define a table mapping the slot# and interface# to a specific
@@ -388,17 +561,22 @@ int ProvisioningModuleRegisterCommand(int index, int bufflen)
 	 * how the DE is actually equipped with modules which probably
 	 * needs to be determined at run time.
 	 *
-	 * The I2C and SPI driver calls may be different.  The name of the
-	 * interfaces for the I2C and SPI are manually encoded here based
-	 * on direct knowledge of the SOPCINFO file and Quartus Qsys planner.
+	 * The various types of I2C devices are different. The table holds
+	 * a pointer to the routine used for the particular device. Note that
+	 * two different devices can share a physical I2C interface. Those need to
+	 * have different interface numbers, as they use different handlers.
+	 *
+	 * The name of the low-level drivers for each physical interface
+	 * are manually encoded here based 	on direct knowledge of the SOPCINFO
+	 * file and Quartus Qsys planner.
 	 */
-
-	// struct REGMAP { };    // definition should be in the .h file
 
 	// Note: buffer gets modified by strtok(), so don't further reuse it.
 	//              Cmd  Slot# Intfc#  Addr   Data
 	// Module Read:  MR 0xssss 0xiiii 0xaaaa
 	// Module Write: MW 0xssss 0xiiii 0xaaaa 0xZZZZ
+
+	struct PARSEDCMD provcmd;		// hold the parsed provisioning command
 
 	char * cmd = strtok((char *)buffer, " ");
 	char * module = strtok(NULL, " ");
@@ -406,261 +584,106 @@ int ProvisioningModuleRegisterCommand(int index, int bufflen)
 	char * regaddr = strtok(NULL, " ");
 	char * regdata = strtok(NULL, " ");
 
-	int moduleint, slotint, regaddrint, regdataint;
+	unsigned long moduleint, itfcint, regaddrint, regdataint;
 
 	char * ptr;		// dummy used to make strtoul work
 
 	moduleint = strtoul(module, &ptr, 0);
-	slotint = strtoul(slot, &ptr, 0);
+	itfcint = strtoul(slot, &ptr, 0);
 	regaddrint = strtoul(regaddr, &ptr, 0);
 	if (regdata != NULL)
 		regdataint = strtoul(regdata, &ptr, 0);
 	else
 		regdataint = 0;
 
+	// copy parsed command into struct
+	strcpy(provcmd.cmd, cmd);
+	provcmd.module = moduleint;
+	provcmd.interface = itfcint;
+	provcmd.data = regdataint;
+	provcmd.address = regaddrint;
+
+	// TODO
+	// TODO - refactor the handler to take &provcmd rather than buffer and regdataint
+	// TODO
 
 
-	int itfcindex = FindItfcIndex(moduleint, slotint);	// Find index of requested interface
+	int itfcindex = FindItfcIndex(moduleint, itfcint);	// Find index of requested interface in map
 
 	if (itfcindex == -1)	// Not found
-		return -1;		// Unknown Module / Slot combination
+		return -1;		// Unknown Module / Slot combination.  Send NAK.
 
+	// Call the proper device handler. The handler returns:
+	//		status < 0 for error, send NAK
+	//		status == 0 for success, send AK
+	//      status == +1 send AK then send response message defined by the handler back to the Local Host.
 
-	// Module Read command
-	// Reply with either NAK or AK and RR 0xssss 0xiiii 0xaaaa 0xZZ   (ZZ = data read)
-	if (cmd[1] == 'R')
-	{
+	int result = (*ItfcTable[itfcindex].handler)(&provcmd, resultmessage, itfcindex);
 
-		// ***********************************************************************************
-		// QUESTION: how many bytes of address to write to the device before reading back?
-		// Is this different for various I2C device types?
-		// ***********************************************************************************
-		//
-		// The IDENT_PROM has a default address of 0x60. Is this the slave address ???
-		// The unique serial number is in the configuration zone.
-		// It requires a special wake-up sequence from power-down.
-		// It needs a 100 Khz speed to wake up.
-		//
-
-
-		if (ItfcTable[itfcindex].IFtype == 'I')	// I2C
-		{
-			ALT_AVALON_I2C_DEV_t *i2c_dev; 		//pointer to instance structure
-			ALT_AVALON_I2C_STATUS_CODE status;
-
-			i2c_dev = alt_avalon_i2c_open(ItfcTable[itfcindex].name);
-
-			if (NULL==i2c_dev)
-			{
-				printf("Device Error: Cannot find: %s\n", ItfcTable[itfcindex].name);
-				return -1;
-			}
-
-			if (ItfcTable[itfcindex].devtype == 1)		// ID_EPROM
-			{
-
-
-				//set the slave address of the ID_EPROM device
-				unsigned long slave_addr = 0x51;
-				alt_avalon_i2c_master_target_set(i2c_dev, slave_addr);
-
-				// write 0x00 to wake up the device
-				// need address of 0x60 to read the serial number
-				// the 72-bit unique ID is at addr perhaps 0x60, 0x61, 0x62
-				// via 32-bit reads ???
-
-				// Can we send back a string or just a sequence of bytes?
-
-
-				return 0;		// OK
-
-			};
-
-			if (ItfcTable[itfcindex].devtype == 2)		// 2 -> TI PCF8574 I/O latch
-			{
-				// null since we don't read this register on the receiver
-				return 0;		// OK
-			};
-
-/*
-			//alt_u8 txbuffer[0x2];
-			alt_u8 rxbuffer[0x2];
-			//int i;
-			//get a pointer to the avalon i2c instance
-
-
-			//write data to an eeprom at address 0x0200
-			//txbuffer[0]=2; txbuffer[1]=0;
-			//The eeprom address which will be sent as first two bytes of data
-			//for (i=0;i<0x10;i++) txbuffer[i+2]=i;
-			//some data to write
-
-			//status=alt_avalon_i2c_master_tx(i2c_dev, txbuffer, 0x10+2, ALT_AVALON_I2C_NO_INTERRUPTS);
-
-			//if (status != ALT_AVALON_I2C_SUCCESS)
-			//	return -1; //FAIL
-
-			//read back the data into rxbuffer
-			//This command sends the 2 byte eeprom data address required by the eeprom
-			//Then does a restart and receives the data.
-			//status = alt_avalon_i2c_master_tx_rx(i2c_dev, txbuffer, 2, rxbuffer, 0x10, ALT_AVALON_I2C_NO_INTERRUPTS);
-
-			status = alt_avalon_i2c_master_rx(i2c_dev, rxbuffer, 0x1, ALT_AVALON_I2C_NO_INTERRUPTS);
-
-			if (status!=ALT_AVALON_I2C_SUCCESS)
-				return -1; //FAIL
-*/
-			return -1;  // Got some unknown device type to read
-
-		}
-		if (ItfcTable[itfcindex].IFtype == 'S')	// SPI
-		{
-
-		}
-	}
-
-	// Module Write command
-	// Reply with either NAK or AK
-	if (cmd[1] == 'W')
-	{
-		ALT_AVALON_I2C_DEV_t *i2c_dev; 		//pointer to instance structure
-		ALT_AVALON_I2C_STATUS_CODE status;
-
-		i2c_dev = alt_avalon_i2c_open(ItfcTable[itfcindex].name);
-
-		if (NULL==i2c_dev)
-		{
-			printf("Device Error: Cannot find: %s\n", ItfcTable[itfcindex].name);
-			return -1;
-		}
-
-
-		if (ItfcTable[itfcindex].IFtype == 'I')	// I2C
-		{
-
-			if (ItfcTable[itfcindex].devtype == 1)		// ID_EPROM
-			{
-				// right now null since we don't write this device on receiver or clock
-				return 0;		// OK
-
-			};
-
-
-			if (ItfcTable[itfcindex].devtype == 2)		// 2 -> TI PCF8574 I/O latch write
-			{
-				// regdataint is an integer of the data to write
-
-				alt_u8 txdata = (alt_u8)regdataint;
-				alt_u32 count = 0x01;				// num bytes to send
-
-				//
-				// Receive Module. All data are ACTIVE LOW.
-				// Bit7 = Red LED   		Bit6 = Green LED  		Bit5 = Ch2 20dB Atten  	Bit4 = Ch2 10 dB Atten
-				// Bit3 = Ch2 Noise Enable 	Bit2 = Ch1 20 dB Atten  Bit1 = Ch1 10 dB Atten  Bit0 = Ch1 Noise Enable
-
-				//set the slave address
-//				alt_u32 slave_addr_write = 0x70;  // PCF8574 Write address (0x71 is the corresponding read addr)
-				alt_u32 slave_addr = 0x38;  	  // PCF8574 address - the i2c driver left shifts then appends 0 for
-												  // write or 1 for read translating this to 0x70 for write, 0x71 for read
-
-				alt_avalon_i2c_master_target_set(i2c_dev, slave_addr);
-
-				status = alt_avalon_i2c_master_tx(i2c_dev, &txdata, count, ALT_AVALON_I2C_NO_INTERRUPTS);
-
-				if (status == ALT_AVALON_I2C_NACK_ERR)		// retry the write
-				{
-					printf("Received NACK error from I2C device. Retry once\n");
-					status = alt_avalon_i2c_master_tx(i2c_dev, &txdata, count, ALT_AVALON_I2C_NO_INTERRUPTS);
-				}
-
-
-				if (status != ALT_AVALON_I2C_SUCCESS)
-				{
-					printf("i2c_master_tx: error = %ld\n", status);
-					return -1; //FAIL
-				}
-
-				return 0;		// OK
-
-			};
-
-		}
-		if (ItfcTable[itfcindex].IFtype == 'S')	// SPI
-		{
-			return -1;	// CHANGE THIS once SPI is implemented
-		}
-	}
-
-	// Unknown module register sub-command
-//	sendto(Connections[index].fd, (void *)"NAK\n", 4, 0, (struct sockaddr *) &Connections[index].client_ip, sizeof(struct sockaddr_in));
-	return -2;
+	return result;
 };
 
+
 /* Routines to initialize the Interface Map table and to find the index
- * of the entry that matches the module # / slot #
+ * of the entry that matches the module # / interface #
  *
- * base address copied from the BSP system.h file.
- * name copied from the BSP generated system.h file.
+ * Base address defined in the BSP system.h file.
+ * Name copied from the BSP generated system.h file.
  * If the Qsys blocks have their names changed, then these must change.
  * Often need to rebuild the Project Indexes when BSP --> system.h is regenerated.
  *
- * I2C Device Types:
- * 1 = Microchip ATECC608A Ident PROM
- * 2 = TI PCF8574 Latch
- * 3 =
- * 4 =
  */
 
 // Initialize the Interface Map Table.
 void initItfcMap()
 {
 	ItfcTable[0].module = 0;	// CKM_C0
-	ItfcTable[0].slot = 0;
+	ItfcTable[0].interface = 0;
 	ItfcTable[0].base = I2C_CKM_C0_BASE;
 	strcpy(&ItfcTable[0].name[0], I2C_CKM_C0_NAME);
-	ItfcTable[0].IFtype = 'I';
-	ItfcTable[0].devtype = 2;
+	ItfcTable[0].handler = SI5345;
 
-	ItfcTable[1].module = 0;	// CKM_C1
-	ItfcTable[1].slot = 1;
-	ItfcTable[1].base = I2C_CKM_C1_BASE;
-	strcpy(&ItfcTable[1].name[0], I2C_CKM_C1_NAME);
-	ItfcTable[1].IFtype = 'I';
-	ItfcTable[1].devtype = 2;
+	ItfcTable[1].module = 0;	// CKM_C0
+	ItfcTable[1].interface = 1;
+	ItfcTable[1].base = I2C_CKM_C0_BASE;
+	strcpy(&ItfcTable[1].name[0], I2C_CKM_C0_NAME);
+	ItfcTable[1].handler = ZEDF9T;
+
+//	ItfcTable[1].module = 0;	// CKM_C1
+//	ItfcTable[1].interface = 1;
+//	ItfcTable[1].base = I2C_CKM_C1_BASE;
+//	strcpy(&ItfcTable[1].name[0], I2C_CKM_C1_NAME);
+//	ItfcTable[1].handler = 2;
 
 	ItfcTable[2].module = 0;	// CKM_ID
-	ItfcTable[2].slot = 2;
+	ItfcTable[2].interface = 2;
 	ItfcTable[2].base = I2C_CKM_ID_BASE;
 	strcpy(&ItfcTable[2].name[0], I2C_CKM_ID_NAME);
-	ItfcTable[2].IFtype = 'I';
-	ItfcTable[2].devtype = 1;
+	ItfcTable[2].handler = ATECC608;
 
 	ItfcTable[3].module = 1;	// RXM_CTRL
-	ItfcTable[3].slot = 0;
+	ItfcTable[3].interface = 0;
 	ItfcTable[3].base = I2C_RXM_CTRL_BASE;
 	strcpy(&ItfcTable[3].name[0], I2C_RXM_CTRL_NAME);
-	ItfcTable[3].IFtype = 'I';
-	ItfcTable[3].devtype = 2;
+	ItfcTable[3].handler = PCF8574;
 
 	ItfcTable[4].module = 1;	// RXM_ID
-	ItfcTable[4].slot = 1;
+	ItfcTable[4].interface = 1;
 	ItfcTable[4].base = I2C_RXM_ID_BASE;
 	strcpy(&ItfcTable[4].name[0], I2C_RXM_ID_NAME);
-	ItfcTable[4].IFtype = 'I';
-	ItfcTable[4].devtype = 1;
+	ItfcTable[4].handler = ATECC608;
 
 	ItfcTable[5].module = 1;	// RXM_SPI_ADC
-	ItfcTable[5].slot = 2;
+	ItfcTable[5].interface = 2;
 	ItfcTable[5].base = SPI_RXM_BASE;
 	strcpy(&ItfcTable[5].name[0], SPI_RXM_NAME);
-	ItfcTable[5].IFtype = 'S';
-	ItfcTable[5].devtype = 3;
+	ItfcTable[5].handler = AD9648;
 };
 
-// Find the index of the Module / Slot in the Interface Map table
-int FindItfcIndex(int module, int slot)
+// Find the index of the Module / Interface in the Interface Map table
+int FindItfcIndex(int module, int itfcnum)
 {
-	for (int i=0; i< MAXITFC; i++)		if ((module == ItfcTable[i].module) && (slot == ItfcTable[i].slot))
+	for (int i=0; i< MAXITFC; i++)		if ((module == ItfcTable[i].module) && (itfcnum == ItfcTable[i].interface))
 			return i;
 
 	return -1;	// Didn't find it in the table

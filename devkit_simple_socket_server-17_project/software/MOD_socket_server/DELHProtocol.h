@@ -76,30 +76,49 @@ int TrafficChanMessage(int, int); // Traffic (data) - this eventually should be 
  * Process Provisioning Channel commands
  */
 
-int ProvisioningLEDCommand(int, int);  // Process the LHDE LED command
-int ProvisioningModuleRegisterCommand(int, int);  // Process the LHDE Module read/write command
+int ProvisioningLEDCommand(int, int);  // Process the LH_DE LED command
+int ProvisioningModuleRegisterCommand(int, unsigned char [], char []);  // Process the LHDE Module read/write command
 
 
+// Holds parsed provisioning channel command
+struct PARSEDCMD {
+	char cmd[24];				// The command type (i.e. "MW"or "MR")
+	unsigned long module;		// Module number
+	unsigned long interface;	// Interface number on that module
+	unsigned long address;		// Device address, sometimes unused
+	unsigned long data;			// Device write data, sometimes unused
+};
 
-/* Structure to map Module# / Slot# to a particular I2C or SPI interface, and define
- * whether it is I2C or SPI.  Need to build a table holding all the valid defined interfaces.
+/*
+ * Handlers for the peripheral devices.
+ */
+
+int PCF8574(struct PARSEDCMD *, char resultmessage[], int itfcindex); 	// Handler for TI PCF8574 I2C Latch
+int ATECC608(struct PARSEDCMD *, char resultmessage[], int itfcindex); 	// Handler for ATECC 608A ID PROM
+int SI5345(struct PARSEDCMD *, char resultmessage[], int itfcindex); 		// Handler for ATECC 608A ID PROM
+int ZEDF9T(struct PARSEDCMD *, char resultmessage[], int itfcindex); 		// Handler for F9T GPS
+int AD9648(struct PARSEDCMD *, char resultmessage[], int itfcindex); 		// Handler for ADC AD9648 SPI interface
+
+
+/* Structure to map Module# / Slot# to a particular interface and particular device type.
+ * Need to build a table holding all the valid defined interfaces. Each module needs a unique
+ * module number, and each device type, even if on the same I2C wires needs a quique
+ * interface number.
  *
- * NOTE:
- * BASE address #defines from the BSP package / system.h include file.
+ * NOTE:    BASE address #defines from the BSP package / system.h include file.
  */
 
 // The DEV_KIT test system has 6 (I2C+SPI) interfaces
 #define MAXITFC 6
 
+
 struct ITFCMAP {
 	unsigned int module;	// Module number
-	unsigned int slot;		// Slot number on that module
+	unsigned int interface;	// Interface number on that module
 	unsigned long base;		// Base address of the interface's control registers
 	char name[24];			// name of the device (e.g. "/dev/ic2_ckm_c0")
-	char IFtype;			// 'I' = I2C,  'S' = SPI
-	unsigned short devtype;	// 1 = ID_EPROM 2 = TI PCF8574  3= ??
+	int (*handler)(struct PARSEDCMD *, char *, int);	// Pointer to function to handle the specific device type
 };
-
 int FindItfcIndex(int, int);	// find the index in the ITFCMAP table given module# and slot#
 void initItfcMap();				// Initialize the Interface Map table
 
