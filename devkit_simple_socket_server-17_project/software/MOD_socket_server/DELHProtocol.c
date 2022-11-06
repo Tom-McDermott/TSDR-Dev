@@ -1,7 +1,7 @@
 /*
- * 10-18-2021	Tom McDermott, N5EG
+ * 11-05-2022	Tom McDermott, N5EG
  *
- * Copyright 2021, Thomas C. McDermott.
+ * Copyright 2021-2022, Thomas C. McDermott.
  * Licensed under GNU Public License, version 2 or later.
  *
  * Implementation of the Data Engine (host) side of
@@ -282,7 +282,7 @@ int ProvChanMessage(int index, int bufflen)
 	 */
 
 	int result;
-	char resultmessage[40];
+	char resultmessage[80];
 
 	printf("Received Provisioning Channel Message: %s\n", buffer);
 
@@ -302,7 +302,7 @@ int ProvChanMessage(int index, int bufflen)
     sendto(Connections[index].fd, (void *)"AK\n", 4, 0, (struct sockaddr *) &Connections[index].client_ip, sizeof(struct sockaddr_in));
 
     if (result > 0)
-        sendto(Connections[index].fd, (void *)resultmessage, 4, 0, (struct sockaddr *) &Connections[index].client_ip, sizeof(struct sockaddr_in));
+        sendto(Connections[index].fd, (void *)resultmessage, strlen(resultmessage), 0, (struct sockaddr *) &Connections[index].client_ip, sizeof(struct sockaddr_in));
 
 	return result;
 };
@@ -312,7 +312,7 @@ int ConfigChanMessage(int index, int bufflen)
     // Received Configuration Channel message
 
 	printf("Received Configuration Channel Message: %s\n", buffer);
-	return -2;	// not yet implemented
+	return -3;	// not yet implemented
 };
 
 int TrafficChanMessage(int index, int bufflen)
@@ -320,7 +320,7 @@ int TrafficChanMessage(int index, int bufflen)
     // Received Traffic (Data) Channel message
 
 	printf("Received Traffic Channel Message: %s\n",buffer);
-	return -2;	// not yet implemented
+	return -3;	// not yet implemented
 };
 
 
@@ -407,7 +407,8 @@ int ATECC608(struct PARSEDCMD *cmds, char resultmessage[], int itfcindex)
 	// the device first.
 
 	ALT_AVALON_I2C_DEV_t *i2c_dev; 		//pointer to instance structure
-	ALT_AVALON_I2C_STATUS_CODE status;
+//	ALT_AVALON_I2C_STATUS_CODE status;
+	alt_32 status;						// Altera defines this as unsigned, but then uses it as signed
 
 	i2c_dev = alt_avalon_i2c_open(ItfcTable[itfcindex].name);
 
@@ -430,6 +431,11 @@ int ATECC608(struct PARSEDCMD *cmds, char resultmessage[], int itfcindex)
 
 	alt_u8 txdata = 0x00;
 	alt_u32 count = 0x01;
+	alt_u8 dummystatus[4];
+	dummystatus[0] = 0xDE;
+	dummystatus[1] = 0xAD;
+	dummystatus[2] = 0xBE;
+	dummystatus[3] = 0xEF;
 
 	status = alt_avalon_i2c_master_tx(i2c_dev, &txdata, count, ALT_AVALON_I2C_NO_INTERRUPTS);
 
@@ -437,7 +443,7 @@ int ATECC608(struct PARSEDCMD *cmds, char resultmessage[], int itfcindex)
 
 	if (status == ALT_AVALON_I2C_NACK_ERR)
 	{
-		printf("Received NACK error from ATECC608A device. That's OK\n");
+		printf("Received NACK error from ATECC608A upon wakeup. That's OK\n");
 	}
 	else if (status != ALT_AVALON_I2C_SUCCESS)
 	{
@@ -445,12 +451,22 @@ int ATECC608(struct PARSEDCMD *cmds, char resultmessage[], int itfcindex)
 		return -1; //FAIL
 	}
 
+	// DEBUGGING CODE - check device status after wakeup. So we need to sleep for some milliseconds first?
+
+	// try reading the status code from the device. After wakeup it should be 0x11 (508 data sheet page 56
+	status = alt_avalon_i2c_master_rx(i2c_dev, dummystatus, 1, ALT_AVALON_I2C_NO_INTERRUPTS);
+	// the comments for the Altera read command are poor. It says that Count is the size of what is transmitted
+	// to the i2c device ?????????  Should it be zero?
+
+
+
+
 	// To get the 72-bit serial number we need to read three 32-bit (4 hex digit) values.
 	// Each requires writing a command + CRC to the device in the correct zone. Each enables
 	// a 4-byte read. All 3 {command+CRC} have been computed externally and are declared
 	// as constants in this code.
 
-	alt_u8 rxbuffer[16];
+	alt_u8 first[4], second[4], third[4];  // serial number responses
 	alt_u32 rxcount = 4;
 
 	alt_u8 cmd1[8] = { 0x03, 0x07, 0x02, 0x00, 0x00, 0x00, 0x1E, 0x2D } ;  // first four bytes of ID
@@ -462,31 +478,65 @@ int ATECC608(struct PARSEDCMD *cmds, char resultmessage[], int itfcindex)
 
 	// Read the first four bytes of the serial number
 	status = alt_avalon_i2c_master_tx(i2c_dev, cmd1, 8, ALT_AVALON_I2C_NO_INTERRUPTS);
-	status = alt_avalon_i2c_master_rx(i2c_dev, rxbuffer, rxcount, ALT_AVALON_I2C_NO_INTERRUPTS);
 
-	// Test if it returned all ones for the four byes (meaning not ready).
-	if ((buffer[0] == 0xFF ) && (buffer[1] == 0xFF) && (buffer[2] == 0xFF) && (buffer[3] == 0xFF))
+
+	for (int i=0; i<10; i++)
 	{
-		printf("Rxm Ident PROM not ready\n");
-		// probably do some kind of retry with a max count limit
+		status = alt_avalon_i2c_master_rx(i2c_dev, first, rxcount, ALT_AVALON_I2C_NO_INTERRUPTS);
+		if (status == 0)	// Successful read
+			break;
+		if (status == ALT_AVALON_I2C_NACK_ERR)	// device busy, try again
+			continue;
 	}
+	if (status < 0)
+		printf("Failed to read ATECC608. Serial number will be invalid.\n");
+
 
 	// Read the second four bytes of the serial number
 	status = alt_avalon_i2c_master_tx(i2c_dev, cmd2, 8, ALT_AVALON_I2C_NO_INTERRUPTS);
-	status = alt_avalon_i2c_master_rx(i2c_dev, &rxbuffer[4], rxcount, ALT_AVALON_I2C_NO_INTERRUPTS);
+
+	for (int i=0; i<10; i++)
+	{
+		status = alt_avalon_i2c_master_rx(i2c_dev, second, rxcount, ALT_AVALON_I2C_NO_INTERRUPTS);
+		if (status == 0)	// Successful read
+			break;
+		if (status == ALT_AVALON_I2C_NACK_ERR)	// device busy, try again
+			continue;
+	}
+	if (status < 0)
+		printf("Failed to read ATECC608. Serial number will be invalid.\n");
+
 
 	// Read the third four bytes of the serial number
 	status = alt_avalon_i2c_master_tx(i2c_dev, cmd3, 8, ALT_AVALON_I2C_NO_INTERRUPTS);
-	status = alt_avalon_i2c_master_rx(i2c_dev, &rxbuffer[8], rxcount, ALT_AVALON_I2C_NO_INTERRUPTS);
 
-	// turn the results into a readable string
+	for (int i=0; i<10; i++)
+	{
+		status = alt_avalon_i2c_master_rx(i2c_dev, third, rxcount, ALT_AVALON_I2C_NO_INTERRUPTS);
+		if (status == 0)	// Successful read
+			break;
+		if (status == ALT_AVALON_I2C_NACK_ERR)	// device busy, try again
+			continue;
+	}
+	if (status < 0)
+		printf("Failed to read ATECC608. Serial number will be invalid.\n");
 
-	return 1;		// OK - don't return AK string , instead return the string we define (RR ....)
+	// only the MSB is valid, move it to the LSB position
+//	third[0] = third[3];
+//	third[1] = 0;
+//	third[2] = 0;
+//	third[3] = 0;
+
+	sprintf(resultmessage, "RR 0x%04lx 0x%04lx   0x%04lx 0x%04lx 0x%04lx\n",
+			cmds->module, cmds->interface, (unsigned long)first, (unsigned long)second, (unsigned long)third);
+
+
+	return 1;		// OK and return the read response string (RR ....)
 	}
 	if (cmds->cmd[1] == 'W')
 	{
 
-		return -3;	// unimplemented
+		return -3;	// unimplemented - nothing to write to ID Prom
 	}
 
 	return -1;		// unknown command
@@ -498,7 +548,8 @@ int PCF8574(struct PARSEDCMD *cmds, char resultmessage[], int itfcindex)
 	// TI PCF8574 8-bit I/O latch and driver.
 
 	ALT_AVALON_I2C_DEV_t *i2c_dev; 		//pointer to instance structure
-	ALT_AVALON_I2C_STATUS_CODE status;
+//	ALT_AVALON_I2C_STATUS_CODE status;
+	alt_32 status;
 
 	i2c_dev = alt_avalon_i2c_open(ItfcTable[itfcindex].name);
 
@@ -546,8 +597,21 @@ int PCF8574(struct PARSEDCMD *cmds, char resultmessage[], int itfcindex)
 	}
 	if (cmds->cmd[1] == 'R')
 	{
-		return -3;	// not yet implemented
+		alt_u8 rxdata;
+
+		// retrieve one byte of data from the de3vice
+
+		status = alt_avalon_i2c_master_rx(i2c_dev, &rxdata, 1, ALT_AVALON_I2C_NO_INTERRUPTS);
+
+		if (status < 0)
+		{
+			printf("Received error from I2C device:   %ld\n", status);
+			return -1;
+		}
+		sprintf(resultmessage, "RR 0x%04lx 0x%04lx   0x%02x\n", cmds->module, cmds->interface, rxdata);
+		return 1;
 	}
+
 	return -1;		// unknown command type
 }
 
@@ -602,10 +666,6 @@ int ProvisioningModuleRegisterCommand(int index, unsigned char buffer [], char r
 	provcmd.interface = itfcint;
 	provcmd.data = regdataint;
 	provcmd.address = regaddrint;
-
-	// TODO
-	// TODO - refactor the handler to take &provcmd rather than buffer and regdataint
-	// TODO
 
 
 	int itfcindex = FindItfcIndex(moduleint, itfcint);	// Find index of requested interface in map
