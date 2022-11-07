@@ -455,8 +455,14 @@ int ATECC608(struct PARSEDCMD *cmds, char resultmessage[], int itfcindex)
 	if (wakestatus[1] != 0x11)
 	{
 		printf("ATECC608 did not correctly wake up\n");
-		return -1;
 	}
+
+	// the comments for the Altera i2c read command are poor. It says that Count is the size of what is transmitted
+	// to the i2c device ?????????  Reading the ALtera i2c driver code, it appears to be the receive buffer count.
+	// If zero, then the driver immediately returns success without actually doing a read.
+
+	//printf("ATECC608 read status from wakeup: %ld     Packet: %02x  %02x  %02x  %02x\n", status,
+	//		dummystatus[0], dummystatus[1], dummystatus[2], dummystatus[3]);
 
 	// To get the 72-bit serial number we need to read three 32-bit (4 hex digit) values.
 	// Each requires writing a command + CRC to the device in the correct zone. Each enables
@@ -464,7 +470,7 @@ int ATECC608(struct PARSEDCMD *cmds, char resultmessage[], int itfcindex)
 	// as constants in this code.
 
 	alt_u8 first[8], second[8], third[8];  // serial number responses
-	alt_u32 rxcount = 8;		// each response is 7 bytes: count 4 digits CRC CRC. Leave room for one extra
+	alt_u32 rxcount = 8;		// probably each response is 8 bytes" count response CRC CRC 4 digits
 
 	alt_u8 cmd1[8] = { 0x03, 0x07, 0x02, 0x00, 0x00, 0x00, 0x1E, 0x2D } ;  // first four bytes of ID
 	alt_u8 cmd2[8] = { 0x03, 0x07, 0x02, 0x00, 0x02, 0x00, 0x18, 0xAD } ;  // second four bytes of ID
@@ -486,10 +492,7 @@ int ATECC608(struct PARSEDCMD *cmds, char resultmessage[], int itfcindex)
 			continue;
 	}
 	if (status < 0)
-	{
-		printf("Failed to read ATECC608 - first 4 bytes of S/N.\n");
-		return -1;
-	}
+		printf("Failed to read ATECC608. Serial number will be invalid.\n");
 
 
 	// Read the second four bytes of the serial number
@@ -504,10 +507,7 @@ int ATECC608(struct PARSEDCMD *cmds, char resultmessage[], int itfcindex)
 			continue;
 	}
 	if (status < 0)
-	{
-		printf("Failed to read ATECC608 - second 4 bytes of S/N.\n");
-		return -1;
-	}
+		printf("Failed to read ATECC608. Serial number will be invalid.\n");
 
 
 	// Read the third four bytes of the serial number
@@ -522,10 +522,7 @@ int ATECC608(struct PARSEDCMD *cmds, char resultmessage[], int itfcindex)
 			continue;
 	}
 	if (status < 0)
-	{
-		printf("Failed to read ATECC608 - third four bytes of S/N.\n");
-		return -1;
-	}
+		printf("Failed to read ATECC608. Serial number will be invalid.\n");
 
 	// The response to each request is 7 bytes: count(=7) 4 bytes of data crc-16 0xff(=no data to read since count was only 7)
 	// The last one, the data is formatted: one byte of S/N, 3 bytes of other unrelated data

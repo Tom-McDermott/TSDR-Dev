@@ -477,14 +477,14 @@ int ATECC608(struct PARSEDCMD *cmds, char resultmessage[], int itfcindex)
 	status = alt_avalon_i2c_master_tx(i2c_dev, cmd1, 8, ALT_AVALON_I2C_NO_INTERRUPTS);
 
 
-	for (int i=0; i<10; i++)
-	{
-		status = alt_avalon_i2c_master_rx(i2c_dev, first, rxcount, ALT_AVALON_I2C_NO_INTERRUPTS);
-		if (status == 0)	// Successful read
-			break;
-		if (status == ALT_AVALON_I2C_NACK_ERR)	// device busy, try again
-			continue;
-	}
+//	for (int i=0; i<10; i++)
+//	{
+//		status = alt_avalon_i2c_master_rx(i2c_dev, first, rxcount, ALT_AVALON_I2C_NO_INTERRUPTS);
+//		if (status == 0)	// Successful read
+//			break;
+//		if (status == ALT_AVALON_I2C_NACK_ERR)	// device busy, try again
+//			continue;
+//	}
 	if (status < 0)
 	{
 		printf("Failed to read ATECC608 - first 4 bytes of S/N.\n");
@@ -495,14 +495,14 @@ int ATECC608(struct PARSEDCMD *cmds, char resultmessage[], int itfcindex)
 	// Read the second four bytes of the serial number
 	status = alt_avalon_i2c_master_tx(i2c_dev, cmd2, 8, ALT_AVALON_I2C_NO_INTERRUPTS);
 
-	for (int i=0; i<10; i++)
-	{
-		status = alt_avalon_i2c_master_rx(i2c_dev, second, rxcount, ALT_AVALON_I2C_NO_INTERRUPTS);
-		if (status == 0)	// Successful read
-			break;
-		if (status == ALT_AVALON_I2C_NACK_ERR)	// device busy, try again
-			continue;
-	}
+//	for (int i=0; i<10; i++)
+//	{
+//		status = alt_avalon_i2c_master_rx(i2c_dev, second, rxcount, ALT_AVALON_I2C_NO_INTERRUPTS);
+//		if (status == 0)	// Successful read
+//			break;
+//		if (status == ALT_AVALON_I2C_NACK_ERR)	// device busy, try again
+//			continue;
+//	}
 	if (status < 0)
 	{
 		printf("Failed to read ATECC608 - second 4 bytes of S/N.\n");
@@ -513,14 +513,14 @@ int ATECC608(struct PARSEDCMD *cmds, char resultmessage[], int itfcindex)
 	// Read the third four bytes of the serial number
 	status = alt_avalon_i2c_master_tx(i2c_dev, cmd3, 8, ALT_AVALON_I2C_NO_INTERRUPTS);
 
-	for (int i=0; i<10; i++)
-	{
-		status = alt_avalon_i2c_master_rx(i2c_dev, third, rxcount, ALT_AVALON_I2C_NO_INTERRUPTS);
-		if (status == 0)	// Successful read
-			break;
-		if (status == ALT_AVALON_I2C_NACK_ERR)	// device busy, try again
-			continue;
-	}
+//	for (int i=0; i<10; i++)
+//	{
+//		status = alt_avalon_i2c_master_rx(i2c_dev, third, rxcount, ALT_AVALON_I2C_NO_INTERRUPTS);
+//		if (status == 0)	// Successful read
+//			break;
+//		if (status == ALT_AVALON_I2C_NACK_ERR)	// device busy, try again
+//			continue;
+//	}
 	if (status < 0)
 	{
 		printf("Failed to read ATECC608 - third four bytes of S/N.\n");
