@@ -389,11 +389,161 @@ int ProvisioningLEDCommand(int index, int bufflen)
 
 int SI5345(struct PARSEDCMD *cmds, char resultmessage[], int itfcindex) 		// Handler for ATECC 608A ID PROM
 {
-	return -3;	// unimplemented
+	ALT_AVALON_I2C_DEV_t *i2c_dev; 		//pointer to instance structure
+//	ALT_AVALON_I2C_STATUS_CODE status;
+	alt_32 status;						// Altera defines this as unsigned, but then uses it as signed
+
+	i2c_dev = alt_avalon_i2c_open(ItfcTable[itfcindex].name);
+
+	if (NULL==i2c_dev)
+	{
+		printf("Device Error: Cannot find: %s\n", ItfcTable[itfcindex].name);
+		return -1;
+	}
+
+    // Si5345 slave address is dependent on the value A1 A0 are. A0 supposed to be pulled up.
+	//  A1 is on pin 17 of the device (a corner pin).
+	// Then slave address >> 1 is:
+	//   if A1 high - 0x6B
+	//   if A1 low - 0x69
+
+	alt_u32 slave_addr = 0x69;  	  // Right shifted by one bit
+
+	alt_avalon_i2c_master_target_set(i2c_dev, slave_addr);
+
+	// Need to set the I2C I/O voltage to 3.3v:  bank 0x09 register 0x43
+
+	alt_u8 bank9[2] = {0x01, 0x09 };	// write 9 to bank 1 (selector)
+	status = alt_avalon_i2c_master_tx(i2c_dev, bank9, 2, ALT_AVALON_I2C_NO_INTERRUPTS);
+
+	// write 0x01 to 9:43
+	alt_u8 vccio[2] = { 0x43, 0x01 };	// set I2C vccio to 3.3v
+	status = alt_avalon_i2c_master_tx(i2c_dev, vccio, 2, ALT_AVALON_I2C_NO_INTERRUPTS);
+
+	alt_u8 banksel[2] = {0x01, 0x00 };	// write 0 (as bank 0 for future reads) to bank 1 (bank selector)
+	status = alt_avalon_i2c_master_tx(i2c_dev, banksel, 2, ALT_AVALON_I2C_NO_INTERRUPTS);
+
+	alt_u8 selMSBPN = {0x02 };	// bank 0 : MSB of the part number
+	status = alt_avalon_i2c_master_tx(i2c_dev, &selMSBPN, 1, ALT_AVALON_I2C_NO_INTERRUPTS);
+	alt_u8 LSBPN;
+	status = alt_avalon_i2c_master_rx(i2c_dev, &LSBPN, 1, ALT_AVALON_I2C_NO_INTERRUPTS);
+
+	alt_u8 selLSBPN = {0x03 };	// bank 0 : LSB of the part number
+	status = alt_avalon_i2c_master_tx(i2c_dev, &selLSBPN, 1, ALT_AVALON_I2C_NO_INTERRUPTS);
+	alt_u8 MSBPN;
+	status = alt_avalon_i2c_master_rx(i2c_dev, &MSBPN, 1, ALT_AVALON_I2C_NO_INTERRUPTS);
+
+	// Above test is OK after board rework.
+
+	// TODO
+	// TODO - Now need to add code to write and read the Si5345 registers.
+	// TODO
+
+	if (status == 0)
+	{
+		printf("Si5345 OK. Part number of device:  %02x%02x\n", MSBPN, LSBPN);
+		return 0;
+	}
+	else
+	{
+		printf("Si5345 i2C error. Error status code: %04ld\n", status);
+		return status;
+	}
+
 }
-int ZEDF9T(struct PARSEDCMD *cmds, char resultmessage[], int itfcindex) 		// Handler for F9T GPS
+int ZEDF9T(struct PARSEDCMD *cmds, char resultmessage[], int itfcindex) 		// Handler for ZED-F9T GPS
 {
-	return -3;	// unimplemented
+	ALT_AVALON_I2C_DEV_t *i2c_dev; 		//pointer to instance structure
+//	ALT_AVALON_I2C_STATUS_CODE status;
+	alt_32 status;						// Altera defines this as unsigned, but then uses it as signed
+
+	i2c_dev = alt_avalon_i2c_open(ItfcTable[itfcindex].name);
+
+	if (NULL==i2c_dev)
+	{
+		printf("Device Error: Cannot find: %s\n", ItfcTable[itfcindex].name);
+		return -1;
+	}
+
+    // ZEDF9T slave address is 0x84. Then slave address >> 1 is:  0x42
+
+	alt_u32 slave_addr = 0x42;  	  // Right shifted by one bit
+
+	alt_avalon_i2c_master_target_set(i2c_dev, slave_addr);
+
+	// Only 3 addresses in the register map are useful:
+	// 0xFD, 0xFE - byte count of the message available on port 0xFF, and
+	// 0xFF - a stream of characters with the various serial messages. If register 0xFF is
+	// read and returns a value of 0xFF, then there is no message waiting. No valid message
+	// can begin with the 0xFF byte.
+	//
+	// To select a register, write that register value to the device.  Nothing else is writable.
+
+	alt_u8 regnum = 0xFD;
+	status = alt_avalon_i2c_master_tx(i2c_dev, &regnum, 1, ALT_AVALON_I2C_NO_INTERRUPTS);
+	alt_u8 MScount;
+	status = alt_avalon_i2c_master_rx(i2c_dev, &MScount, 1, ALT_AVALON_I2C_NO_INTERRUPTS);
+
+	regnum = 0xFE;
+	status = alt_avalon_i2c_master_tx(i2c_dev, &regnum, 1, ALT_AVALON_I2C_NO_INTERRUPTS);
+	alt_u8 LScount;
+	status = alt_avalon_i2c_master_rx(i2c_dev, &LScount, 1, ALT_AVALON_I2C_NO_INTERRUPTS);
+
+	if (status != 0)
+	{
+		printf("ZEDF9T I2C error, status = %04li\n", status);
+		return -1;		// error - return DE_LH NAK
+	}
+
+	int Count = 256 * MScount + LScount;
+
+	if (Count == 0)		// No message awaiting, return count of zero and value of 0xff
+	{
+		sprintf(resultmessage, "RR 0x%04lx 0x%04lx    0x0000 0xff\n",	cmds->module, cmds->interface);
+		return 1;
+	}
+	else				// Read the message for Count bytes, then return the message as hex.
+	{
+
+		regnum = 0xFF;	// select the message register
+		status = alt_avalon_i2c_master_tx(i2c_dev, &regnum, 1, ALT_AVALON_I2C_NO_INTERRUPTS);
+
+		//  If there is a message byte of 0xff, terminate the printout as it's probably a message boundary.
+
+		alt_u8 msgbuf[120];
+		int msglen;
+		if (Count <= 78)		// for now format the line to 80 characters (accounting for trailing \n\0)
+			msglen = Count;
+		else
+			msglen = 78;
+
+		status = alt_avalon_i2c_master_rx(i2c_dev, msgbuf, msglen, ALT_AVALON_I2C_NO_INTERRUPTS);
+
+		if (status != 0)
+		{
+			printf("ZEDF9T I2C message read error, status = %04li\n", status);
+			return -1;		// error - return DE_LH NAK
+		}
+
+		sprintf(resultmessage, "RR 0x%04lx 0x%04lx    %04x  ", cmds->module, cmds->interface, Count);
+
+		// now append the message to the response
+		int position = strlen(resultmessage);
+
+		int i;
+		for (i=0; i<msglen; i++)
+		{
+			resultmessage[position+i] = msgbuf[i];		// hopefully the message is ASCII or something
+			if (msgbuf[i] == 0xff)
+					break;
+		}
+		resultmessage[position+i+1] = '\n';
+		resultmessage[position+i+2] = '\0';
+
+		return 1;
+	}
+
+	return -1;	// error
 }
 int AD9648(struct PARSEDCMD *cmds, char resultmessage[], int itfcindex) 		// Handler for ADC AD9648 SPI interface
 {

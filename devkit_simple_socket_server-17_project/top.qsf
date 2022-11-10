@@ -330,14 +330,6 @@ set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to user_led[2]
 set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to user_pb[1]
 set_instance_assignment -name IO_STANDARD "2.5 V" -to Tangerine.RXM_ID.sda
 set_instance_assignment -name IO_STANDARD "2.5 V" -to Tangerine.RXM_ID.scl
-set_location_assignment PIN_Y7 -to Tangerine.CKM_C0.sda
-set_location_assignment PIN_AB2 -to Tangerine.CKM_C0.scl
-set_instance_assignment -name RESERVE_PIN AS_BIDIRECTIONAL -to Tangerine.CKM_C0.sda
-set_instance_assignment -name RESERVE_PIN AS_BIDIRECTIONAL -to Tangerine.CKM_C0.scl
-set_location_assignment PIN_AB3 -to Tangerine.CKM_C1.sda
-set_instance_assignment -name RESERVE_PIN AS_BIDIRECTIONAL -to Tangerine.CKM_C1.sda
-set_location_assignment PIN_Y8 -to Tangerine.CKM_C1.scl
-set_instance_assignment -name RESERVE_PIN AS_BIDIRECTIONAL -to Tangerine.CKM_C1.scl
 set_location_assignment PIN_AA19 -to Tangerine.CKM_ID.sda
 set_instance_assignment -name IO_STANDARD "2.5 V" -to Tangerine.CKM_ID.sda
 set_instance_assignment -name RESERVE_PIN AS_BIDIRECTIONAL -to Tangerine.CKM_ID.sda
@@ -365,4 +357,6 @@ set_location_assignment PIN_AA12 -to rxm_id_scl
 set_location_assignment PIN_AA11 -to rxm_id_sda
 set_instance_assignment -name IO_STANDARD "2.5 V" -to rxm_id_scl
 set_instance_assignment -name IO_STANDARD "2.5 V" -to rxm_id_sda
+set_location_assignment PIN_Y7 -to ckm_c0_sda
+set_location_assignment PIN_AB2 -to ckm_c0_scl
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
