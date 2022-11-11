@@ -1442,3 +1442,118 @@ java.net.UnknownHostException: dev.eclipse.org: Temporary failure in name resolu
 
 !ENTRY com.altera.sbtgui.launch 1 0 2022-11-10 07:20:46.885
 !MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-BlasterII on localhost [1-1.1]' --device=1 --instance=0 --go --accept-bad-sysid --sidp=0x18003ff0 /home/tom/TSDR-Dev/devkit_simple_socket_server-17_project/software/MOD_socket_server/MOD_socket_server.elf]
+!SESSION 2022-11-11 05:45:13.054 -----------------------------------------------
+eclipse.buildId=4.5.2.M20160212-1500
+java.version=1.8.0_342
+java.vendor=Private Build
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.cpp.product -pluginCustomization /home/tom/intelFPGA_lite/20.1/nios2eds/bin/eclipse_nios2/plugin_customization.ini
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.cpp.product -pluginCustomization /home/tom/intelFPGA_lite/20.1/nios2eds/bin/eclipse_nios2/plugin_customization.ini
+
+!ENTRY org.eclipse.epp.logging.aeri.ide 2 16 2022-11-11 05:45:32.463
+!MESSAGE Server ‘org.eclipse.epp.logging.aeri.ide.server’ failed with exception: dev.eclipse.org: Temporary failure in name resolution. ; version: 1.100.0.v20160217-0435
+!STACK 0
+java.net.UnknownHostException: dev.eclipse.org: Temporary failure in name resolution
+	at java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.net.InetAddress$2.lookupAllHostAddr(InetAddress.java:929)
+	at java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1330)
+	at java.net.InetAddress.getAllByName0(InetAddress.java:1283)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1199)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1127)
+	at org.apache.http.impl.conn.SystemDefaultDnsResolver.resolve(SystemDefaultDnsResolver.java:44)
+	at org.apache.http.impl.conn.HttpClientConnectionOperator.connect(HttpClientConnectionOperator.java:102)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:319)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:363)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:219)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:195)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:86)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:108)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:184)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:82)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:57)
+	at org.apache.http.client.fluent.Executor.execute(Executor.java:206)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.IO.request(IO.java:205)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.IO.refreshConfiguration(IO.java:68)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.ServerConnection.startUp(ServerConnection.java:101)
+	at com.google.common.util.concurrent.AbstractIdleService$2$1.run(AbstractIdleService.java:54)
+	at com.google.common.util.concurrent.Callables$3.run(Callables.java:93)
+	at java.lang.Thread.run(Thread.java:750)
+
+!ENTRY com.altera.sbtgui.launch 1 0 2022-11-11 05:52:32.116
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-BlasterII on localhost [1-1.1]' --device=1 --instance=0 --accept-bad-sysid --sidp=0x18003ff0 /home/tom/TSDR-Dev/devkit_simple_socket_server-17_project/software/MOD_socket_server/MOD_socket_server.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2022-11-11 05:52:34.252
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-BlasterII on localhost [1-1.1]' --device=1 --instance=0 --tcpport=auto --accept-bad-sysid --sidp=0x18003ff0]
+
+!ENTRY org.eclipse.cdt.debug.mi.core 4 42 2022-11-11 05:56:11.968
+!MESSAGE Internal Error
+!STACK 0
+org.eclipse.cdt.debug.mi.core.cdi.MI2CDIException: Inferior terminated[]
+	at org.eclipse.cdt.debug.mi.core.cdi.SharedLibraryManager.getMIShareds(SharedLibraryManager.java:123)
+	at org.eclipse.cdt.debug.mi.core.cdi.SharedLibraryManager.updateState(SharedLibraryManager.java:189)
+	at org.eclipse.cdt.debug.mi.core.cdi.SharedLibraryManager.update(SharedLibraryManager.java:137)
+	at org.eclipse.cdt.debug.mi.core.cdi.EventManager.processSuspendedEvent(EventManager.java:329)
+	at org.eclipse.cdt.debug.mi.core.cdi.EventManager.update(EventManager.java:101)
+	at java.util.Observable.notifyObservers(Observable.java:159)
+	at org.eclipse.cdt.debug.mi.core.MISession.notifyObservers(MISession.java:797)
+	at org.eclipse.cdt.debug.mi.core.EventThread.run(EventThread.java:47)
+
+!ENTRY com.altera.sbtgui.launch 1 0 2022-11-11 05:57:18.723
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-BlasterII on localhost [1-1.1]' --device=1 --instance=0 --accept-bad-sysid --sidp=0x18003ff0 /home/tom/TSDR-Dev/devkit_simple_socket_server-17_project/software/MOD_socket_server/MOD_socket_server.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2022-11-11 05:57:20.863
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-BlasterII on localhost [1-1.1]' --device=1 --instance=0 --tcpport=auto --accept-bad-sysid --sidp=0x18003ff0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2022-11-11 05:57:56.024
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-BlasterII on localhost [1-1.1]' --device=1 --instance=0 --accept-bad-sysid --sidp=0x18003ff0 /home/tom/TSDR-Dev/devkit_simple_socket_server-17_project/software/MOD_socket_server/MOD_socket_server.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2022-11-11 05:57:58.155
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-BlasterII on localhost [1-1.1]' --device=1 --instance=0 --tcpport=auto --accept-bad-sysid --sidp=0x18003ff0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2022-11-11 05:58:28.949
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-BlasterII on localhost [1-1.1]' --device=1 --instance=0 --accept-bad-sysid --sidp=0x18003ff0 /home/tom/TSDR-Dev/devkit_simple_socket_server-17_project/software/MOD_socket_server/MOD_socket_server.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2022-11-11 05:58:31.106
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-BlasterII on localhost [1-1.1]' --device=1 --instance=0 --tcpport=auto --accept-bad-sysid --sidp=0x18003ff0]
+!SESSION 2022-11-11 08:03:18.322 -----------------------------------------------
+eclipse.buildId=4.5.2.M20160212-1500
+java.version=1.8.0_342
+java.vendor=Private Build
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.cpp.product -pluginCustomization /home/tom/intelFPGA_lite/20.1/nios2eds/bin/eclipse_nios2/plugin_customization.ini
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.cpp.product -pluginCustomization /home/tom/intelFPGA_lite/20.1/nios2eds/bin/eclipse_nios2/plugin_customization.ini
+
+!ENTRY org.eclipse.epp.logging.aeri.ide 2 16 2022-11-11 08:03:36.953
+!MESSAGE Server ‘org.eclipse.epp.logging.aeri.ide.server’ failed with exception: dev.eclipse.org: Temporary failure in name resolution. ; version: 1.100.0.v20160217-0435
+!STACK 0
+java.net.UnknownHostException: dev.eclipse.org: Temporary failure in name resolution
+	at java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.net.InetAddress$2.lookupAllHostAddr(InetAddress.java:929)
+	at java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1330)
+	at java.net.InetAddress.getAllByName0(InetAddress.java:1283)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1199)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1127)
+	at org.apache.http.impl.conn.SystemDefaultDnsResolver.resolve(SystemDefaultDnsResolver.java:44)
+	at org.apache.http.impl.conn.HttpClientConnectionOperator.connect(HttpClientConnectionOperator.java:102)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:319)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:363)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:219)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:195)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:86)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:108)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:184)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:82)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:57)
+	at org.apache.http.client.fluent.Executor.execute(Executor.java:206)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.IO.request(IO.java:205)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.IO.refreshConfiguration(IO.java:68)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.ServerConnection.startUp(ServerConnection.java:101)
+	at com.google.common.util.concurrent.AbstractIdleService$2$1.run(AbstractIdleService.java:54)
+	at com.google.common.util.concurrent.Callables$3.run(Callables.java:93)
+	at java.lang.Thread.run(Thread.java:750)
+
+!ENTRY com.altera.sbtgui.launch 1 0 2022-11-11 08:04:30.479
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-BlasterII on localhost [1-1.1]' --device=1 --instance=0 --stop --accept-bad-sysid --sidp=0x18003ff0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2022-11-11 08:04:32.039
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-BlasterII on localhost [1-1.1]' --device=1 --instance=0 --go --accept-bad-sysid --sidp=0x18003ff0 /home/tom/TSDR-Dev/devkit_simple_socket_server-17_project/software/MOD_socket_server/MOD_socket_server.elf]

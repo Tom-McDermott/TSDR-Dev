@@ -22161,3 +22161,57 @@ Info:                         130687 KBytes free for stack + heap.
 Info: Creating MOD_socket_server.objdump
 nios2-elf-objdump --disassemble --syms --all-header --source MOD_socket_server.elf >MOD_socket_server.objdump
 [MOD_socket_server build complete]
+05:52:30 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+05:52:31 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+[MOD_socket_server build complete]
+05:57:17 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+05:57:17 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+[MOD_socket_server build complete]
+05:57:54 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+05:57:55 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+[MOD_socket_server build complete]
+05:58:27 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+05:58:28 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+[MOD_socket_server build complete]
+08:04:05 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+08:04:06 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+[MOD_socket_server build complete]
+08:04:28 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+08:04:29 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+[MOD_socket_server build complete]

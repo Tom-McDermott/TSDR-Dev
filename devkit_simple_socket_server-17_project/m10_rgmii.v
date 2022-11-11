@@ -74,7 +74,11 @@ module  m10_rgmii (
 		  
 		  // I2C Clock C0 control
 		  inout	wire		ckm_c0_scl,
-		  inout	wire		ckm_c0_sda
+		  inout	wire		ckm_c0_sda,
+		  
+		  // I2C Clock Ident ROM
+		  inout	wire		ckm_id_scl,
+		  inout	wire		ckm_id_sda
 		  
         );
 
@@ -225,7 +229,14 @@ q_sys               q_sys_inst (
 						  .i2c_ckm_c0_i2c_serial_sda_in                						  (ckm_c0_sda_in),              //               i2c_ckm_c0_i2c_serial.sda_in
 						  .i2c_ckm_c0_i2c_serial_scl_in                						  (ckm_c0_scl_in),              //                                    .scl_in
 						  .i2c_ckm_c0_i2c_serial_sda_oe                						  (ckm_c0_sda_oe),              //                                    .sda_oe
-						  .i2c_ckm_c0_i2c_serial_scl_oe                						  (ckm_c0_scl_oe)               //                                    .scl_oe
+						  .i2c_ckm_c0_i2c_serial_scl_oe                						  (ckm_c0_scl_oe),              //                                    .scl_oe
+						  
+						  // Clock Module Ident Rom
+						  .i2c_ckm_id_i2c_serial_sda_in                						  (ckm_id_sda_in),             //               i2c_ckm_id_i2c_serial.sda_in
+						  .i2c_ckm_id_i2c_serial_scl_in                						  (ckm_id_scl_in),              //                                    .scl_in
+						  .i2c_ckm_id_i2c_serial_sda_oe                						  (ckm_id_sda_oe),              //                                    .sda_oe
+						  .i2c_ckm_id_i2c_serial_scl_oe                						  (ckm_id_scl_oe)               //                                    .scl_oe
+						  
 							
                     );
 
@@ -292,6 +303,22 @@ I2CBUF i2cckmc0 (
 	.scl		(ckm_c0_scl),
 	.scl_in	(ckm_c0_scl_in)
 	);	
+
+// Clock Module Ident Prom
+wire	ckm_id_sda_oe;
+wire  ckm_id_scl_oe;
+wire	ckm_id_sda_in;
+wire  ckm_id_scl_in;
+
+I2CBUF i2cckmid (
+	.sda_oe	(ckm_id_sda_oe),
+	.sda		(ckm_id_sda),
+	.sda_in	(ckm_id_sda_in),
+	.scl_oe	(ckm_id_scl_oe),
+	.scl		(ckm_id_scl),
+	.scl_in	(ckm_id_scl_in)
+	);	
+
 	
 	
 endmodule
