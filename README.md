@@ -15,7 +15,7 @@ The Verilog and C software at this time is pretty much guaranteed not to work. T
 
 **Prerequisites:** You will need Quartus version 20.1 installed under a Linux OS (probably Centos 7) to sucessfully build. The Verilog for DDR3 memory does not correctly synthesize code on the associated Windows version.
 
-Read the Wierd_stuff.txt file for Quartus and NIOS strangeness related to this project. 
+Read the Wierd_stuff.txt file for Quartus and NIOS strangeness related to this project. You WILL have to edit some files before rebuilding the FPGA image.
 
 If you are not familiar with Quartus, the learning curve is very steep and high enough that supplemental oxygen might be needed.
 

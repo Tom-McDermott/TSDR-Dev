@@ -1,0 +1,15 @@
+// Clock Module Initialization
+//
+// November 16, 2022
+// Copyright 2022, Thomas C. McDermott, N5EG
+
+// This contains a routine to return clock synth programming records for
+// initializing the Si5345 synthesizer chip.
+
+#include "system.h"
+#include "ClockModInit.h"
+
+int GetClockRecord(struct * ClockRecord, alt_u8 &page, alt_u8 &address, alt_u8 &data)
+{
+
+};

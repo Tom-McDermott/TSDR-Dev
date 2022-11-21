@@ -34,9 +34,9 @@
  * 1 - Configuration channel.
  * N - Data channels (probably 8 max per client).
  *
- * The receive socket for discovery (port 1024)
+ * The receive socket for discovery is port 1024, which
  * is shared among all clients known and unknown.
- * Other channels have known client IP/Port numbers.
+ * Other channels create new client IP/Port numbers.
  */
 #define MAXUDPCHAN	21		// adjust as needed
 

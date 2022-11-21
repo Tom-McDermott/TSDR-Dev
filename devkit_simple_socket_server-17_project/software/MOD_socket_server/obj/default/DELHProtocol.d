@@ -28,7 +28,8 @@ obj/default/DELHProtocol.o: DELHProtocol.c \
  ../MOD_socket_server_bsp//iniche/src/h/sockvar.h \
  ../MOD_socket_server_bsp//iniche/src/h/sockcall.h \
  ../MOD_socket_server_bsp//iniche/src/h/bsdsock.h \
- ../MOD_socket_server_bsp//iniche/src/h/tcpport.h simple_socket_server.h \
+ ../MOD_socket_server_bsp//iniche/src/h/tcpport.h ClockModInit.h \
+ simple_socket_server.h \
  ../MOD_socket_server_bsp//drivers/inc/altera_avalon_i2c.h \
  ../MOD_socket_server_bsp//HAL/inc/sys/alt_dev.h \
  ../MOD_socket_server_bsp//HAL/inc/sys/alt_llist.h \
@@ -107,6 +108,8 @@ DELHProtocol.h:
 ../MOD_socket_server_bsp//iniche/src/h/bsdsock.h:
 
 ../MOD_socket_server_bsp//iniche/src/h/tcpport.h:
+
+ClockModInit.h:
 
 simple_socket_server.h:
 

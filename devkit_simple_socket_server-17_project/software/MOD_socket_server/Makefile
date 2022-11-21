@@ -93,6 +93,7 @@ C_SRCS += simple_socket_server.c
 C_SRCS += tse_my_system.c
 C_SRCS += network_utilities.c
 C_SRCS += DELHProtocol.c
+C_SRCS += ClockModInit.c
 CXX_SRCS :=
 ASM_SRCS :=
 

@@ -1,0 +1,38 @@
+// Clock Module Initialization
+//
+// November 16, 2022
+// Copyright 2022, Thomas C. McDermott, N5EG
+
+// This contains a text file with the address+data records for initializating
+// the Si5345 synthesizer chip.
+
+#ifndef __CLOCKMODINIT_H__
+#define __CLOCKMODINIT_H__
+
+
+#include "system.h"
+#include "alt_error_handler.h"
+
+
+struct ClockRecord
+{
+	alt_u16 address;
+	alt_u8 data;
+};
+
+
+ClockRecord ClockPreface[3] =
+{
+	// Start configuration preamble
+	(0x0B24, 0xC0),
+	(0x0B25, 0x00),
+	(0x0540, 0x01)
+	// End configuration preamble
+};
+
+ClockRecord ClockBody[] =
+{
+
+};
+
+#endif /* __CLOCKMODINIT_H__ */

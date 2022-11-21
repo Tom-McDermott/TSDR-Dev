@@ -1,0 +1,27 @@
+// Clock Module Initialization
+//
+// November 16, 2022
+// Copyright 2022, Thomas C. McDermott, N5EG
+
+// This contains a routine to return clock synth programming records for
+// initializing the Si5345 synthesizer chip.
+
+#include "system.h"
+#include "ClockModInit.h"
+#include "alt_error_handler.h"
+
+
+int ParseClockRec(struct ClockRecord * record, alt_u8 * page, alt_u8 * address, alt_u8 * data)
+{
+
+
+	*page = (alt_u8) record->address >> 8;
+	*address = (alt_u8) record->address & 0xff;
+	*data = record->data;
+
+	if (record->address == 0xffff)
+		return 1;	// normal end of record block reached
+	else
+		return 0;	// valid record returned
+
+};
