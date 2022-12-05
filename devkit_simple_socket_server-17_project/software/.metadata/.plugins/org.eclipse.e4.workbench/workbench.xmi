@@ -64,8 +64,8 @@
                 <tags>Team</tags>
                 <tags>General</tags>
                 <tags>C/C++</tags>
-                <tags>active</tags>
                 <tags>noFocus</tags>
+                <tags>active</tags>
                 <children xsi:type="advanced:Placeholder" xmi:id="_poHBzSPkEeyG_e2NKvLr5A" elementId="org.eclipse.ui.views.ProblemView" ref="_poDXYCPkEeyG_e2NKvLr5A"/>
                 <children xsi:type="advanced:Placeholder" xmi:id="_poHBziPkEeyG_e2NKvLr5A" elementId="org.eclipse.ui.views.TaskList" ref="_poDXYSPkEeyG_e2NKvLr5A"/>
                 <children xsi:type="advanced:Placeholder" xmi:id="_poHBzyPkEeyG_e2NKvLr5A" elementId="org.eclipse.ui.console.ConsoleView" ref="_poD-cCPkEeyG_e2NKvLr5A"/>
@@ -171,7 +171,7 @@
         <tags>org.eclipse.e4.primaryDataStack</tags>
         <tags>EditorStack</tags>
         <children xsi:type="basic:Part" xmi:id="_fnv-8EwwEe29u9aHejL7zA" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="DELHProtocol.c" iconURI="platform:/plugin/org.eclipse.cdt.ui/icons/obj16/c_file_obj.gif" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.eclipse.cdt.ui.editor.CEditor&quot; name=&quot;DELHProtocol.c&quot; partName=&quot;DELHProtocol.c&quot; title=&quot;DELHProtocol.c&quot; tooltip=&quot;MOD_socket_server/DELHProtocol.c&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/MOD_socket_server/DELHProtocol.c&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;14457&quot; selectionTopPixel=&quot;8079&quot;/>&#xA;&lt;/editor>"/>
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.eclipse.cdt.ui.editor.CEditor&quot; name=&quot;DELHProtocol.c&quot; partName=&quot;DELHProtocol.c&quot; title=&quot;DELHProtocol.c&quot; tooltip=&quot;MOD_socket_server/DELHProtocol.c&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/MOD_socket_server/DELHProtocol.c&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;14457&quot; selectionTopPixel=&quot;7684&quot;/>&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>org.eclipse.cdt.ui.editor.CEditor</tags>
           <tags>removeOnHide</tags>
@@ -372,7 +372,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_peJ0gCPkEeyG_e2NKvLr5A" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_mhLAwGlvEe2iJZoyyrhczg" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_pNx2WyPkEeyG_e2NKvLr5A"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_WjGG4G93Ee2ibrSkuxH_wQ" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_pNx2WyPkEeyG_e2NKvLr5A"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_peJ0gSPkEeyG_e2NKvLr5A" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -396,7 +396,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_peJ0hSPkEeyG_e2NKvLr5A" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_mhOEEGlvEe2iJZoyyrhczg" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_pNwoGCPkEeyG_e2NKvLr5A"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_WjJKMG93Ee2ibrSkuxH_wQ" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_pNwoGCPkEeyG_e2NKvLr5A"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_peKbkCPkEeyG_e2NKvLr5A" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>

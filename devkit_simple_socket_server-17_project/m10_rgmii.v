@@ -78,8 +78,13 @@ module  m10_rgmii (
 		  
 		  // I2C Clock Ident ROM
 		  inout	wire		ckm_id_scl,
-		  inout	wire		ckm_id_sda
-		  
+		  inout	wire		ckm_id_sda,
+
+		  // SPI Receiver ADC
+		  inout	wire		rfm_spi_BIDIR,
+		  output				rfm_spi_SCLK,
+		  output wire		rfm_spi_CSEL_F
+
         );
 
 //Heart-beat counter
@@ -232,12 +237,17 @@ q_sys               q_sys_inst (
 						  .i2c_ckm_c0_i2c_serial_scl_oe                						  (ckm_c0_scl_oe),              //                                    .scl_oe
 						  
 						  // Clock Module Ident Rom
-						  .i2c_ckm_id_i2c_serial_sda_in                						  (ckm_id_sda_in),             //               i2c_ckm_id_i2c_serial.sda_in
+						  .i2c_ckm_id_i2c_serial_sda_in                						  (ckm_id_sda_in),              //               i2c_ckm_id_i2c_serial.sda_in
 						  .i2c_ckm_id_i2c_serial_scl_in                						  (ckm_id_scl_in),              //                                    .scl_in
 						  .i2c_ckm_id_i2c_serial_sda_oe                						  (ckm_id_sda_oe),              //                                    .sda_oe
-						  .i2c_ckm_id_i2c_serial_scl_oe                						  (ckm_id_scl_oe)               //                                    .scl_oe
+						  .i2c_ckm_id_i2c_serial_scl_oe                						  (ckm_id_scl_oe),              //                                    .scl_oe
 						  
-							
+						  // RF Module ADC SPI
+						  .spi_rxm_external_MISO                       						  (rfm_spi_MISO),			        //                    spi_rxm_external.MISO
+						  .spi_rxm_external_MOSI                       						  (rfm_spi_MOSI),       		  //                                    .MOSI
+						  .spi_rxm_external_SCLK                       						  (rfm_spi_SCLK),        		  //                                    .SCLK
+						  .spi_rxm_external_SS_n                       						  (rfm_spi_CSEL_F)       		  //                                    .SS_n
+	
                     );
 
 //Heart beat by 50MHz clock
@@ -319,7 +329,17 @@ I2CBUF i2cckmid (
 	.scl_in	(ckm_id_scl_in)
 	);	
 
-	
+// RF Module ADC SPI
+wire	rfm_spi_MOSI;
+wire	rfm_spi_MISO;
+
+SPIConverter rfmadc (
+	.MRx 		(rfm_spi_MISO),
+	.TSMTx 	(rfm_spi_BIDIR),
+	.MTx		(rfm_spi_MOSI),
+	.Sclk		(rfm_spi_SCLK),
+	.Cs_f		(rfm_spi_CSEL_F)
+	);
 	
 endmodule
 
