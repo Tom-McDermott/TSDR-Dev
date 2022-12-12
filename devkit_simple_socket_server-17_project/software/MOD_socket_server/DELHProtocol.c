@@ -629,7 +629,64 @@ int ZEDF9T(struct PARSEDCMD *cmds, char resultmessage[], int itfcindex) 		// Han
 }
 int AD9648(struct PARSEDCMD *cmds, char resultmessage[], int itfcindex) 		// Handler for ADC AD9648 SPI interface
 {
-	return -3;	// unimplemented
+	// The SPI controller (Qsys) and the bidirectional adaptor (Verilog) have been configured for:
+	//   Clock Polarity = 0, Clock Phase = 0, MSB-first, 8-bit data, 1 slave-select signal
+	//
+	// The Altera SPI driver uses the base address to talk to the correct SPI interface. Altera has
+	//   one predefined command to read + write byte data without interrupts.
+	//
+	// The AD9648 register map has a 9-bit address. The device byte-count is set to one, and the address
+	//   plus count plus Read/Write (total 16 bits) is mapped into two consecutive bytes.
+	//
+
+	alt_u32 base = ItfcTable[itfcindex].base;	// select the SPi register base address
+	alt_u32 slave = 0;							// use chip select 1 (the only chip select in our case).
+	alt_u32 flags = 0;							// disable scatter/gather merge
+	alt_u32	wrlen;								// write length count
+	alt_u32 rdlen;								// read length count
+	alt_u8 rddata;								// hold read data 0 or 1 bytes
+	alt_u8 wrdata[3];							// hold write data 2 or 3 bytes
+
+	wrdata[1] = (0xff & cmds->address);			// low device register address
+	wrdata[0] = (0x01 & (cmds->address >> 8));	// high device register address, clear count and r/w fields
+
+
+	if (cmds->cmd[1] == 'R')
+	{
+		wrlen = 2;								// write two address bytes
+		rdlen = 1;								// read one data byte
+		wrdata[0] |= 0x80;					// set the read bit in the address field
+
+		int readcount = alt_avalon_spi_command(base, slave, wrlen, wrdata, rdlen, &rddata, flags);
+
+		if (readcount == 1)
+		{
+			// form the response to a read
+			sprintf(resultmessage, "RR 0x%04lx 0x%04lx    0x%02x\n",
+					cmds->module, cmds->interface, rddata);
+
+			return 1;	// return ACK and a result message
+		}
+		else
+			return -1;	// error
+	}
+
+	if (cmds->cmd[1] == 'W')
+	{
+		wrlen = 3;								// write two address bytes plus one data byte
+		rdlen = 0;								// don't read any data bytes
+
+		wrdata[2] = (0xff & cmds->data);
+
+		int readcount = alt_avalon_spi_command(base, slave, wrlen, wrdata, rdlen, &rddata, flags);
+
+		if (readcount == 0)
+			return 0;	// OK  - ACK only
+		else
+			return -1;	// error
+	}
+
+	return -1;	// Unknown command. Send NAK.
 }
 
 int ATECC608(struct PARSEDCMD *cmds, char resultmessage[], int itfcindex)

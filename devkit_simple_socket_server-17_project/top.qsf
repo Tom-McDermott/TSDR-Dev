@@ -143,7 +143,7 @@ set_global_assignment -name SYNTH_TIMING_DRIVEN_SYNTHESIS ON
 set_global_assignment -name OPTIMIZE_HOLD_TIMING "ALL PATHS"
 set_global_assignment -name FITTER_EFFORT "STANDARD FIT"
 set_global_assignment -name ENABLE_SIGNALTAP OFF
-set_global_assignment -name USE_SIGNALTAP_FILE ethernet_debug_rev.stp
+set_global_assignment -name USE_SIGNALTAP_FILE SPI.stp
 set_global_assignment -name PHYSICAL_SYNTHESIS_COMBO_LOGIC ON
 set_global_assignment -name PHYSICAL_SYNTHESIS_REGISTER_RETIMING ON
 set_global_assignment -name PHYSICAL_SYNTHESIS_REGISTER_DUPLICATION ON
@@ -340,6 +340,9 @@ set_location_assignment PIN_Y7 -to ckm_c0_sda
 set_location_assignment PIN_AB2 -to ckm_c0_scl
 set_location_assignment PIN_AA19 -to ckm_id_sda
 set_location_assignment PIN_Y18 -to ckm_id_scl
+set_location_assignment PIN_W3 -to rfm_spi_BIDIR
+set_location_assignment PIN_U7 -to rfm_spi_CSEL_F
+set_location_assignment PIN_W4 -to rfm_spi_SCLK
 set_global_assignment -name VERILOG_FILE SPIconverter.v
 set_global_assignment -name VERILOG_FILE I2cBuf.v
 set_global_assignment -name SDC_FILE m10_rgmii.out.sdc
@@ -347,8 +350,4 @@ set_global_assignment -name QIP_FILE enet_gtx_clk_ddio/enet_gtx_clk_ddio.qip
 set_global_assignment -name QIP_FILE clkctrl/synthesis/clkctrl.qip
 set_global_assignment -name QIP_FILE q_sys/synthesis/q_sys.qip
 set_global_assignment -name VERILOG_FILE m10_rgmii.v
-set_global_assignment -name SIGNALTAP_FILE output_files/i2c_rxm.stp
-set_location_assignment PIN_W3 -to rfm_spi_BIDIR
-set_location_assignment PIN_U7 -to rfm_spi_CSEL_F
-set_location_assignment PIN_W4 -to rfm_spi_SCLK
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
