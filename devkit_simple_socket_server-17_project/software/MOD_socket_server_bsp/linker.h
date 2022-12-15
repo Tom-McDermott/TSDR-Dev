@@ -4,7 +4,7 @@
  * Machine generated for CPU 'cpu' in SOPC Builder design 'q_sys'
  * SOPC Builder design path: ../../q_sys.sopcinfo
  *
- * Generated: Tue Oct 12 07:37:40 PDT 2021
+ * Generated: Tue Dec 13 10:13:33 PST 2022
  */
 
 /*
@@ -75,8 +75,6 @@
 #define MEM_IF_DDR3_EMIF_0_BEFORE_EXCEPTION_REGION_SPAN 288
 #define MEM_IF_DDR3_EMIF_0_REGION_BASE 0x8000120
 #define MEM_IF_DDR3_EMIF_0_REGION_SPAN 134217440
-#define ONCHIP_RAM_REGION_BASE 0x18002800
-#define ONCHIP_RAM_REGION_SPAN 2048
 #define RESET_REGION_BASE 0x14430000
 #define RESET_REGION_SPAN 32
 

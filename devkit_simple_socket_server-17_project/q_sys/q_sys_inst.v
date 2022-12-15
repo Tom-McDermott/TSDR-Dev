@@ -29,10 +29,6 @@
 		.i2c_ckm_c0_i2c_serial_scl_in                (<connected-to-i2c_ckm_c0_i2c_serial_scl_in>),                //                                    .scl_in
 		.i2c_ckm_c0_i2c_serial_sda_oe                (<connected-to-i2c_ckm_c0_i2c_serial_sda_oe>),                //                                    .sda_oe
 		.i2c_ckm_c0_i2c_serial_scl_oe                (<connected-to-i2c_ckm_c0_i2c_serial_scl_oe>),                //                                    .scl_oe
-		.i2c_ckm_c1_i2c_serial_sda_in                (<connected-to-i2c_ckm_c1_i2c_serial_sda_in>),                //               i2c_ckm_c1_i2c_serial.sda_in
-		.i2c_ckm_c1_i2c_serial_scl_in                (<connected-to-i2c_ckm_c1_i2c_serial_scl_in>),                //                                    .scl_in
-		.i2c_ckm_c1_i2c_serial_sda_oe                (<connected-to-i2c_ckm_c1_i2c_serial_sda_oe>),                //                                    .sda_oe
-		.i2c_ckm_c1_i2c_serial_scl_oe                (<connected-to-i2c_ckm_c1_i2c_serial_scl_oe>),                //                                    .scl_oe
 		.i2c_ckm_id_i2c_serial_sda_in                (<connected-to-i2c_ckm_id_i2c_serial_sda_in>),                //               i2c_ckm_id_i2c_serial.sda_in
 		.i2c_ckm_id_i2c_serial_scl_in                (<connected-to-i2c_ckm_id_i2c_serial_scl_in>),                //                                    .scl_in
 		.i2c_ckm_id_i2c_serial_sda_oe                (<connected-to-i2c_ckm_id_i2c_serial_sda_oe>),                //                                    .sda_oe

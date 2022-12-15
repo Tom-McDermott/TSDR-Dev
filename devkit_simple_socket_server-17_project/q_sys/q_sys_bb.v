@@ -30,10 +30,6 @@ module q_sys (
 	i2c_ckm_c0_i2c_serial_scl_in,
 	i2c_ckm_c0_i2c_serial_sda_oe,
 	i2c_ckm_c0_i2c_serial_scl_oe,
-	i2c_ckm_c1_i2c_serial_sda_in,
-	i2c_ckm_c1_i2c_serial_scl_in,
-	i2c_ckm_c1_i2c_serial_sda_oe,
-	i2c_ckm_c1_i2c_serial_scl_oe,
 	i2c_ckm_id_i2c_serial_sda_in,
 	i2c_ckm_id_i2c_serial_scl_in,
 	i2c_ckm_id_i2c_serial_sda_oe,
@@ -103,10 +99,6 @@ module q_sys (
 	input		i2c_ckm_c0_i2c_serial_scl_in;
 	output		i2c_ckm_c0_i2c_serial_sda_oe;
 	output		i2c_ckm_c0_i2c_serial_scl_oe;
-	input		i2c_ckm_c1_i2c_serial_sda_in;
-	input		i2c_ckm_c1_i2c_serial_scl_in;
-	output		i2c_ckm_c1_i2c_serial_sda_oe;
-	output		i2c_ckm_c1_i2c_serial_scl_oe;
 	input		i2c_ckm_id_i2c_serial_sda_in;
 	input		i2c_ckm_id_i2c_serial_scl_in;
 	output		i2c_ckm_id_i2c_serial_sda_oe;

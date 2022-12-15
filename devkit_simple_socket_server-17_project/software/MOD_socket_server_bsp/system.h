@@ -4,7 +4,7 @@
  * Machine generated for CPU 'cpu' in SOPC Builder design 'q_sys'
  * SOPC Builder design path: ../../q_sys.sopcinfo
  *
- * Generated: Tue Oct 25 11:50:19 PDT 2022
+ * Generated: Tue Dec 13 10:13:33 PST 2022
  */
 
 /*
@@ -344,23 +344,6 @@
 
 
 /*
- * i2c_ckm_c1 configuration
- *
- */
-
-#define ALT_MODULE_CLASS_i2c_ckm_c1 altera_avalon_i2c
-#define I2C_CKM_C1_BASE 0x18003d40
-#define I2C_CKM_C1_FIFO_DEPTH 4
-#define I2C_CKM_C1_FREQ 50000000
-#define I2C_CKM_C1_IRQ -1
-#define I2C_CKM_C1_IRQ_INTERRUPT_CONTROLLER_ID -1
-#define I2C_CKM_C1_NAME "/dev/i2c_ckm_c1"
-#define I2C_CKM_C1_SPAN 64
-#define I2C_CKM_C1_TYPE "altera_avalon_i2c"
-#define I2C_CKM_C1_USE_AV_ST 0
-
-
-/*
  * i2c_ckm_id configuration
  *
  */
@@ -623,35 +606,6 @@
 
 
 /*
- * onchip_ram configuration
- *
- */
-
-#define ALT_MODULE_CLASS_onchip_ram altera_avalon_onchip_memory2
-#define ONCHIP_RAM_ALLOW_IN_SYSTEM_MEMORY_CONTENT_EDITOR 0
-#define ONCHIP_RAM_ALLOW_MRAM_SIM_CONTENTS_ONLY_FILE 0
-#define ONCHIP_RAM_BASE 0x18002800
-#define ONCHIP_RAM_CONTENTS_INFO ""
-#define ONCHIP_RAM_DUAL_PORT 0
-#define ONCHIP_RAM_GUI_RAM_BLOCK_TYPE "AUTO"
-#define ONCHIP_RAM_INIT_CONTENTS_FILE "q_sys_onchip_ram"
-#define ONCHIP_RAM_INIT_MEM_CONTENT 1
-#define ONCHIP_RAM_INSTANCE_ID "NONE"
-#define ONCHIP_RAM_IRQ -1
-#define ONCHIP_RAM_IRQ_INTERRUPT_CONTROLLER_ID -1
-#define ONCHIP_RAM_NAME "/dev/onchip_ram"
-#define ONCHIP_RAM_NON_DEFAULT_INIT_FILE_ENABLED 0
-#define ONCHIP_RAM_RAM_BLOCK_TYPE "AUTO"
-#define ONCHIP_RAM_READ_DURING_WRITE_MODE "DONT_CARE"
-#define ONCHIP_RAM_SINGLE_CLOCK_OP 0
-#define ONCHIP_RAM_SIZE_MULTIPLE 1
-#define ONCHIP_RAM_SIZE_VALUE 2048
-#define ONCHIP_RAM_SPAN 2048
-#define ONCHIP_RAM_TYPE "altera_avalon_onchip_memory2"
-#define ONCHIP_RAM_WRITABLE 1
-
-
-/*
  * spi_rxm configuration
  *
  */
@@ -720,7 +674,7 @@
 #define SYSID_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_NAME "/dev/sysid"
 #define SYSID_SPAN 8
-#define SYSID_TIMESTAMP 1666722890
+#define SYSID_TIMESTAMP 1670954945
 #define SYSID_TYPE "altera_avalon_sysid_qsys"
 
 

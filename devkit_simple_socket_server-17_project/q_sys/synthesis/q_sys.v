@@ -34,10 +34,6 @@ module q_sys (
 		input  wire        i2c_ckm_c0_i2c_serial_scl_in,                //                                    .scl_in
 		output wire        i2c_ckm_c0_i2c_serial_sda_oe,                //                                    .sda_oe
 		output wire        i2c_ckm_c0_i2c_serial_scl_oe,                //                                    .scl_oe
-		input  wire        i2c_ckm_c1_i2c_serial_sda_in,                //               i2c_ckm_c1_i2c_serial.sda_in
-		input  wire        i2c_ckm_c1_i2c_serial_scl_in,                //                                    .scl_in
-		output wire        i2c_ckm_c1_i2c_serial_sda_oe,                //                                    .sda_oe
-		output wire        i2c_ckm_c1_i2c_serial_scl_oe,                //                                    .scl_oe
 		input  wire        i2c_ckm_id_i2c_serial_sda_in,                //               i2c_ckm_id_i2c_serial.sda_in
 		input  wire        i2c_ckm_id_i2c_serial_scl_in,                //                                    .scl_in
 		output wire        i2c_ckm_id_i2c_serial_sda_oe,                //                                    .sda_oe
@@ -206,11 +202,6 @@ module q_sys (
 	wire         mm_interconnect_0_i2c_ckm_c0_csr_read;                       // mm_interconnect_0:i2c_ckm_c0_csr_read -> i2c_ckm_c0:read
 	wire         mm_interconnect_0_i2c_ckm_c0_csr_write;                      // mm_interconnect_0:i2c_ckm_c0_csr_write -> i2c_ckm_c0:write
 	wire  [31:0] mm_interconnect_0_i2c_ckm_c0_csr_writedata;                  // mm_interconnect_0:i2c_ckm_c0_csr_writedata -> i2c_ckm_c0:writedata
-	wire  [31:0] mm_interconnect_0_i2c_ckm_c1_csr_readdata;                   // i2c_ckm_c1:readdata -> mm_interconnect_0:i2c_ckm_c1_csr_readdata
-	wire   [3:0] mm_interconnect_0_i2c_ckm_c1_csr_address;                    // mm_interconnect_0:i2c_ckm_c1_csr_address -> i2c_ckm_c1:addr
-	wire         mm_interconnect_0_i2c_ckm_c1_csr_read;                       // mm_interconnect_0:i2c_ckm_c1_csr_read -> i2c_ckm_c1:read
-	wire         mm_interconnect_0_i2c_ckm_c1_csr_write;                      // mm_interconnect_0:i2c_ckm_c1_csr_write -> i2c_ckm_c1:write
-	wire  [31:0] mm_interconnect_0_i2c_ckm_c1_csr_writedata;                  // mm_interconnect_0:i2c_ckm_c1_csr_writedata -> i2c_ckm_c1:writedata
 	wire  [31:0] mm_interconnect_0_cpu_debug_mem_slave_readdata;              // cpu:debug_mem_slave_readdata -> mm_interconnect_0:cpu_debug_mem_slave_readdata
 	wire         mm_interconnect_0_cpu_debug_mem_slave_waitrequest;           // cpu:debug_mem_slave_waitrequest -> mm_interconnect_0:cpu_debug_mem_slave_waitrequest
 	wire         mm_interconnect_0_cpu_debug_mem_slave_debugaccess;           // mm_interconnect_0:cpu_debug_mem_slave_debugaccess -> cpu:debug_mem_slave_debugaccess
@@ -241,13 +232,6 @@ module q_sys (
 	wire   [2:0] mm_interconnect_0_sys_clk_timer_s1_address;                  // mm_interconnect_0:sys_clk_timer_s1_address -> sys_clk_timer:address
 	wire         mm_interconnect_0_sys_clk_timer_s1_write;                    // mm_interconnect_0:sys_clk_timer_s1_write -> sys_clk_timer:write_n
 	wire  [15:0] mm_interconnect_0_sys_clk_timer_s1_writedata;                // mm_interconnect_0:sys_clk_timer_s1_writedata -> sys_clk_timer:writedata
-	wire         mm_interconnect_0_onchip_ram_s1_chipselect;                  // mm_interconnect_0:onchip_ram_s1_chipselect -> onchip_ram:chipselect
-	wire  [31:0] mm_interconnect_0_onchip_ram_s1_readdata;                    // onchip_ram:readdata -> mm_interconnect_0:onchip_ram_s1_readdata
-	wire   [8:0] mm_interconnect_0_onchip_ram_s1_address;                     // mm_interconnect_0:onchip_ram_s1_address -> onchip_ram:address
-	wire   [3:0] mm_interconnect_0_onchip_ram_s1_byteenable;                  // mm_interconnect_0:onchip_ram_s1_byteenable -> onchip_ram:byteenable
-	wire         mm_interconnect_0_onchip_ram_s1_write;                       // mm_interconnect_0:onchip_ram_s1_write -> onchip_ram:write
-	wire  [31:0] mm_interconnect_0_onchip_ram_s1_writedata;                   // mm_interconnect_0:onchip_ram_s1_writedata -> onchip_ram:writedata
-	wire         mm_interconnect_0_onchip_ram_s1_clken;                       // mm_interconnect_0:onchip_ram_s1_clken -> onchip_ram:clken
 	wire         mm_interconnect_0_led_pio_s1_chipselect;                     // mm_interconnect_0:led_pio_s1_chipselect -> led_pio:chipselect
 	wire  [31:0] mm_interconnect_0_led_pio_s1_readdata;                       // led_pio:readdata -> mm_interconnect_0:led_pio_s1_readdata
 	wire   [1:0] mm_interconnect_0_led_pio_s1_address;                        // mm_interconnect_0:led_pio_s1_address -> led_pio:address
@@ -295,10 +279,10 @@ module q_sys (
 	wire   [0:0] avalon_st_adapter_001_out_0_error;                           // avalon_st_adapter_001:out_0_error -> eth_tse:ff_tx_err
 	wire   [1:0] avalon_st_adapter_001_out_0_empty;                           // avalon_st_adapter_001:out_0_empty -> eth_tse:ff_tx_mod
 	wire         rst_controller_reset_out_reset;                              // rst_controller:reset_out -> [altpll_shift:reset, enet_pll:reset]
-	wire         rst_controller_001_reset_out_reset;                          // rst_controller_001:reset_out -> [avalon_st_adapter_001:in_rst_0_reset, cpu:reset_n, dual_boot_0:nreset, i2c_ckm_c0:rst_n, i2c_ckm_c1:rst_n, i2c_ckm_id:rst_n, i2c_rxm_ctrl:rst_n, i2c_rxm_id:rst_n, irq_mapper:reset, irq_synchronizer:sender_reset, mm_interconnect_0:cpu_reset_reset_bridge_in_reset_reset, msgdma_rx:reset_n_reset_n, msgdma_tx:reset_n_reset_n, rst_translator:in_reset, spi_rxm:reset_n]
+	wire         rst_controller_001_reset_out_reset;                          // rst_controller_001:reset_out -> [avalon_st_adapter_001:in_rst_0_reset, cpu:reset_n, dual_boot_0:nreset, i2c_ckm_c0:rst_n, i2c_ckm_id:rst_n, i2c_rxm_ctrl:rst_n, i2c_rxm_id:rst_n, irq_mapper:reset, irq_synchronizer:sender_reset, mm_interconnect_0:cpu_reset_reset_bridge_in_reset_reset, msgdma_rx:reset_n_reset_n, msgdma_tx:reset_n_reset_n, rst_translator:in_reset, spi_rxm:reset_n]
 	wire         rst_controller_001_reset_out_reset_req;                      // rst_controller_001:reset_req -> [cpu:reset_req, rst_translator:reset_req_in]
-	wire         rst_controller_002_reset_out_reset;                          // rst_controller_002:reset_out -> [avalon_st_adapter:in_rst_0_reset, descriptor_memory:reset, eth_tse:reset, jtag_uart:rst_n, led_pio:reset_n, mm_interconnect_0:jtag_uart_reset_reset_bridge_in_reset_reset, onchip_ram:reset, rst_translator_001:in_reset, sys_clk_timer:reset_n, sysid:reset_n]
-	wire         rst_controller_002_reset_out_reset_req;                      // rst_controller_002:reset_req -> [descriptor_memory:reset_req, onchip_ram:reset_req, rst_translator_001:reset_req_in]
+	wire         rst_controller_002_reset_out_reset;                          // rst_controller_002:reset_out -> [avalon_st_adapter:in_rst_0_reset, descriptor_memory:reset, eth_tse:reset, jtag_uart:rst_n, led_pio:reset_n, mm_interconnect_0:jtag_uart_reset_reset_bridge_in_reset_reset, rst_translator_001:in_reset, sys_clk_timer:reset_n, sysid:reset_n]
+	wire         rst_controller_002_reset_out_reset_req;                      // rst_controller_002:reset_req -> [descriptor_memory:reset_req, rst_translator_001:reset_req_in]
 	wire         cpu_debug_reset_request_reset;                               // cpu:debug_reset_request -> [rst_controller_002:reset_in1, rst_controller_003:reset_in1, rst_controller_004:reset_in0, rst_controller_005:reset_in0, rst_controller_006:reset_in0]
 	wire         rst_controller_003_reset_out_reset;                          // rst_controller_003:reset_out -> [ext_flash:reset_n, irq_synchronizer:receiver_reset, mm_interconnect_0:ext_flash_reset_reset_bridge_in_reset_reset]
 	wire         rst_controller_004_reset_out_reset;                          // rst_controller_004:reset_out -> mem_if_ddr3_emif_0:global_reset_n
@@ -534,31 +518,6 @@ module q_sys (
 		.USE_AV_ST       (0),
 		.FIFO_DEPTH      (4),
 		.FIFO_DEPTH_LOG2 (2)
-	) i2c_ckm_c1 (
-		.clk       (sys_clk_clk),                                //            clock.clk
-		.rst_n     (~rst_controller_001_reset_out_reset),        //       reset_sink.reset_n
-		.intr      (),                                           // interrupt_sender.irq
-		.addr      (mm_interconnect_0_i2c_ckm_c1_csr_address),   //              csr.address
-		.read      (mm_interconnect_0_i2c_ckm_c1_csr_read),      //                 .read
-		.write     (mm_interconnect_0_i2c_ckm_c1_csr_write),     //                 .write
-		.writedata (mm_interconnect_0_i2c_ckm_c1_csr_writedata), //                 .writedata
-		.readdata  (mm_interconnect_0_i2c_ckm_c1_csr_readdata),  //                 .readdata
-		.sda_in    (i2c_ckm_c1_i2c_serial_sda_in),               //       i2c_serial.sda_in
-		.scl_in    (i2c_ckm_c1_i2c_serial_scl_in),               //                 .scl_in
-		.sda_oe    (i2c_ckm_c1_i2c_serial_sda_oe),               //                 .sda_oe
-		.scl_oe    (i2c_ckm_c1_i2c_serial_scl_oe),               //                 .scl_oe
-		.src_data  (),                                           //      (terminated)
-		.src_valid (),                                           //      (terminated)
-		.src_ready (1'b0),                                       //      (terminated)
-		.snk_data  (16'b0000000000000000),                       //      (terminated)
-		.snk_valid (1'b0),                                       //      (terminated)
-		.snk_ready ()                                            //      (terminated)
-	);
-
-	altera_avalon_i2c #(
-		.USE_AV_ST       (0),
-		.FIFO_DEPTH      (4),
-		.FIFO_DEPTH_LOG2 (2)
 	) i2c_ckm_id (
 		.clk       (sys_clk_clk),                                //            clock.clk
 		.rst_n     (~rst_controller_001_reset_out_reset),        //       reset_sink.reset_n
@@ -780,20 +739,6 @@ module q_sys (
 		.st_source_error                            (msgdma_tx_st_source_error)                             //                        .error
 	);
 
-	q_sys_onchip_ram onchip_ram (
-		.clk        (sys_clk_clk),                                //   clk1.clk
-		.address    (mm_interconnect_0_onchip_ram_s1_address),    //     s1.address
-		.clken      (mm_interconnect_0_onchip_ram_s1_clken),      //       .clken
-		.chipselect (mm_interconnect_0_onchip_ram_s1_chipselect), //       .chipselect
-		.write      (mm_interconnect_0_onchip_ram_s1_write),      //       .write
-		.readdata   (mm_interconnect_0_onchip_ram_s1_readdata),   //       .readdata
-		.writedata  (mm_interconnect_0_onchip_ram_s1_writedata),  //       .writedata
-		.byteenable (mm_interconnect_0_onchip_ram_s1_byteenable), //       .byteenable
-		.reset      (rst_controller_002_reset_out_reset),         // reset1.reset
-		.reset_req  (rst_controller_002_reset_out_reset_req),     //       .reset_req
-		.freeze     (1'b0)                                        // (terminated)
-	);
-
 	q_sys_spi_rxm spi_rxm (
 		.clk           (sys_clk_clk),                                           //              clk.clk
 		.reset_n       (~rst_controller_001_reset_out_reset),                   //            reset.reset_n
@@ -933,11 +878,6 @@ module q_sys (
 		.i2c_ckm_c0_csr_read                                                 (mm_interconnect_0_i2c_ckm_c0_csr_read),                       //                                                              .read
 		.i2c_ckm_c0_csr_readdata                                             (mm_interconnect_0_i2c_ckm_c0_csr_readdata),                   //                                                              .readdata
 		.i2c_ckm_c0_csr_writedata                                            (mm_interconnect_0_i2c_ckm_c0_csr_writedata),                  //                                                              .writedata
-		.i2c_ckm_c1_csr_address                                              (mm_interconnect_0_i2c_ckm_c1_csr_address),                    //                                                i2c_ckm_c1_csr.address
-		.i2c_ckm_c1_csr_write                                                (mm_interconnect_0_i2c_ckm_c1_csr_write),                      //                                                              .write
-		.i2c_ckm_c1_csr_read                                                 (mm_interconnect_0_i2c_ckm_c1_csr_read),                       //                                                              .read
-		.i2c_ckm_c1_csr_readdata                                             (mm_interconnect_0_i2c_ckm_c1_csr_readdata),                   //                                                              .readdata
-		.i2c_ckm_c1_csr_writedata                                            (mm_interconnect_0_i2c_ckm_c1_csr_writedata),                  //                                                              .writedata
 		.i2c_ckm_id_csr_address                                              (mm_interconnect_0_i2c_ckm_id_csr_address),                    //                                                i2c_ckm_id_csr.address
 		.i2c_ckm_id_csr_write                                                (mm_interconnect_0_i2c_ckm_id_csr_write),                      //                                                              .write
 		.i2c_ckm_id_csr_read                                                 (mm_interconnect_0_i2c_ckm_id_csr_read),                       //                                                              .read
@@ -997,13 +937,6 @@ module q_sys (
 		.msgdma_tx_prefetcher_csr_read                                       (mm_interconnect_0_msgdma_tx_prefetcher_csr_read),             //                                                              .read
 		.msgdma_tx_prefetcher_csr_readdata                                   (mm_interconnect_0_msgdma_tx_prefetcher_csr_readdata),         //                                                              .readdata
 		.msgdma_tx_prefetcher_csr_writedata                                  (mm_interconnect_0_msgdma_tx_prefetcher_csr_writedata),        //                                                              .writedata
-		.onchip_ram_s1_address                                               (mm_interconnect_0_onchip_ram_s1_address),                     //                                                 onchip_ram_s1.address
-		.onchip_ram_s1_write                                                 (mm_interconnect_0_onchip_ram_s1_write),                       //                                                              .write
-		.onchip_ram_s1_readdata                                              (mm_interconnect_0_onchip_ram_s1_readdata),                    //                                                              .readdata
-		.onchip_ram_s1_writedata                                             (mm_interconnect_0_onchip_ram_s1_writedata),                   //                                                              .writedata
-		.onchip_ram_s1_byteenable                                            (mm_interconnect_0_onchip_ram_s1_byteenable),                  //                                                              .byteenable
-		.onchip_ram_s1_chipselect                                            (mm_interconnect_0_onchip_ram_s1_chipselect),                  //                                                              .chipselect
-		.onchip_ram_s1_clken                                                 (mm_interconnect_0_onchip_ram_s1_clken),                       //                                                              .clken
 		.spi_rxm_spi_control_port_address                                    (mm_interconnect_0_spi_rxm_spi_control_port_address),          //                                      spi_rxm_spi_control_port.address
 		.spi_rxm_spi_control_port_write                                      (mm_interconnect_0_spi_rxm_spi_control_port_write),            //                                                              .write
 		.spi_rxm_spi_control_port_read                                       (mm_interconnect_0_spi_rxm_spi_control_port_read),             //                                                              .read

@@ -638,9 +638,13 @@ int AD9648(struct PARSEDCMD *cmds, char resultmessage[], int itfcindex) 		// Han
 	// The AD9648 register map has a 9-bit address. The device byte-count is set to one, and the address
 	//   plus count plus Read/Write (total 16 bits) is mapped into two consecutive bytes.
 	//
+	// The slave address is a bit mask allowing simultaneous selection of multiple slave chip select lines.
+	//   We only have one chip select, the bit that controls it is bit 0. Set only bit 0 (numeric a value of 1).
+	//   But the driver code doesn't seem to work this way.
+	//   It load the slave register with  1 << slave.  So slave = 0 should be slave select 0.
 
 	alt_u32 base = ItfcTable[itfcindex].base;	// select the SPi register base address
-	alt_u32 slave = 0;							// use chip select 1 (the only chip select in our case).
+	alt_u32 slave = 0x00;						// use chip select 0 (the only chip select in our case).
 	alt_u32 flags = 0;							// disable scatter/gather merge
 	alt_u32	wrlen;								// write length count
 	alt_u32 rdlen;								// read length count

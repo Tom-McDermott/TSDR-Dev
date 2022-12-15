@@ -4,7 +4,7 @@
  * Machine generated for CPU 'cpu' in SOPC Builder design 'q_sys'
  * SOPC Builder design path: ../../q_sys.sopcinfo
  *
- * Generated: Wed Aug 10 08:55:13 PDT 2022
+ * Generated: Tue Dec 13 10:13:33 PST 2022
  */
 
 /*
@@ -74,7 +74,6 @@
 
 ALTERA_NIOS2_GEN2_IRQ_INSTANCE ( CPU, cpu);
 ALTERA_AVALON_I2C_INSTANCE ( I2C_CKM_C0, i2c_ckm_c0);
-ALTERA_AVALON_I2C_INSTANCE ( I2C_CKM_C1, i2c_ckm_c1);
 ALTERA_AVALON_I2C_INSTANCE ( I2C_CKM_ID, i2c_ckm_id);
 ALTERA_AVALON_I2C_INSTANCE ( I2C_RXM_CTRL, i2c_rxm_ctrl);
 ALTERA_AVALON_I2C_INSTANCE ( I2C_RXM_ID, i2c_rxm_id);
@@ -110,7 +109,6 @@ void alt_sys_init( void )
 {
     ALTERA_AVALON_TIMER_INIT ( SYS_CLK_TIMER, sys_clk_timer);
     ALTERA_AVALON_I2C_INIT ( I2C_CKM_C0, i2c_ckm_c0);
-    ALTERA_AVALON_I2C_INIT ( I2C_CKM_C1, i2c_ckm_c1);
     ALTERA_AVALON_I2C_INIT ( I2C_CKM_ID, i2c_ckm_id);
     ALTERA_AVALON_I2C_INIT ( I2C_RXM_CTRL, i2c_rxm_ctrl);
     ALTERA_AVALON_I2C_INIT ( I2C_RXM_ID, i2c_rxm_id);

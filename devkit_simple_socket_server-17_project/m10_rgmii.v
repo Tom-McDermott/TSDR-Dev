@@ -83,7 +83,10 @@ module  m10_rgmii (
 		  // SPI Receiver ADC
 		  inout	wire		rfm_spi_BIDIR,
 		  output				rfm_spi_SCLK,
-		  output wire		rfm_spi_CSEL_F
+		  output wire		rfm_spi_CSEL_F,
+		  
+		  // Subclock
+		  output 			subclock12_5
 
         );
 
@@ -329,17 +332,28 @@ I2CBUF i2cckmid (
 	.scl_in	(ckm_id_scl_in)
 	);	
 
+
+subclock SC (
+	.clock1	(clk_50_max10),
+	.clock4	(subclock12_5),
+	);
+	
+	
 // RF Module ADC SPI
 wire	rfm_spi_MOSI;
 wire	rfm_spi_MISO;
 
 SPIConverter rfmadc (
+	.resetn	(fpga_resetn),
 	.MRx 		(rfm_spi_MISO),
 	.TSMTx 	(rfm_spi_BIDIR),
 	.MTx		(rfm_spi_MOSI),
 	.Sclk		(rfm_spi_SCLK),
 	.Cs_f		(rfm_spi_CSEL_F)
 	);
+
+	
+	
 	
 endmodule
 

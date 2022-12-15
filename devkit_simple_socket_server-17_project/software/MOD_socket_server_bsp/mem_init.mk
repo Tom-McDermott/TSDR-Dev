@@ -256,28 +256,6 @@ $(MEM_2)_ENDIANNESS := --little-endian-mem
 $(MEM_2)_CREATE_LANES := 0
 
 
-# Memory: onchip_ram
-MEM_3 := q_sys_onchip_ram
-$(MEM_3)_NAME := onchip_ram
-$(MEM_3)_MEM_INIT_FILE_PARAM_NAME := INIT_FILE
-HEX_FILES += $(MEM_INIT_DIR)/$(MEM_3).hex
-MEM_INIT_INSTALL_FILES += $(MEM_INIT_INSTALL_DIR)/$(MEM_3).hex
-DAT_FILES += $(HDL_SIM_DIR)/$(MEM_3).dat
-HDL_SIM_INSTALL_FILES += $(HDL_SIM_INSTALL_DIR)/$(MEM_3).dat
-SYM_FILES += $(HDL_SIM_DIR)/$(MEM_3).sym
-HDL_SIM_INSTALL_FILES += $(HDL_SIM_INSTALL_DIR)/$(MEM_3).sym
-$(MEM_3)_START := 0x18002800
-$(MEM_3)_END := 0x18002fff
-$(MEM_3)_SPAN := 0x00000800
-$(MEM_3)_HIERARCHICAL_PATH := onchip_ram
-$(MEM_3)_WIDTH := 32
-$(MEM_3)_HEX_DATA_WIDTH := 32
-$(MEM_3)_ENDIANNESS := --little-endian-mem
-$(MEM_3)_CREATE_LANES := 0
-
-.PHONY: onchip_ram
-onchip_ram: check_elf_exists $(MEM_INIT_DIR)/$(MEM_3).hex $(HDL_SIM_DIR)/$(MEM_3).dat $(HDL_SIM_DIR)/$(MEM_3).sym
-
 
 #END OF BSP SPECIFIC
 

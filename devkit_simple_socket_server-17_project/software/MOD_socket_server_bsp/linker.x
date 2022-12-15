@@ -4,7 +4,7 @@
  * Machine generated for CPU 'cpu' in SOPC Builder design 'q_sys'
  * SOPC Builder design path: ../../q_sys.sopcinfo
  *
- * Generated: Tue Oct 12 07:37:40 PDT 2021
+ * Generated: Tue Dec 13 10:13:33 PST 2022
  */
 
 /*
@@ -56,14 +56,12 @@ MEMORY
     reset : ORIGIN = 0x14430000, LENGTH = 32
     ext_flash_avl_mem : ORIGIN = 0x14430020, LENGTH = 62717920
     descriptor_memory : ORIGIN = 0x18000000, LENGTH = 8192
-    onchip_ram : ORIGIN = 0x18002800, LENGTH = 2048
 }
 
 /* Define symbols for each memory base-address */
 __alt_mem_mem_if_ddr3_emif_0 = 0x8000000;
 __alt_mem_ext_flash_avl_mem = 0x14000000;
 __alt_mem_descriptor_memory = 0x18000000;
-__alt_mem_onchip_ram = 0x18002800;
 
 OUTPUT_FORMAT( "elf32-littlenios2",
                "elf32-littlenios2",
@@ -314,16 +312,6 @@ SECTIONS
     } > descriptor_memory
 
     PROVIDE (_alt_partition_descriptor_memory_load_addr = LOADADDR(.descriptor_memory));
-
-    .onchip_ram :
-    {
-        PROVIDE (_alt_partition_onchip_ram_start = ABSOLUTE(.));
-        *(.onchip_ram .onchip_ram. onchip_ram.*)
-        . = ALIGN(4);
-        PROVIDE (_alt_partition_onchip_ram_end = ABSOLUTE(.));
-    } > onchip_ram
-
-    PROVIDE (_alt_partition_onchip_ram_load_addr = LOADADDR(.onchip_ram));
 
     /*
      * Stabs debugging sections.
