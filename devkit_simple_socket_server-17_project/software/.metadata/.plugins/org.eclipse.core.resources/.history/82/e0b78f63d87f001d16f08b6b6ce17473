@@ -549,26 +549,25 @@ int ZEDF9T(struct PARSEDCMD *cmds, char resultmessage[], int itfcindex) 		// Han
 
 
 
+	// write a command to the I2C port
+    //	char TestTxSend[15] = "$GPTXT\r\n";
+    //	status = alt_avalon_i2c_master_tx(i2c_dev, TestTxSend, 8, ALT_AVALON_I2C_NO_INTERRUPTS);
+
 	// Write the binary equivalent of the  UBX-MON-VER command to the I2C.
 	//    in hopes that we can actually read something back.
-	//   Writes are 2..N bytes, there is no address register for writes.
-	// Only do this is the command is a Module Write
 
-	if (cmds->cmd[1] == 'W')
-	{
+	alt_u8 txnum = 0xFF;		// select register 0xff
+	status = alt_avalon_i2c_master_tx(i2c_dev, &txnum, 1, ALT_AVALON_I2C_NO_INTERRUPTS);
 
-		alt_u8 UbxMonVer[8] = { 0xB5, 0x62, 0x0A, 0x04, 0x00, 0x00, 0x0E, 0x34 };
-		status = alt_avalon_i2c_master_tx(i2c_dev, UbxMonVer, 8, ALT_AVALON_I2C_NO_INTERRUPTS);
 
-		// sleep for 500 milliseconds
-		OSTimeDlyHMSM(0, 0, 0, 500);
-
-		return (0);			// Just issue an AK
-	}
+	alt_u8 UbxMonVer[8] = { 0xB5, 0x62, 0x0A, 0x04, 0x00, 0x00, 0x0E, 0x34 };
+	status = alt_avalon_i2c_master_tx(i2c_dev, UbxMonVer, 8, ALT_AVALON_I2C_NO_INTERRUPTS);
 
 
 
-	// Only 3 addresses in the receive register map are useful:
+
+
+	// Only 3 addresses in the register map are useful:
 	// 0xFD, 0xFE - byte count of the message available on port 0xFF, and
 	// 0xFF - a stream of characters with the various serial messages. If register 0xFF is
 	// read and returns a value of 0xFF, then there is no message waiting. No valid message

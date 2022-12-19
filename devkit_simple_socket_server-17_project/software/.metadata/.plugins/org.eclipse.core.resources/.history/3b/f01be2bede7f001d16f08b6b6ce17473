@@ -549,22 +549,19 @@ int ZEDF9T(struct PARSEDCMD *cmds, char resultmessage[], int itfcindex) 		// Han
 
 
 
+	// write a command to the I2C port
+    //	char TestTxSend[15] = "$GPTXT\r\n";
+    //	status = alt_avalon_i2c_master_tx(i2c_dev, TestTxSend, 8, ALT_AVALON_I2C_NO_INTERRUPTS);
+
 	// Write the binary equivalent of the  UBX-MON-VER command to the I2C.
 	//    in hopes that we can actually read something back.
 	//   Writes are 2..N bytes, there is no address register for writes.
-	// Only do this is the command is a Module Write
 
-	if (cmds->cmd[1] == 'W')
-	{
+	alt_u8 UbxMonVer[8] = { 0xB5, 0x62, 0x0A, 0x04, 0x00, 0x00, 0x0E, 0x34 };
+	status = alt_avalon_i2c_master_tx(i2c_dev, UbxMonVer, 8, ALT_AVALON_I2C_NO_INTERRUPTS);
 
-		alt_u8 UbxMonVer[8] = { 0xB5, 0x62, 0x0A, 0x04, 0x00, 0x00, 0x0E, 0x34 };
-		status = alt_avalon_i2c_master_tx(i2c_dev, UbxMonVer, 8, ALT_AVALON_I2C_NO_INTERRUPTS);
-
-		// sleep for 500 milliseconds
-		OSTimeDlyHMSM(0, 0, 0, 500);
-
-		return (0);			// Just issue an AK
-	}
+	// sleep for 500 milliseconds
+	OSTimeDlyHMSM(0, 0, 0, 500);
 
 
 

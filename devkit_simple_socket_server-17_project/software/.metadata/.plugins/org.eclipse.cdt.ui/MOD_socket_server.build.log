@@ -1,9 +1,9 @@
-09:19:12 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+12:54:22 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
 make all 
 Info: Building ../MOD_socket_server_bsp/
 make --no-print-directory -C ../MOD_socket_server_bsp/
 [BSP build complete]
 [MOD_socket_server build complete]
 
-09:19:12 Build Finished (took 519ms)
+12:54:22 Build Finished (took 570ms)
 
