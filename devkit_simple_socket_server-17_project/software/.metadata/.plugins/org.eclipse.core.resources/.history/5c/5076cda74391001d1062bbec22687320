@@ -1,0 +1,17 @@
+/*
+ * InitPeripherals.h
+ *
+ *  Created on: Jan 9, 2023
+ *      Author: tom
+ */
+
+#ifndef INITPERIPHERALS_H_
+#define INITPERIPHERALS_H_
+
+#include "system.h"
+#include "alt_error_handler.h"
+
+int initPeriph(void);
+
+
+#endif /* INITPERIPHERALS_H_ */

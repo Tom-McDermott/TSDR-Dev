@@ -29,7 +29,8 @@ obj/default/simple_socket_server.o: simple_socket_server.c \
  ../MOD_socket_server_bsp//iniche/src/h/sockvar.h \
  ../MOD_socket_server_bsp//iniche/src/h/sockcall.h \
  ../MOD_socket_server_bsp//iniche/src/h/bsdsock.h \
- ../MOD_socket_server_bsp//iniche/src/h/tcpport.h DELHProtocol.h
+ ../MOD_socket_server_bsp//iniche/src/h/tcpport.h DELHProtocol.h \
+ InitializePeriph.h
 
 ../MOD_socket_server_bsp//HAL/inc/includes.h:
 
@@ -98,3 +99,5 @@ alt_error_handler.h:
 ../MOD_socket_server_bsp//iniche/src/h/tcpport.h:
 
 DELHProtocol.h:
+
+InitializePeriph.h:

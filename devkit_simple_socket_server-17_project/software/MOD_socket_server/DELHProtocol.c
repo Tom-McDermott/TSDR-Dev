@@ -37,10 +37,6 @@ static struct UDPCHAN Connections[MAXUDPCHAN];
 struct ITFCMAP ItfcTable[MAXITFC];
 static INT32U LEDCommand;
 
-// Set after the Synthesizer is initialized
-static alt_u8 ClkSynthInitalized = 0;
-
-
 
 /* Initialize the connection table,
  * Add a connection to the table,
@@ -399,16 +395,10 @@ int SI5345(struct PARSEDCMD *cmds, char resultmessage[], int itfcindex) 	// Hand
 
 	i2c_dev = alt_avalon_i2c_open(ItfcTable[itfcindex].name);
 
-	if (NULL==i2c_dev)
-	{
-		printf("Device Error: Cannot find: %s\n", ItfcTable[itfcindex].name);
-		return -1;
-	}
-
     // Si5345 slave address is dependent on the value A1 A0 are. A0 supposed to be pulled up.
 	//  A1 is on pin 17 of the device (a corner pin).  Then slave address >> 1 is:
 	//   if A1 high - 0x6B
-	//   if A1 low - 0x69		Thge Clock Module was reworked to ground pin A1.
+	//   if A1 low - 0x69		The Clock Module was reworked to ground pin A1.
 
 	alt_u32 slave_addr = 0x69;  	  // Right shifted by one bit
 
@@ -436,95 +426,12 @@ int SI5345(struct PARSEDCMD *cmds, char resultmessage[], int itfcindex) 	// Hand
 	alt_u8 MSBPN;
 	status += alt_avalon_i2c_master_rx(i2c_dev, &MSBPN, 1, ALT_AVALON_I2C_NO_INTERRUPTS);
 
-	// Above test is OK after board rework.
 
-	if (status == 0)
-		printf("Si5345 OK. Part number of device:  %02x%02x\n", MSBPN, LSBPN);
-	else
-	{
-		printf("Si5345 i2C error. Error status code: %04ld\n", status);
-		return status;
-	}
+	// TODO - Need to add code to write and read the Si5345 registers from MW and MR commands.
+	// TODO - Likely this isn't useful since a lot of bytes must be written to the Synth to
+	// TODO - program it, involving a lot of MW/MR commands.
 
-	if (ClkSynthInitalized == 0)		// Synth is not initialized, program it.
-	{
-		alt_u8 bankselector[2]; 		// bank selector + page
-		alt_u8 bank, address, data;		// to hold retrieved record
-		alt_u8 adddata[2];				// two consecutive bytes to hold address + data
-
-		int recindex = 0;							// record number
-		int eor = 0;								// 1 = end-of-record
-		int status;									// i2c action status
-
-		while (eor == 0)
-		{
-			eor = ParseClockRec(&ClockPreface[recindex], &bank, &address, &data);
-			if (eor == 1) break;					// don't process the end-of-record
-
-			bankselector[0] = 0x01;		// register on Si5345 that programs bank#
-			bankselector[1] = bank;
-
-			status = 0;
-
-			adddata[0] = address;
-			adddata[1] = data;
-
-			status += alt_avalon_i2c_master_tx(i2c_dev, bankselector, 2, ALT_AVALON_I2C_NO_INTERRUPTS);
-			status += alt_avalon_i2c_master_tx(i2c_dev, adddata, 2, ALT_AVALON_I2C_NO_INTERRUPTS);
-
-
-
-			if (status < 0)
-			{
-				printf("Error trying to write Si5345 program. ClockPreface Record # %i\n", recindex);
-				return -1;
-			}
-			recindex++;
-		}
-
-		OSTimeDlyHMSM(0, 0, 0, 300); 	// sleep for 300 milliseconds to allow synthesizer to self-calibrate
-
-		recindex = 0;
-		eor = 0;
-
-		while (eor == 0)
-		{
-
-
-			eor = ParseClockRec(&ClockBody[recindex], &bank, &address, &data);
-			if (eor == 1) break;					// don't process the end-of-record
-
-			bankselector[0] = 0x01;		// register on Si5345 that programs bank#
-			bankselector[1] = bank;
-
-			status = 0;
-
-			adddata[0] = address;
-			adddata[1] = data;
-
-			status += alt_avalon_i2c_master_tx(i2c_dev, bankselector, 2, ALT_AVALON_I2C_NO_INTERRUPTS);
-			status += alt_avalon_i2c_master_tx(i2c_dev, adddata, 2, ALT_AVALON_I2C_NO_INTERRUPTS);
-
-			if (status < 0)
-			{
-				printf("Error trying to write Si5345 program. ClockBody Record # %i   bank = %02x  address = %02x  data = %02x  status = %i\n",
-						recindex, bank, address, data, status);
-				return -1;
-			}
-			recindex++;
-		}
-
-		ClkSynthInitalized = 1;		// Mark the Synthesizer as initialized
-		printf("Si5345 Synthesizer initialized without errors\n");
-		strcpy(resultmessage, "Si5345 synthesizer has been initialized. MR/MW ignored.\n");
-		return 0;  // Temporary - should be 1 to return the message
-
-	}
-
-	// TODO
-	// TODO - Now need to add code to write and read the Si5345 registers from MW and MR commands.
-	// TODO
-	return -1;	// NAK the MW/MR command for now
+	return -1;	// TODO - NAK the MW/MR command for now
 
 }
 int ZEDF9T(struct PARSEDCMD *cmds, char resultmessage[], int itfcindex) 		// Handler for ZED-F9T GPS

@@ -1,0 +1,19 @@
+/*
+ * InitializePeriph.c
+ *
+ *  Created on: Jan 10, 2023
+ *  	License: Gnu Public License (GPL) Version 2 or later.
+ *      Author: Tom McDermott, N5EG
+ *      Copyright 2023, Thomas C. McDermott
+ */
+
+// Right now this just writes the ClockBuiilder Pro compiler register file to the
+// clock module synthesizer chip.
+// Other modules can be added later if they need initialization
+
+#include "InitializePeriph.h"
+
+initPeriph()
+{
+	return 0;
+}

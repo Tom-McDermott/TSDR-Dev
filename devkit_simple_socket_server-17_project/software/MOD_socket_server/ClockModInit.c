@@ -1,4 +1,4 @@
-// Clock Module Initialization
+// Clock Module Synthesizer Baseline Configuration Register Definitions
 //
 // November 16, 2022
 // Copyright 2022, Thomas C. McDermott, N5EG

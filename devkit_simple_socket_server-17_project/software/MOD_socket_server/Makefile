@@ -94,6 +94,7 @@ C_SRCS += tse_my_system.c
 C_SRCS += network_utilities.c
 C_SRCS += DELHProtocol.c
 C_SRCS += ClockModInit.c
+C_SRCS += InitializePeriph.c
 CXX_SRCS :=
 ASM_SRCS :=
 

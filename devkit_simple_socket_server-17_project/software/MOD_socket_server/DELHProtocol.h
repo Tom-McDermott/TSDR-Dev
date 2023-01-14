@@ -108,9 +108,8 @@ int AD9648(struct PARSEDCMD *, char resultmessage[], int itfcindex); 		// Handle
  * NOTE:    BASE address #defines from the BSP package / system.h include file.
  */
 
-// The DEV_KIT test system has 6 (I2C+SPI) interfaces
-#define MAXITFC 6
-
+#define MAXITFC 6				// The DEV_KIT + DataEngine Adaptor + Receiver test system has 6 (I2C+SPI) interfaces
+#define CLOCKSYNTHITFC	0		// Interface number of the clock module synthesizer (needed for initialization)
 
 struct ITFCMAP {
 	unsigned int module;	// Module number
@@ -119,6 +118,9 @@ struct ITFCMAP {
 	char name[24];			// name of the device (e.g. "/dev/ic2_ckm_c0")
 	int (*handler)(struct PARSEDCMD *, char *, int);	// Pointer to function to handle the specific device type
 };
+
+extern struct ITFCMAP ItfcTable[MAXITFC];   // So other modules can find it
+
 int FindItfcIndex(int, int);	// find the index in the ITFCMAP table given module# and slot#
 void initItfcMap();				// Initialize the Interface Map table
 

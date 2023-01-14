@@ -1,0 +1,20 @@
+/*
+ * initPeripherals.c
+ *
+ *  Created on: Jan 9, 2023
+ *      Author: Thomas C. McDermott, N5EG
+ *
+ *  Copyright 2023  Thomas C. McDermott
+ *
+ *  Licensed under GNU Public License (GPL), version 2 or later.
+ */
+
+// This module is used to initialize the TangerineSDR peripherals.
+// Right now this is the clock module.
+#include "InitPheripherals.h
+
+
+initPeripherals()
+{
+	return 0;
+}

@@ -47,6 +47,10 @@
 
 /* TSDR protocol definitions */
 #include "DELHProtocol.h"
+
+/* Initialize TSDR processor-controlled peripherals */
+#include "InitializePeriph.h"
+
  
 /*
  * Global handles (pointers) to our MicroC/OS-II resources. All of resources 
@@ -150,8 +154,12 @@ void SSSSimpleSocketServerTask()
   memset(&addrhost, 0, sizeof(struct sockaddr_in));
   memset(&nilclient, 0, sizeof(struct sockaddr_in));		// discovery request doesn't use client address / port
   
-  initChan();		// Clear table of UDP Channels.
+  initChan();			// Clear table of UDP Channels.
+
   initItfcMap();		// Build the Interface Map table.
+
+  initPeriph();			// Initialize TSDR peripherals
+
 
   /*
    * Sockets primer...
