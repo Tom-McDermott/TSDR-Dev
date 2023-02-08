@@ -40361,3 +40361,1558 @@ Info:                         130683 KBytes free for stack + heap.
 Info: Creating MOD_socket_server.objdump
 nios2-elf-objdump --disassemble --syms --all-header --source MOD_socket_server.elf >MOD_socket_server.objdump
 [MOD_socket_server build complete]
+12:17:44 **** Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+12:17:45 **** Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+Info: Compiling InitializePeriph.c to obj/default/InitializePeriph.o
+nios2-elf-gcc -xc -MP -MMD -c -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp//drivers/inc/iniche -I../MOD_socket_server_bsp//iniche/inc -I../MOD_socket_server_bsp//iniche/src/h -I../MOD_socket_server_bsp//iniche/src/h/nios2 -I../MOD_socket_server_bsp//iniche/src/nios2 -I../MOD_socket_server_bsp//UCOSII/inc -I../MOD_socket_server_bsp//HAL/inc -I../MOD_socket_server_bsp/ -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALTERA_TRIPLE_SPEED_MAC -DALT_INICHE -D__ucosii__ -DALTERA_AUTONEG_TIMEOUT_THRESHOLD=2500 -DALTERA_CHECKLINK_TIMEOUT_THRESHOLD=10000 -DALTERA_NOMDIO_TIMEOUT_THRESHOLD=1000000    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/InitializePeriph.o InitializePeriph.c
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:117: warning: "LITTLE_ENDIAN" redefined
+  117 | #define LITTLE_ENDIAN 1234
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:17: note: this is the location of the previous definition
+   17 | #define LITTLE_ENDIAN _LITTLE_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:118: warning: "BIG_ENDIAN" redefined
+  118 | #define BIG_ENDIAN    4321
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:18: note: this is the location of the previous definition
+   18 | #define BIG_ENDIAN _BIG_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:119: warning: "BYTE_ORDER" redefined
+  119 | #define BYTE_ORDER    LITTLE_ENDIAN
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:20: note: this is the location of the previous definition
+   20 | #define BYTE_ORDER _BYTE_ORDER
+      | 
+Info: Linking MOD_socket_server.elf
+nios2-elf-g++  -T'../MOD_socket_server_bsp//linker.x' -msys-crt0='../MOD_socket_server_bsp//obj/HAL/src/crt0.o' -msys-lib=ucosii_bsp -L../MOD_socket_server_bsp/ -L../MOD_socket_server_bsp   -Wl,-Map=MOD_socket_server.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o MOD_socket_server.elf obj/default/ClockModInit.o obj/default/DELHProtocol.o obj/default/InitializePeriph.o obj/default/alt_error_handler.o obj/default/iniche_init.o obj/default/led.o obj/default/network_utilities.o obj/default/simple_socket_server.o obj/default/tse_my_system.o -lm -msys-lib=m
+nios2-elf-insert MOD_socket_server.elf --thread_model ucosii --cpu_name cpu --qsys true --simulation_enabled false --id 4207856382 --sidp 0x18003ff0 --timestamp 1670954945 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name q_sys --quartus_project_dir "/home/tom/TSDR-Dev/devkit_simple_socket_server-17_project" --jdi ../..//output_files/top.jdi --sopcinfo /home/tom/TSDR-Dev/devkit_simple_socket_server-17_project/software/MOD_socket_server_bsp/../../q_sys.sopcinfo
+Info: (MOD_socket_server.elf) 388 KBytes program size (code + initialized data).
+Info:                         130683 KBytes free for stack + heap.
+Info: Creating MOD_socket_server.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source MOD_socket_server.elf >MOD_socket_server.objdump
+[MOD_socket_server build complete]
+12:18:43 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+12:18:44 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+Info: Compiling InitializePeriph.c to obj/default/InitializePeriph.o
+nios2-elf-gcc -xc -MP -MMD -c -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp//drivers/inc/iniche -I../MOD_socket_server_bsp//iniche/inc -I../MOD_socket_server_bsp//iniche/src/h -I../MOD_socket_server_bsp//iniche/src/h/nios2 -I../MOD_socket_server_bsp//iniche/src/nios2 -I../MOD_socket_server_bsp//UCOSII/inc -I../MOD_socket_server_bsp//HAL/inc -I../MOD_socket_server_bsp/ -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALTERA_TRIPLE_SPEED_MAC -DALT_INICHE -D__ucosii__ -DALTERA_AUTONEG_TIMEOUT_THRESHOLD=2500 -DALTERA_CHECKLINK_TIMEOUT_THRESHOLD=10000 -DALTERA_NOMDIO_TIMEOUT_THRESHOLD=1000000    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/InitializePeriph.o InitializePeriph.c
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:117: warning: "LITTLE_ENDIAN" redefined
+  117 | #define LITTLE_ENDIAN 1234
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:17: note: this is the location of the previous definition
+   17 | #define LITTLE_ENDIAN _LITTLE_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:118: warning: "BIG_ENDIAN" redefined
+  118 | #define BIG_ENDIAN    4321
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:18: note: this is the location of the previous definition
+   18 | #define BIG_ENDIAN _BIG_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:119: warning: "BYTE_ORDER" redefined
+  119 | #define BYTE_ORDER    LITTLE_ENDIAN
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:20: note: this is the location of the previous definition
+   20 | #define BYTE_ORDER _BYTE_ORDER
+      | 
+InitializePeriph.c: In function 'initPeriph':
+InitializePeriph.c:32:11: warning: implicit declaration of function 'GPSInit'; did you mean 'OSInit'? [-Wimplicit-function-declaration]
+   32 |  status = GPSInit();  // Place holder for now
+      |           ^~~~~~~
+      |           OSInit
+Info: Linking MOD_socket_server.elf
+nios2-elf-g++  -T'../MOD_socket_server_bsp//linker.x' -msys-crt0='../MOD_socket_server_bsp//obj/HAL/src/crt0.o' -msys-lib=ucosii_bsp -L../MOD_socket_server_bsp/ -L../MOD_socket_server_bsp   -Wl,-Map=MOD_socket_server.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o MOD_socket_server.elf obj/default/ClockModInit.o obj/default/DELHProtocol.o obj/default/InitializePeriph.o obj/default/alt_error_handler.o obj/default/iniche_init.o obj/default/led.o obj/default/network_utilities.o obj/default/simple_socket_server.o obj/default/tse_my_system.o -lm -msys-lib=m
+nios2-elf-insert MOD_socket_server.elf --thread_model ucosii --cpu_name cpu --qsys true --simulation_enabled false --id 4207856382 --sidp 0x18003ff0 --timestamp 1670954945 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name q_sys --quartus_project_dir "/home/tom/TSDR-Dev/devkit_simple_socket_server-17_project" --jdi ../..//output_files/top.jdi --sopcinfo /home/tom/TSDR-Dev/devkit_simple_socket_server-17_project/software/MOD_socket_server_bsp/../../q_sys.sopcinfo
+Info: (MOD_socket_server.elf) 388 KBytes program size (code + initialized data).
+Info:                         130683 KBytes free for stack + heap.
+Info: Creating MOD_socket_server.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source MOD_socket_server.elf >MOD_socket_server.objdump
+[MOD_socket_server build complete]
+12:19:03 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+12:19:04 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+[MOD_socket_server build complete]
+12:19:32 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+12:19:33 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+Info: Compiling InitializePeriph.c to obj/default/InitializePeriph.o
+nios2-elf-gcc -xc -MP -MMD -c -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp//drivers/inc/iniche -I../MOD_socket_server_bsp//iniche/inc -I../MOD_socket_server_bsp//iniche/src/h -I../MOD_socket_server_bsp//iniche/src/h/nios2 -I../MOD_socket_server_bsp//iniche/src/nios2 -I../MOD_socket_server_bsp//UCOSII/inc -I../MOD_socket_server_bsp//HAL/inc -I../MOD_socket_server_bsp/ -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALTERA_TRIPLE_SPEED_MAC -DALT_INICHE -D__ucosii__ -DALTERA_AUTONEG_TIMEOUT_THRESHOLD=2500 -DALTERA_CHECKLINK_TIMEOUT_THRESHOLD=10000 -DALTERA_NOMDIO_TIMEOUT_THRESHOLD=1000000    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/InitializePeriph.o InitializePeriph.c
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:117: warning: "LITTLE_ENDIAN" redefined
+  117 | #define LITTLE_ENDIAN 1234
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:17: note: this is the location of the previous definition
+   17 | #define LITTLE_ENDIAN _LITTLE_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:118: warning: "BIG_ENDIAN" redefined
+  118 | #define BIG_ENDIAN    4321
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:18: note: this is the location of the previous definition
+   18 | #define BIG_ENDIAN _BIG_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:119: warning: "BYTE_ORDER" redefined
+  119 | #define BYTE_ORDER    LITTLE_ENDIAN
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:20: note: this is the location of the previous definition
+   20 | #define BYTE_ORDER _BYTE_ORDER
+      | 
+Info: Linking MOD_socket_server.elf
+nios2-elf-g++  -T'../MOD_socket_server_bsp//linker.x' -msys-crt0='../MOD_socket_server_bsp//obj/HAL/src/crt0.o' -msys-lib=ucosii_bsp -L../MOD_socket_server_bsp/ -L../MOD_socket_server_bsp   -Wl,-Map=MOD_socket_server.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o MOD_socket_server.elf obj/default/ClockModInit.o obj/default/DELHProtocol.o obj/default/InitializePeriph.o obj/default/alt_error_handler.o obj/default/iniche_init.o obj/default/led.o obj/default/network_utilities.o obj/default/simple_socket_server.o obj/default/tse_my_system.o -lm -msys-lib=m
+nios2-elf-insert MOD_socket_server.elf --thread_model ucosii --cpu_name cpu --qsys true --simulation_enabled false --id 4207856382 --sidp 0x18003ff0 --timestamp 1670954945 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name q_sys --quartus_project_dir "/home/tom/TSDR-Dev/devkit_simple_socket_server-17_project" --jdi ../..//output_files/top.jdi --sopcinfo /home/tom/TSDR-Dev/devkit_simple_socket_server-17_project/software/MOD_socket_server_bsp/../../q_sys.sopcinfo
+Info: (MOD_socket_server.elf) 388 KBytes program size (code + initialized data).
+Info:                         130683 KBytes free for stack + heap.
+Info: Creating MOD_socket_server.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source MOD_socket_server.elf >MOD_socket_server.objdump
+[MOD_socket_server build complete]
+12:20:56 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+12:20:57 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+[MOD_socket_server build complete]
+09:57:06 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+09:57:07 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+Info: Compiling InitializePeriph.c to obj/default/InitializePeriph.o
+nios2-elf-gcc -xc -MP -MMD -c -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp//drivers/inc/iniche -I../MOD_socket_server_bsp//iniche/inc -I../MOD_socket_server_bsp//iniche/src/h -I../MOD_socket_server_bsp//iniche/src/h/nios2 -I../MOD_socket_server_bsp//iniche/src/nios2 -I../MOD_socket_server_bsp//UCOSII/inc -I../MOD_socket_server_bsp//HAL/inc -I../MOD_socket_server_bsp/ -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALTERA_TRIPLE_SPEED_MAC -DALT_INICHE -D__ucosii__ -DALTERA_AUTONEG_TIMEOUT_THRESHOLD=2500 -DALTERA_CHECKLINK_TIMEOUT_THRESHOLD=10000 -DALTERA_NOMDIO_TIMEOUT_THRESHOLD=1000000    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/InitializePeriph.o InitializePeriph.c
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:117: warning: "LITTLE_ENDIAN" redefined
+  117 | #define LITTLE_ENDIAN 1234
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:17: note: this is the location of the previous definition
+   17 | #define LITTLE_ENDIAN _LITTLE_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:118: warning: "BIG_ENDIAN" redefined
+  118 | #define BIG_ENDIAN    4321
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:18: note: this is the location of the previous definition
+   18 | #define BIG_ENDIAN _BIG_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:119: warning: "BYTE_ORDER" redefined
+  119 | #define BYTE_ORDER    LITTLE_ENDIAN
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:20: note: this is the location of the previous definition
+   20 | #define BYTE_ORDER _BYTE_ORDER
+      | 
+InitializePeriph.c: In function 'GPSInit':
+InitializePeriph.c:190:54: error: called object is not a function or function pointer
+  190 |  status = alt_avalon_i2c_master_tx(i2c_dev, UbxCmd1, 40 ALT_AVALON_I2C_NO_INTERRUPTS);
+      |                                                      ^~
+InitializePeriph.c:190:11: error: too few arguments to function 'alt_avalon_i2c_master_tx'
+  190 |  status = alt_avalon_i2c_master_tx(i2c_dev, UbxCmd1, 40 ALT_AVALON_I2C_NO_INTERRUPTS);
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~
+In file included from InitializePeriph.c:24:
+../MOD_socket_server_bsp//drivers/inc/altera_avalon_i2c.h:683:28: note: declared here
+  683 | ALT_AVALON_I2C_STATUS_CODE alt_avalon_i2c_master_tx(ALT_AVALON_I2C_DEV_t *i2c_dev,
+      |                            ^~~~~~~~~~~~~~~~~~~~~~~~
+InitializePeriph.c:170:9: warning: variable 'status' set but not used [-Wunused-but-set-variable]
+  170 |  alt_32 status;      // Altera defines this as unsigned, but then uses it as signed
+      |         ^~~~~~
+make: *** [Makefile:729: obj/default/InitializePeriph.o] Error 1
+09:57:56 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+09:57:57 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+Info: Compiling InitializePeriph.c to obj/default/InitializePeriph.o
+nios2-elf-gcc -xc -MP -MMD -c -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp//drivers/inc/iniche -I../MOD_socket_server_bsp//iniche/inc -I../MOD_socket_server_bsp//iniche/src/h -I../MOD_socket_server_bsp//iniche/src/h/nios2 -I../MOD_socket_server_bsp//iniche/src/nios2 -I../MOD_socket_server_bsp//UCOSII/inc -I../MOD_socket_server_bsp//HAL/inc -I../MOD_socket_server_bsp/ -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALTERA_TRIPLE_SPEED_MAC -DALT_INICHE -D__ucosii__ -DALTERA_AUTONEG_TIMEOUT_THRESHOLD=2500 -DALTERA_CHECKLINK_TIMEOUT_THRESHOLD=10000 -DALTERA_NOMDIO_TIMEOUT_THRESHOLD=1000000    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/InitializePeriph.o InitializePeriph.c
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:117: warning: "LITTLE_ENDIAN" redefined
+  117 | #define LITTLE_ENDIAN 1234
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:17: note: this is the location of the previous definition
+   17 | #define LITTLE_ENDIAN _LITTLE_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:118: warning: "BIG_ENDIAN" redefined
+  118 | #define BIG_ENDIAN    4321
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:18: note: this is the location of the previous definition
+   18 | #define BIG_ENDIAN _BIG_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:119: warning: "BYTE_ORDER" redefined
+  119 | #define BYTE_ORDER    LITTLE_ENDIAN
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:20: note: this is the location of the previous definition
+   20 | #define BYTE_ORDER _BYTE_ORDER
+      | 
+InitializePeriph.c: In function 'GPSInit':
+InitializePeriph.c:170:9: warning: variable 'status' set but not used [-Wunused-but-set-variable]
+  170 |  alt_32 status;      // Altera defines this as unsigned, but then uses it as signed
+      |         ^~~~~~
+Info: Linking MOD_socket_server.elf
+nios2-elf-g++  -T'../MOD_socket_server_bsp//linker.x' -msys-crt0='../MOD_socket_server_bsp//obj/HAL/src/crt0.o' -msys-lib=ucosii_bsp -L../MOD_socket_server_bsp/ -L../MOD_socket_server_bsp   -Wl,-Map=MOD_socket_server.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o MOD_socket_server.elf obj/default/ClockModInit.o obj/default/DELHProtocol.o obj/default/InitializePeriph.o obj/default/alt_error_handler.o obj/default/iniche_init.o obj/default/led.o obj/default/network_utilities.o obj/default/simple_socket_server.o obj/default/tse_my_system.o -lm -msys-lib=m
+nios2-elf-insert MOD_socket_server.elf --thread_model ucosii --cpu_name cpu --qsys true --simulation_enabled false --id 4207856382 --sidp 0x18003ff0 --timestamp 1670954945 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name q_sys --quartus_project_dir "/home/tom/TSDR-Dev/devkit_simple_socket_server-17_project" --jdi ../..//output_files/top.jdi --sopcinfo /home/tom/TSDR-Dev/devkit_simple_socket_server-17_project/software/MOD_socket_server_bsp/../../q_sys.sopcinfo
+Info: (MOD_socket_server.elf) 388 KBytes program size (code + initialized data).
+Info:                         130682 KBytes free for stack + heap.
+Info: Creating MOD_socket_server.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source MOD_socket_server.elf >MOD_socket_server.objdump
+[MOD_socket_server build complete]
+10:43:37 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+10:43:38 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+Info: Compiling ClockModInit.c to obj/default/ClockModInit.o
+nios2-elf-gcc -xc -MP -MMD -c -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp//drivers/inc/iniche -I../MOD_socket_server_bsp//iniche/inc -I../MOD_socket_server_bsp//iniche/src/h -I../MOD_socket_server_bsp//iniche/src/h/nios2 -I../MOD_socket_server_bsp//iniche/src/nios2 -I../MOD_socket_server_bsp//UCOSII/inc -I../MOD_socket_server_bsp//HAL/inc -I../MOD_socket_server_bsp/ -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALTERA_TRIPLE_SPEED_MAC -DALT_INICHE -D__ucosii__ -DALTERA_AUTONEG_TIMEOUT_THRESHOLD=2500 -DALTERA_CHECKLINK_TIMEOUT_THRESHOLD=10000 -DALTERA_NOMDIO_TIMEOUT_THRESHOLD=1000000    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/ClockModInit.o ClockModInit.c
+Info: Linking MOD_socket_server.elf
+nios2-elf-g++  -T'../MOD_socket_server_bsp//linker.x' -msys-crt0='../MOD_socket_server_bsp//obj/HAL/src/crt0.o' -msys-lib=ucosii_bsp -L../MOD_socket_server_bsp/ -L../MOD_socket_server_bsp   -Wl,-Map=MOD_socket_server.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o MOD_socket_server.elf obj/default/ClockModInit.o obj/default/DELHProtocol.o obj/default/InitializePeriph.o obj/default/alt_error_handler.o obj/default/iniche_init.o obj/default/led.o obj/default/network_utilities.o obj/default/simple_socket_server.o obj/default/tse_my_system.o -lm -msys-lib=m
+nios2-elf-insert MOD_socket_server.elf --thread_model ucosii --cpu_name cpu --qsys true --simulation_enabled false --id 4207856382 --sidp 0x18003ff0 --timestamp 1670954945 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name q_sys --quartus_project_dir "/home/tom/TSDR-Dev/devkit_simple_socket_server-17_project" --jdi ../..//output_files/top.jdi --sopcinfo /home/tom/TSDR-Dev/devkit_simple_socket_server-17_project/software/MOD_socket_server_bsp/../../q_sys.sopcinfo
+Info: (MOD_socket_server.elf) 388 KBytes program size (code + initialized data).
+Info:                         130682 KBytes free for stack + heap.
+Info: Creating MOD_socket_server.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source MOD_socket_server.elf >MOD_socket_server.objdump
+[MOD_socket_server build complete]
+10:44:31 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+10:44:31 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+Info: Compiling ClockModInit.c to obj/default/ClockModInit.o
+nios2-elf-gcc -xc -MP -MMD -c -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp//drivers/inc/iniche -I../MOD_socket_server_bsp//iniche/inc -I../MOD_socket_server_bsp//iniche/src/h -I../MOD_socket_server_bsp//iniche/src/h/nios2 -I../MOD_socket_server_bsp//iniche/src/nios2 -I../MOD_socket_server_bsp//UCOSII/inc -I../MOD_socket_server_bsp//HAL/inc -I../MOD_socket_server_bsp/ -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALTERA_TRIPLE_SPEED_MAC -DALT_INICHE -D__ucosii__ -DALTERA_AUTONEG_TIMEOUT_THRESHOLD=2500 -DALTERA_CHECKLINK_TIMEOUT_THRESHOLD=10000 -DALTERA_NOMDIO_TIMEOUT_THRESHOLD=1000000    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/ClockModInit.o ClockModInit.c
+Info: Linking MOD_socket_server.elf
+nios2-elf-g++  -T'../MOD_socket_server_bsp//linker.x' -msys-crt0='../MOD_socket_server_bsp//obj/HAL/src/crt0.o' -msys-lib=ucosii_bsp -L../MOD_socket_server_bsp/ -L../MOD_socket_server_bsp   -Wl,-Map=MOD_socket_server.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o MOD_socket_server.elf obj/default/ClockModInit.o obj/default/DELHProtocol.o obj/default/InitializePeriph.o obj/default/alt_error_handler.o obj/default/iniche_init.o obj/default/led.o obj/default/network_utilities.o obj/default/simple_socket_server.o obj/default/tse_my_system.o -lm -msys-lib=m
+nios2-elf-insert MOD_socket_server.elf --thread_model ucosii --cpu_name cpu --qsys true --simulation_enabled false --id 4207856382 --sidp 0x18003ff0 --timestamp 1670954945 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name q_sys --quartus_project_dir "/home/tom/TSDR-Dev/devkit_simple_socket_server-17_project" --jdi ../..//output_files/top.jdi --sopcinfo /home/tom/TSDR-Dev/devkit_simple_socket_server-17_project/software/MOD_socket_server_bsp/../../q_sys.sopcinfo
+Info: (MOD_socket_server.elf) 388 KBytes program size (code + initialized data).
+Info:                         130682 KBytes free for stack + heap.
+Info: Creating MOD_socket_server.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source MOD_socket_server.elf >MOD_socket_server.objdump
+[MOD_socket_server build complete]
+14:00:46 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+14:00:46 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+[MOD_socket_server build complete]
+14:05:07 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+14:05:07 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+[MOD_socket_server build complete]
+14:07:22 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+14:07:22 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+Info: Compiling InitializePeriph.c to obj/default/InitializePeriph.o
+nios2-elf-gcc -xc -MP -MMD -c -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp//drivers/inc/iniche -I../MOD_socket_server_bsp//iniche/inc -I../MOD_socket_server_bsp//iniche/src/h -I../MOD_socket_server_bsp//iniche/src/h/nios2 -I../MOD_socket_server_bsp//iniche/src/nios2 -I../MOD_socket_server_bsp//UCOSII/inc -I../MOD_socket_server_bsp//HAL/inc -I../MOD_socket_server_bsp/ -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALTERA_TRIPLE_SPEED_MAC -DALT_INICHE -D__ucosii__ -DALTERA_AUTONEG_TIMEOUT_THRESHOLD=2500 -DALTERA_CHECKLINK_TIMEOUT_THRESHOLD=10000 -DALTERA_NOMDIO_TIMEOUT_THRESHOLD=1000000    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/InitializePeriph.o InitializePeriph.c
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:117: warning: "LITTLE_ENDIAN" redefined
+  117 | #define LITTLE_ENDIAN 1234
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:17: note: this is the location of the previous definition
+   17 | #define LITTLE_ENDIAN _LITTLE_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:118: warning: "BIG_ENDIAN" redefined
+  118 | #define BIG_ENDIAN    4321
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:18: note: this is the location of the previous definition
+   18 | #define BIG_ENDIAN _BIG_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:119: warning: "BYTE_ORDER" redefined
+  119 | #define BYTE_ORDER    LITTLE_ENDIAN
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:20: note: this is the location of the previous definition
+   20 | #define BYTE_ORDER _BYTE_ORDER
+      | 
+InitializePeriph.c: In function 'GPSInit':
+InitializePeriph.c:170:9: warning: variable 'status' set but not used [-Wunused-but-set-variable]
+  170 |  alt_32 status;      // Altera defines this as unsigned, but then uses it as signed
+      |         ^~~~~~
+Info: Linking MOD_socket_server.elf
+nios2-elf-g++  -T'../MOD_socket_server_bsp//linker.x' -msys-crt0='../MOD_socket_server_bsp//obj/HAL/src/crt0.o' -msys-lib=ucosii_bsp -L../MOD_socket_server_bsp/ -L../MOD_socket_server_bsp   -Wl,-Map=MOD_socket_server.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o MOD_socket_server.elf obj/default/ClockModInit.o obj/default/DELHProtocol.o obj/default/InitializePeriph.o obj/default/alt_error_handler.o obj/default/iniche_init.o obj/default/led.o obj/default/network_utilities.o obj/default/simple_socket_server.o obj/default/tse_my_system.o -lm -msys-lib=m
+nios2-elf-insert MOD_socket_server.elf --thread_model ucosii --cpu_name cpu --qsys true --simulation_enabled false --id 4207856382 --sidp 0x18003ff0 --timestamp 1670954945 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name q_sys --quartus_project_dir "/home/tom/TSDR-Dev/devkit_simple_socket_server-17_project" --jdi ../..//output_files/top.jdi --sopcinfo /home/tom/TSDR-Dev/devkit_simple_socket_server-17_project/software/MOD_socket_server_bsp/../../q_sys.sopcinfo
+Info: (MOD_socket_server.elf) 389 KBytes program size (code + initialized data).
+Info:                         130682 KBytes free for stack + heap.
+Info: Creating MOD_socket_server.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source MOD_socket_server.elf >MOD_socket_server.objdump
+[MOD_socket_server build complete]
+14:07:29 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+14:07:29 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+[MOD_socket_server build complete]
+14:09:07 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+14:09:08 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+[MOD_socket_server build complete]
+14:10:13 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+14:10:14 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+[MOD_socket_server build complete]
+14:15:38 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+14:15:38 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+Info: Compiling InitializePeriph.c to obj/default/InitializePeriph.o
+nios2-elf-gcc -xc -MP -MMD -c -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp//drivers/inc/iniche -I../MOD_socket_server_bsp//iniche/inc -I../MOD_socket_server_bsp//iniche/src/h -I../MOD_socket_server_bsp//iniche/src/h/nios2 -I../MOD_socket_server_bsp//iniche/src/nios2 -I../MOD_socket_server_bsp//UCOSII/inc -I../MOD_socket_server_bsp//HAL/inc -I../MOD_socket_server_bsp/ -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALTERA_TRIPLE_SPEED_MAC -DALT_INICHE -D__ucosii__ -DALTERA_AUTONEG_TIMEOUT_THRESHOLD=2500 -DALTERA_CHECKLINK_TIMEOUT_THRESHOLD=10000 -DALTERA_NOMDIO_TIMEOUT_THRESHOLD=1000000    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/InitializePeriph.o InitializePeriph.c
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:117: warning: "LITTLE_ENDIAN" redefined
+  117 | #define LITTLE_ENDIAN 1234
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:17: note: this is the location of the previous definition
+   17 | #define LITTLE_ENDIAN _LITTLE_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:118: warning: "BIG_ENDIAN" redefined
+  118 | #define BIG_ENDIAN    4321
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:18: note: this is the location of the previous definition
+   18 | #define BIG_ENDIAN _BIG_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:119: warning: "BYTE_ORDER" redefined
+  119 | #define BYTE_ORDER    LITTLE_ENDIAN
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:20: note: this is the location of the previous definition
+   20 | #define BYTE_ORDER _BYTE_ORDER
+      | 
+Info: Linking MOD_socket_server.elf
+nios2-elf-g++  -T'../MOD_socket_server_bsp//linker.x' -msys-crt0='../MOD_socket_server_bsp//obj/HAL/src/crt0.o' -msys-lib=ucosii_bsp -L../MOD_socket_server_bsp/ -L../MOD_socket_server_bsp   -Wl,-Map=MOD_socket_server.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o MOD_socket_server.elf obj/default/ClockModInit.o obj/default/DELHProtocol.o obj/default/InitializePeriph.o obj/default/alt_error_handler.o obj/default/iniche_init.o obj/default/led.o obj/default/network_utilities.o obj/default/simple_socket_server.o obj/default/tse_my_system.o -lm -msys-lib=m
+nios2-elf-insert MOD_socket_server.elf --thread_model ucosii --cpu_name cpu --qsys true --simulation_enabled false --id 4207856382 --sidp 0x18003ff0 --timestamp 1670954945 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name q_sys --quartus_project_dir "/home/tom/TSDR-Dev/devkit_simple_socket_server-17_project" --jdi ../..//output_files/top.jdi --sopcinfo /home/tom/TSDR-Dev/devkit_simple_socket_server-17_project/software/MOD_socket_server_bsp/../../q_sys.sopcinfo
+Info: (MOD_socket_server.elf) 389 KBytes program size (code + initialized data).
+Info:                         130682 KBytes free for stack + heap.
+Info: Creating MOD_socket_server.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source MOD_socket_server.elf >MOD_socket_server.objdump
+[MOD_socket_server build complete]
+14:16:10 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+14:16:11 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+Info: Compiling InitializePeriph.c to obj/default/InitializePeriph.o
+nios2-elf-gcc -xc -MP -MMD -c -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp//drivers/inc/iniche -I../MOD_socket_server_bsp//iniche/inc -I../MOD_socket_server_bsp//iniche/src/h -I../MOD_socket_server_bsp//iniche/src/h/nios2 -I../MOD_socket_server_bsp//iniche/src/nios2 -I../MOD_socket_server_bsp//UCOSII/inc -I../MOD_socket_server_bsp//HAL/inc -I../MOD_socket_server_bsp/ -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALTERA_TRIPLE_SPEED_MAC -DALT_INICHE -D__ucosii__ -DALTERA_AUTONEG_TIMEOUT_THRESHOLD=2500 -DALTERA_CHECKLINK_TIMEOUT_THRESHOLD=10000 -DALTERA_NOMDIO_TIMEOUT_THRESHOLD=1000000    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/InitializePeriph.o InitializePeriph.c
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:117: warning: "LITTLE_ENDIAN" redefined
+  117 | #define LITTLE_ENDIAN 1234
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:17: note: this is the location of the previous definition
+   17 | #define LITTLE_ENDIAN _LITTLE_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:118: warning: "BIG_ENDIAN" redefined
+  118 | #define BIG_ENDIAN    4321
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:18: note: this is the location of the previous definition
+   18 | #define BIG_ENDIAN _BIG_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:119: warning: "BYTE_ORDER" redefined
+  119 | #define BYTE_ORDER    LITTLE_ENDIAN
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:20: note: this is the location of the previous definition
+   20 | #define BYTE_ORDER _BYTE_ORDER
+      | 
+Info: Linking MOD_socket_server.elf
+nios2-elf-g++  -T'../MOD_socket_server_bsp//linker.x' -msys-crt0='../MOD_socket_server_bsp//obj/HAL/src/crt0.o' -msys-lib=ucosii_bsp -L../MOD_socket_server_bsp/ -L../MOD_socket_server_bsp   -Wl,-Map=MOD_socket_server.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o MOD_socket_server.elf obj/default/ClockModInit.o obj/default/DELHProtocol.o obj/default/InitializePeriph.o obj/default/alt_error_handler.o obj/default/iniche_init.o obj/default/led.o obj/default/network_utilities.o obj/default/simple_socket_server.o obj/default/tse_my_system.o -lm -msys-lib=m
+nios2-elf-insert MOD_socket_server.elf --thread_model ucosii --cpu_name cpu --qsys true --simulation_enabled false --id 4207856382 --sidp 0x18003ff0 --timestamp 1670954945 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name q_sys --quartus_project_dir "/home/tom/TSDR-Dev/devkit_simple_socket_server-17_project" --jdi ../..//output_files/top.jdi --sopcinfo /home/tom/TSDR-Dev/devkit_simple_socket_server-17_project/software/MOD_socket_server_bsp/../../q_sys.sopcinfo
+Info: (MOD_socket_server.elf) 389 KBytes program size (code + initialized data).
+Info:                         130682 KBytes free for stack + heap.
+Info: Creating MOD_socket_server.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source MOD_socket_server.elf >MOD_socket_server.objdump
+[MOD_socket_server build complete]
+14:16:19 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+14:16:20 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+[MOD_socket_server build complete]
+08:59:59 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+09:00:00 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+Info: Compiling DELHProtocol.c to obj/default/DELHProtocol.o
+nios2-elf-gcc -xc -MP -MMD -c -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp//drivers/inc/iniche -I../MOD_socket_server_bsp//iniche/inc -I../MOD_socket_server_bsp//iniche/src/h -I../MOD_socket_server_bsp//iniche/src/h/nios2 -I../MOD_socket_server_bsp//iniche/src/nios2 -I../MOD_socket_server_bsp//UCOSII/inc -I../MOD_socket_server_bsp//HAL/inc -I../MOD_socket_server_bsp/ -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALTERA_TRIPLE_SPEED_MAC -DALT_INICHE -D__ucosii__ -DALTERA_AUTONEG_TIMEOUT_THRESHOLD=2500 -DALTERA_CHECKLINK_TIMEOUT_THRESHOLD=10000 -DALTERA_NOMDIO_TIMEOUT_THRESHOLD=1000000    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/DELHProtocol.o DELHProtocol.c
+In file included from DELHProtocol.h:24,
+                 from DELHProtocol.c:22:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:117: warning: "LITTLE_ENDIAN" redefined
+  117 | #define LITTLE_ENDIAN 1234
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from DELHProtocol.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:17: note: this is the location of the previous definition
+   17 | #define LITTLE_ENDIAN _LITTLE_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from DELHProtocol.c:22:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:118: warning: "BIG_ENDIAN" redefined
+  118 | #define BIG_ENDIAN    4321
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from DELHProtocol.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:18: note: this is the location of the previous definition
+   18 | #define BIG_ENDIAN _BIG_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from DELHProtocol.c:22:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:119: warning: "BYTE_ORDER" redefined
+  119 | #define BYTE_ORDER    LITTLE_ENDIAN
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from DELHProtocol.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:20: note: this is the location of the previous definition
+   20 | #define BYTE_ORDER _BYTE_ORDER
+      | 
+DELHProtocol.c: In function 'ZEDF9T':
+DELHProtocol.c:483:10: warning: 'status' may be used uninitialized in this function [-Wmaybe-uninitialized]
+  483 |   status -= alt_avalon_i2c_master_tx(i2c_dev, UbxCmd1, 40, ALT_AVALON_I2C_NO_INTERRUPTS);
+      |          ^~
+Info: Compiling InitializePeriph.c to obj/default/InitializePeriph.o
+nios2-elf-gcc -xc -MP -MMD -c -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp//drivers/inc/iniche -I../MOD_socket_server_bsp//iniche/inc -I../MOD_socket_server_bsp//iniche/src/h -I../MOD_socket_server_bsp//iniche/src/h/nios2 -I../MOD_socket_server_bsp//iniche/src/nios2 -I../MOD_socket_server_bsp//UCOSII/inc -I../MOD_socket_server_bsp//HAL/inc -I../MOD_socket_server_bsp/ -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALTERA_TRIPLE_SPEED_MAC -DALT_INICHE -D__ucosii__ -DALTERA_AUTONEG_TIMEOUT_THRESHOLD=2500 -DALTERA_CHECKLINK_TIMEOUT_THRESHOLD=10000 -DALTERA_NOMDIO_TIMEOUT_THRESHOLD=1000000    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/InitializePeriph.o InitializePeriph.c
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:117: warning: "LITTLE_ENDIAN" redefined
+  117 | #define LITTLE_ENDIAN 1234
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:17: note: this is the location of the previous definition
+   17 | #define LITTLE_ENDIAN _LITTLE_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:118: warning: "BIG_ENDIAN" redefined
+  118 | #define BIG_ENDIAN    4321
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:18: note: this is the location of the previous definition
+   18 | #define BIG_ENDIAN _BIG_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:119: warning: "BYTE_ORDER" redefined
+  119 | #define BYTE_ORDER    LITTLE_ENDIAN
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:20: note: this is the location of the previous definition
+   20 | #define BYTE_ORDER _BYTE_ORDER
+      | 
+Info: Linking MOD_socket_server.elf
+nios2-elf-g++  -T'../MOD_socket_server_bsp//linker.x' -msys-crt0='../MOD_socket_server_bsp//obj/HAL/src/crt0.o' -msys-lib=ucosii_bsp -L../MOD_socket_server_bsp/ -L../MOD_socket_server_bsp   -Wl,-Map=MOD_socket_server.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o MOD_socket_server.elf obj/default/ClockModInit.o obj/default/DELHProtocol.o obj/default/InitializePeriph.o obj/default/alt_error_handler.o obj/default/iniche_init.o obj/default/led.o obj/default/network_utilities.o obj/default/simple_socket_server.o obj/default/tse_my_system.o -lm -msys-lib=m
+nios2-elf-insert MOD_socket_server.elf --thread_model ucosii --cpu_name cpu --qsys true --simulation_enabled false --id 4207856382 --sidp 0x18003ff0 --timestamp 1670954945 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name q_sys --quartus_project_dir "/home/tom/TSDR-Dev/devkit_simple_socket_server-17_project" --jdi ../..//output_files/top.jdi --sopcinfo /home/tom/TSDR-Dev/devkit_simple_socket_server-17_project/software/MOD_socket_server_bsp/../../q_sys.sopcinfo
+Info: (MOD_socket_server.elf) 389 KBytes program size (code + initialized data).
+Info:                         130682 KBytes free for stack + heap.
+Info: Creating MOD_socket_server.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source MOD_socket_server.elf >MOD_socket_server.objdump
+[MOD_socket_server build complete]
+09:01:34 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+09:01:35 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+Info: Compiling DELHProtocol.c to obj/default/DELHProtocol.o
+nios2-elf-gcc -xc -MP -MMD -c -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp//drivers/inc/iniche -I../MOD_socket_server_bsp//iniche/inc -I../MOD_socket_server_bsp//iniche/src/h -I../MOD_socket_server_bsp//iniche/src/h/nios2 -I../MOD_socket_server_bsp//iniche/src/nios2 -I../MOD_socket_server_bsp//UCOSII/inc -I../MOD_socket_server_bsp//HAL/inc -I../MOD_socket_server_bsp/ -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALTERA_TRIPLE_SPEED_MAC -DALT_INICHE -D__ucosii__ -DALTERA_AUTONEG_TIMEOUT_THRESHOLD=2500 -DALTERA_CHECKLINK_TIMEOUT_THRESHOLD=10000 -DALTERA_NOMDIO_TIMEOUT_THRESHOLD=1000000    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/DELHProtocol.o DELHProtocol.c
+In file included from DELHProtocol.h:24,
+                 from DELHProtocol.c:22:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:117: warning: "LITTLE_ENDIAN" redefined
+  117 | #define LITTLE_ENDIAN 1234
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from DELHProtocol.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:17: note: this is the location of the previous definition
+   17 | #define LITTLE_ENDIAN _LITTLE_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from DELHProtocol.c:22:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:118: warning: "BIG_ENDIAN" redefined
+  118 | #define BIG_ENDIAN    4321
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from DELHProtocol.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:18: note: this is the location of the previous definition
+   18 | #define BIG_ENDIAN _BIG_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from DELHProtocol.c:22:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:119: warning: "BYTE_ORDER" redefined
+  119 | #define BYTE_ORDER    LITTLE_ENDIAN
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from DELHProtocol.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:20: note: this is the location of the previous definition
+   20 | #define BYTE_ORDER _BYTE_ORDER
+      | 
+Info: Linking MOD_socket_server.elf
+nios2-elf-g++  -T'../MOD_socket_server_bsp//linker.x' -msys-crt0='../MOD_socket_server_bsp//obj/HAL/src/crt0.o' -msys-lib=ucosii_bsp -L../MOD_socket_server_bsp/ -L../MOD_socket_server_bsp   -Wl,-Map=MOD_socket_server.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o MOD_socket_server.elf obj/default/ClockModInit.o obj/default/DELHProtocol.o obj/default/InitializePeriph.o obj/default/alt_error_handler.o obj/default/iniche_init.o obj/default/led.o obj/default/network_utilities.o obj/default/simple_socket_server.o obj/default/tse_my_system.o -lm -msys-lib=m
+nios2-elf-insert MOD_socket_server.elf --thread_model ucosii --cpu_name cpu --qsys true --simulation_enabled false --id 4207856382 --sidp 0x18003ff0 --timestamp 1670954945 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name q_sys --quartus_project_dir "/home/tom/TSDR-Dev/devkit_simple_socket_server-17_project" --jdi ../..//output_files/top.jdi --sopcinfo /home/tom/TSDR-Dev/devkit_simple_socket_server-17_project/software/MOD_socket_server_bsp/../../q_sys.sopcinfo
+Info: (MOD_socket_server.elf) 389 KBytes program size (code + initialized data).
+Info:                         130682 KBytes free for stack + heap.
+Info: Creating MOD_socket_server.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source MOD_socket_server.elf >MOD_socket_server.objdump
+[MOD_socket_server build complete]
+09:02:18 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+09:02:18 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+Info: Compiling DELHProtocol.c to obj/default/DELHProtocol.o
+nios2-elf-gcc -xc -MP -MMD -c -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp//drivers/inc/iniche -I../MOD_socket_server_bsp//iniche/inc -I../MOD_socket_server_bsp//iniche/src/h -I../MOD_socket_server_bsp//iniche/src/h/nios2 -I../MOD_socket_server_bsp//iniche/src/nios2 -I../MOD_socket_server_bsp//UCOSII/inc -I../MOD_socket_server_bsp//HAL/inc -I../MOD_socket_server_bsp/ -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALTERA_TRIPLE_SPEED_MAC -DALT_INICHE -D__ucosii__ -DALTERA_AUTONEG_TIMEOUT_THRESHOLD=2500 -DALTERA_CHECKLINK_TIMEOUT_THRESHOLD=10000 -DALTERA_NOMDIO_TIMEOUT_THRESHOLD=1000000    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/DELHProtocol.o DELHProtocol.c
+In file included from DELHProtocol.h:24,
+                 from DELHProtocol.c:22:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:117: warning: "LITTLE_ENDIAN" redefined
+  117 | #define LITTLE_ENDIAN 1234
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from DELHProtocol.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:17: note: this is the location of the previous definition
+   17 | #define LITTLE_ENDIAN _LITTLE_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from DELHProtocol.c:22:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:118: warning: "BIG_ENDIAN" redefined
+  118 | #define BIG_ENDIAN    4321
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from DELHProtocol.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:18: note: this is the location of the previous definition
+   18 | #define BIG_ENDIAN _BIG_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from DELHProtocol.c:22:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:119: warning: "BYTE_ORDER" redefined
+  119 | #define BYTE_ORDER    LITTLE_ENDIAN
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from DELHProtocol.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:20: note: this is the location of the previous definition
+   20 | #define BYTE_ORDER _BYTE_ORDER
+      | 
+Info: Linking MOD_socket_server.elf
+nios2-elf-g++  -T'../MOD_socket_server_bsp//linker.x' -msys-crt0='../MOD_socket_server_bsp//obj/HAL/src/crt0.o' -msys-lib=ucosii_bsp -L../MOD_socket_server_bsp/ -L../MOD_socket_server_bsp   -Wl,-Map=MOD_socket_server.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o MOD_socket_server.elf obj/default/ClockModInit.o obj/default/DELHProtocol.o obj/default/InitializePeriph.o obj/default/alt_error_handler.o obj/default/iniche_init.o obj/default/led.o obj/default/network_utilities.o obj/default/simple_socket_server.o obj/default/tse_my_system.o -lm -msys-lib=m
+nios2-elf-insert MOD_socket_server.elf --thread_model ucosii --cpu_name cpu --qsys true --simulation_enabled false --id 4207856382 --sidp 0x18003ff0 --timestamp 1670954945 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name q_sys --quartus_project_dir "/home/tom/TSDR-Dev/devkit_simple_socket_server-17_project" --jdi ../..//output_files/top.jdi --sopcinfo /home/tom/TSDR-Dev/devkit_simple_socket_server-17_project/software/MOD_socket_server_bsp/../../q_sys.sopcinfo
+Info: (MOD_socket_server.elf) 389 KBytes program size (code + initialized data).
+Info:                         130682 KBytes free for stack + heap.
+Info: Creating MOD_socket_server.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source MOD_socket_server.elf >MOD_socket_server.objdump
+[MOD_socket_server build complete]
+09:02:42 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+09:02:42 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+Info: Compiling DELHProtocol.c to obj/default/DELHProtocol.o
+nios2-elf-gcc -xc -MP -MMD -c -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp//drivers/inc/iniche -I../MOD_socket_server_bsp//iniche/inc -I../MOD_socket_server_bsp//iniche/src/h -I../MOD_socket_server_bsp//iniche/src/h/nios2 -I../MOD_socket_server_bsp//iniche/src/nios2 -I../MOD_socket_server_bsp//UCOSII/inc -I../MOD_socket_server_bsp//HAL/inc -I../MOD_socket_server_bsp/ -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALTERA_TRIPLE_SPEED_MAC -DALT_INICHE -D__ucosii__ -DALTERA_AUTONEG_TIMEOUT_THRESHOLD=2500 -DALTERA_CHECKLINK_TIMEOUT_THRESHOLD=10000 -DALTERA_NOMDIO_TIMEOUT_THRESHOLD=1000000    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/DELHProtocol.o DELHProtocol.c
+In file included from DELHProtocol.h:24,
+                 from DELHProtocol.c:22:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:117: warning: "LITTLE_ENDIAN" redefined
+  117 | #define LITTLE_ENDIAN 1234
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from DELHProtocol.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:17: note: this is the location of the previous definition
+   17 | #define LITTLE_ENDIAN _LITTLE_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from DELHProtocol.c:22:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:118: warning: "BIG_ENDIAN" redefined
+  118 | #define BIG_ENDIAN    4321
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from DELHProtocol.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:18: note: this is the location of the previous definition
+   18 | #define BIG_ENDIAN _BIG_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from DELHProtocol.c:22:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:119: warning: "BYTE_ORDER" redefined
+  119 | #define BYTE_ORDER    LITTLE_ENDIAN
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from DELHProtocol.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:20: note: this is the location of the previous definition
+   20 | #define BYTE_ORDER _BYTE_ORDER
+      | 
+Info: Linking MOD_socket_server.elf
+nios2-elf-g++  -T'../MOD_socket_server_bsp//linker.x' -msys-crt0='../MOD_socket_server_bsp//obj/HAL/src/crt0.o' -msys-lib=ucosii_bsp -L../MOD_socket_server_bsp/ -L../MOD_socket_server_bsp   -Wl,-Map=MOD_socket_server.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o MOD_socket_server.elf obj/default/ClockModInit.o obj/default/DELHProtocol.o obj/default/InitializePeriph.o obj/default/alt_error_handler.o obj/default/iniche_init.o obj/default/led.o obj/default/network_utilities.o obj/default/simple_socket_server.o obj/default/tse_my_system.o -lm -msys-lib=m
+nios2-elf-insert MOD_socket_server.elf --thread_model ucosii --cpu_name cpu --qsys true --simulation_enabled false --id 4207856382 --sidp 0x18003ff0 --timestamp 1670954945 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name q_sys --quartus_project_dir "/home/tom/TSDR-Dev/devkit_simple_socket_server-17_project" --jdi ../..//output_files/top.jdi --sopcinfo /home/tom/TSDR-Dev/devkit_simple_socket_server-17_project/software/MOD_socket_server_bsp/../../q_sys.sopcinfo
+Info: (MOD_socket_server.elf) 389 KBytes program size (code + initialized data).
+Info:                         130682 KBytes free for stack + heap.
+Info: Creating MOD_socket_server.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source MOD_socket_server.elf >MOD_socket_server.objdump
+[MOD_socket_server build complete]
+09:08:31 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+09:08:32 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+[MOD_socket_server build complete]
+09:11:48 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+09:11:48 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+Info: Compiling DELHProtocol.c to obj/default/DELHProtocol.o
+nios2-elf-gcc -xc -MP -MMD -c -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp//drivers/inc/iniche -I../MOD_socket_server_bsp//iniche/inc -I../MOD_socket_server_bsp//iniche/src/h -I../MOD_socket_server_bsp//iniche/src/h/nios2 -I../MOD_socket_server_bsp//iniche/src/nios2 -I../MOD_socket_server_bsp//UCOSII/inc -I../MOD_socket_server_bsp//HAL/inc -I../MOD_socket_server_bsp/ -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALTERA_TRIPLE_SPEED_MAC -DALT_INICHE -D__ucosii__ -DALTERA_AUTONEG_TIMEOUT_THRESHOLD=2500 -DALTERA_CHECKLINK_TIMEOUT_THRESHOLD=10000 -DALTERA_NOMDIO_TIMEOUT_THRESHOLD=1000000    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/DELHProtocol.o DELHProtocol.c
+In file included from DELHProtocol.h:24,
+                 from DELHProtocol.c:22:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:117: warning: "LITTLE_ENDIAN" redefined
+  117 | #define LITTLE_ENDIAN 1234
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from DELHProtocol.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:17: note: this is the location of the previous definition
+   17 | #define LITTLE_ENDIAN _LITTLE_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from DELHProtocol.c:22:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:118: warning: "BIG_ENDIAN" redefined
+  118 | #define BIG_ENDIAN    4321
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from DELHProtocol.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:18: note: this is the location of the previous definition
+   18 | #define BIG_ENDIAN _BIG_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from DELHProtocol.c:22:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:119: warning: "BYTE_ORDER" redefined
+  119 | #define BYTE_ORDER    LITTLE_ENDIAN
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from DELHProtocol.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:20: note: this is the location of the previous definition
+   20 | #define BYTE_ORDER _BYTE_ORDER
+      | 
+Info: Linking MOD_socket_server.elf
+nios2-elf-g++  -T'../MOD_socket_server_bsp//linker.x' -msys-crt0='../MOD_socket_server_bsp//obj/HAL/src/crt0.o' -msys-lib=ucosii_bsp -L../MOD_socket_server_bsp/ -L../MOD_socket_server_bsp   -Wl,-Map=MOD_socket_server.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o MOD_socket_server.elf obj/default/ClockModInit.o obj/default/DELHProtocol.o obj/default/InitializePeriph.o obj/default/alt_error_handler.o obj/default/iniche_init.o obj/default/led.o obj/default/network_utilities.o obj/default/simple_socket_server.o obj/default/tse_my_system.o -lm -msys-lib=m
+nios2-elf-insert MOD_socket_server.elf --thread_model ucosii --cpu_name cpu --qsys true --simulation_enabled false --id 4207856382 --sidp 0x18003ff0 --timestamp 1670954945 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name q_sys --quartus_project_dir "/home/tom/TSDR-Dev/devkit_simple_socket_server-17_project" --jdi ../..//output_files/top.jdi --sopcinfo /home/tom/TSDR-Dev/devkit_simple_socket_server-17_project/software/MOD_socket_server_bsp/../../q_sys.sopcinfo
+Info: (MOD_socket_server.elf) 389 KBytes program size (code + initialized data).
+Info:                         130682 KBytes free for stack + heap.
+Info: Creating MOD_socket_server.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source MOD_socket_server.elf >MOD_socket_server.objdump
+[MOD_socket_server build complete]
+09:11:58 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+09:11:58 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+[MOD_socket_server build complete]
+09:12:38 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+09:12:38 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+[MOD_socket_server build complete]
+09:14:20 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+09:14:21 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+Info: Compiling DELHProtocol.c to obj/default/DELHProtocol.o
+nios2-elf-gcc -xc -MP -MMD -c -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp//drivers/inc/iniche -I../MOD_socket_server_bsp//iniche/inc -I../MOD_socket_server_bsp//iniche/src/h -I../MOD_socket_server_bsp//iniche/src/h/nios2 -I../MOD_socket_server_bsp//iniche/src/nios2 -I../MOD_socket_server_bsp//UCOSII/inc -I../MOD_socket_server_bsp//HAL/inc -I../MOD_socket_server_bsp/ -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALTERA_TRIPLE_SPEED_MAC -DALT_INICHE -D__ucosii__ -DALTERA_AUTONEG_TIMEOUT_THRESHOLD=2500 -DALTERA_CHECKLINK_TIMEOUT_THRESHOLD=10000 -DALTERA_NOMDIO_TIMEOUT_THRESHOLD=1000000    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/DELHProtocol.o DELHProtocol.c
+In file included from DELHProtocol.h:24,
+                 from DELHProtocol.c:22:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:117: warning: "LITTLE_ENDIAN" redefined
+  117 | #define LITTLE_ENDIAN 1234
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from DELHProtocol.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:17: note: this is the location of the previous definition
+   17 | #define LITTLE_ENDIAN _LITTLE_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from DELHProtocol.c:22:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:118: warning: "BIG_ENDIAN" redefined
+  118 | #define BIG_ENDIAN    4321
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from DELHProtocol.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:18: note: this is the location of the previous definition
+   18 | #define BIG_ENDIAN _BIG_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from DELHProtocol.c:22:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:119: warning: "BYTE_ORDER" redefined
+  119 | #define BYTE_ORDER    LITTLE_ENDIAN
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from DELHProtocol.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:20: note: this is the location of the previous definition
+   20 | #define BYTE_ORDER _BYTE_ORDER
+      | 
+Info: Linking MOD_socket_server.elf
+nios2-elf-g++  -T'../MOD_socket_server_bsp//linker.x' -msys-crt0='../MOD_socket_server_bsp//obj/HAL/src/crt0.o' -msys-lib=ucosii_bsp -L../MOD_socket_server_bsp/ -L../MOD_socket_server_bsp   -Wl,-Map=MOD_socket_server.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o MOD_socket_server.elf obj/default/ClockModInit.o obj/default/DELHProtocol.o obj/default/InitializePeriph.o obj/default/alt_error_handler.o obj/default/iniche_init.o obj/default/led.o obj/default/network_utilities.o obj/default/simple_socket_server.o obj/default/tse_my_system.o -lm -msys-lib=m
+nios2-elf-insert MOD_socket_server.elf --thread_model ucosii --cpu_name cpu --qsys true --simulation_enabled false --id 4207856382 --sidp 0x18003ff0 --timestamp 1670954945 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name q_sys --quartus_project_dir "/home/tom/TSDR-Dev/devkit_simple_socket_server-17_project" --jdi ../..//output_files/top.jdi --sopcinfo /home/tom/TSDR-Dev/devkit_simple_socket_server-17_project/software/MOD_socket_server_bsp/../../q_sys.sopcinfo
+Info: (MOD_socket_server.elf) 389 KBytes program size (code + initialized data).
+Info:                         130682 KBytes free for stack + heap.
+Info: Creating MOD_socket_server.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source MOD_socket_server.elf >MOD_socket_server.objdump
+[MOD_socket_server build complete]
+09:14:50 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+09:14:50 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+[MOD_socket_server build complete]
+09:18:27 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+09:18:27 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+[MOD_socket_server build complete]
+09:19:10 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+09:19:10 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+[MOD_socket_server build complete]
+10:20:48 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+10:20:48 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+Info: Compiling InitializePeriph.c to obj/default/InitializePeriph.o
+nios2-elf-gcc -xc -MP -MMD -c -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp//drivers/inc/iniche -I../MOD_socket_server_bsp//iniche/inc -I../MOD_socket_server_bsp//iniche/src/h -I../MOD_socket_server_bsp//iniche/src/h/nios2 -I../MOD_socket_server_bsp//iniche/src/nios2 -I../MOD_socket_server_bsp//UCOSII/inc -I../MOD_socket_server_bsp//HAL/inc -I../MOD_socket_server_bsp/ -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALTERA_TRIPLE_SPEED_MAC -DALT_INICHE -D__ucosii__ -DALTERA_AUTONEG_TIMEOUT_THRESHOLD=2500 -DALTERA_CHECKLINK_TIMEOUT_THRESHOLD=10000 -DALTERA_NOMDIO_TIMEOUT_THRESHOLD=1000000    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/InitializePeriph.o InitializePeriph.c
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:117: warning: "LITTLE_ENDIAN" redefined
+  117 | #define LITTLE_ENDIAN 1234
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:17: note: this is the location of the previous definition
+   17 | #define LITTLE_ENDIAN _LITTLE_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:118: warning: "BIG_ENDIAN" redefined
+  118 | #define BIG_ENDIAN    4321
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:18: note: this is the location of the previous definition
+   18 | #define BIG_ENDIAN _BIG_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:119: warning: "BYTE_ORDER" redefined
+  119 | #define BYTE_ORDER    LITTLE_ENDIAN
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:20: note: this is the location of the previous definition
+   20 | #define BYTE_ORDER _BYTE_ORDER
+      | 
+Info: Linking MOD_socket_server.elf
+nios2-elf-g++  -T'../MOD_socket_server_bsp//linker.x' -msys-crt0='../MOD_socket_server_bsp//obj/HAL/src/crt0.o' -msys-lib=ucosii_bsp -L../MOD_socket_server_bsp/ -L../MOD_socket_server_bsp   -Wl,-Map=MOD_socket_server.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o MOD_socket_server.elf obj/default/ClockModInit.o obj/default/DELHProtocol.o obj/default/InitializePeriph.o obj/default/alt_error_handler.o obj/default/iniche_init.o obj/default/led.o obj/default/network_utilities.o obj/default/simple_socket_server.o obj/default/tse_my_system.o -lm -msys-lib=m
+nios2-elf-insert MOD_socket_server.elf --thread_model ucosii --cpu_name cpu --qsys true --simulation_enabled false --id 4207856382 --sidp 0x18003ff0 --timestamp 1670954945 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name q_sys --quartus_project_dir "/home/tom/TSDR-Dev/devkit_simple_socket_server-17_project" --jdi ../..//output_files/top.jdi --sopcinfo /home/tom/TSDR-Dev/devkit_simple_socket_server-17_project/software/MOD_socket_server_bsp/../../q_sys.sopcinfo
+Info: (MOD_socket_server.elf) 389 KBytes program size (code + initialized data).
+Info:                         130682 KBytes free for stack + heap.
+Info: Creating MOD_socket_server.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source MOD_socket_server.elf >MOD_socket_server.objdump
+[MOD_socket_server build complete]
+10:23:18 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+10:23:19 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+[MOD_socket_server build complete]
+10:23:51 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+10:23:51 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+[MOD_socket_server build complete]
+10:26:15 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+10:26:16 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+Info: Compiling InitializePeriph.c to obj/default/InitializePeriph.o
+nios2-elf-gcc -xc -MP -MMD -c -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp//drivers/inc/iniche -I../MOD_socket_server_bsp//iniche/inc -I../MOD_socket_server_bsp//iniche/src/h -I../MOD_socket_server_bsp//iniche/src/h/nios2 -I../MOD_socket_server_bsp//iniche/src/nios2 -I../MOD_socket_server_bsp//UCOSII/inc -I../MOD_socket_server_bsp//HAL/inc -I../MOD_socket_server_bsp/ -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALTERA_TRIPLE_SPEED_MAC -DALT_INICHE -D__ucosii__ -DALTERA_AUTONEG_TIMEOUT_THRESHOLD=2500 -DALTERA_CHECKLINK_TIMEOUT_THRESHOLD=10000 -DALTERA_NOMDIO_TIMEOUT_THRESHOLD=1000000    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/InitializePeriph.o InitializePeriph.c
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:117: warning: "LITTLE_ENDIAN" redefined
+  117 | #define LITTLE_ENDIAN 1234
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:17: note: this is the location of the previous definition
+   17 | #define LITTLE_ENDIAN _LITTLE_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:118: warning: "BIG_ENDIAN" redefined
+  118 | #define BIG_ENDIAN    4321
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:18: note: this is the location of the previous definition
+   18 | #define BIG_ENDIAN _BIG_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:119: warning: "BYTE_ORDER" redefined
+  119 | #define BYTE_ORDER    LITTLE_ENDIAN
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:20: note: this is the location of the previous definition
+   20 | #define BYTE_ORDER _BYTE_ORDER
+      | 
+Info: Linking MOD_socket_server.elf
+nios2-elf-g++  -T'../MOD_socket_server_bsp//linker.x' -msys-crt0='../MOD_socket_server_bsp//obj/HAL/src/crt0.o' -msys-lib=ucosii_bsp -L../MOD_socket_server_bsp/ -L../MOD_socket_server_bsp   -Wl,-Map=MOD_socket_server.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o MOD_socket_server.elf obj/default/ClockModInit.o obj/default/DELHProtocol.o obj/default/InitializePeriph.o obj/default/alt_error_handler.o obj/default/iniche_init.o obj/default/led.o obj/default/network_utilities.o obj/default/simple_socket_server.o obj/default/tse_my_system.o -lm -msys-lib=m
+nios2-elf-insert MOD_socket_server.elf --thread_model ucosii --cpu_name cpu --qsys true --simulation_enabled false --id 4207856382 --sidp 0x18003ff0 --timestamp 1670954945 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name q_sys --quartus_project_dir "/home/tom/TSDR-Dev/devkit_simple_socket_server-17_project" --jdi ../..//output_files/top.jdi --sopcinfo /home/tom/TSDR-Dev/devkit_simple_socket_server-17_project/software/MOD_socket_server_bsp/../../q_sys.sopcinfo
+Info: (MOD_socket_server.elf) 389 KBytes program size (code + initialized data).
+Info:                         130682 KBytes free for stack + heap.
+Info: Creating MOD_socket_server.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source MOD_socket_server.elf >MOD_socket_server.objdump
+[MOD_socket_server build complete]
+10:39:49 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+10:39:50 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+Info: Compiling InitializePeriph.c to obj/default/InitializePeriph.o
+nios2-elf-gcc -xc -MP -MMD -c -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp//drivers/inc/iniche -I../MOD_socket_server_bsp//iniche/inc -I../MOD_socket_server_bsp//iniche/src/h -I../MOD_socket_server_bsp//iniche/src/h/nios2 -I../MOD_socket_server_bsp//iniche/src/nios2 -I../MOD_socket_server_bsp//UCOSII/inc -I../MOD_socket_server_bsp//HAL/inc -I../MOD_socket_server_bsp/ -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALTERA_TRIPLE_SPEED_MAC -DALT_INICHE -D__ucosii__ -DALTERA_AUTONEG_TIMEOUT_THRESHOLD=2500 -DALTERA_CHECKLINK_TIMEOUT_THRESHOLD=10000 -DALTERA_NOMDIO_TIMEOUT_THRESHOLD=1000000    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/InitializePeriph.o InitializePeriph.c
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:117: warning: "LITTLE_ENDIAN" redefined
+  117 | #define LITTLE_ENDIAN 1234
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:17: note: this is the location of the previous definition
+   17 | #define LITTLE_ENDIAN _LITTLE_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:118: warning: "BIG_ENDIAN" redefined
+  118 | #define BIG_ENDIAN    4321
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:18: note: this is the location of the previous definition
+   18 | #define BIG_ENDIAN _BIG_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:119: warning: "BYTE_ORDER" redefined
+  119 | #define BYTE_ORDER    LITTLE_ENDIAN
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:20: note: this is the location of the previous definition
+   20 | #define BYTE_ORDER _BYTE_ORDER
+      | 
+InitializePeriph.c: In function 'GPSInit':
+InitializePeriph.c:232:53: error: expected expression before 'alt_u32'
+  232 |  status = alt_avalon_i2c_master_rx(i2c_dev, msgbuf, alt_u32(LScount), ALT_AVALON_I2C_NO_INTERRUPTS);
+      |                                                     ^~~~~~~
+InitializePeriph.c:232:11: error: too few arguments to function 'alt_avalon_i2c_master_rx'
+  232 |  status = alt_avalon_i2c_master_rx(i2c_dev, msgbuf, alt_u32(LScount), ALT_AVALON_I2C_NO_INTERRUPTS);
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~
+In file included from InitializePeriph.c:24:
+../MOD_socket_server_bsp//drivers/inc/altera_avalon_i2c.h:729:28: note: declared here
+  729 | ALT_AVALON_I2C_STATUS_CODE alt_avalon_i2c_master_rx(ALT_AVALON_I2C_DEV_t *i2c_dev,
+      |                            ^~~~~~~~~~~~~~~~~~~~~~~~
+make: *** [Makefile:729: obj/default/InitializePeriph.o] Error 1
+10:41:26 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+10:41:26 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+Info: Compiling InitializePeriph.c to obj/default/InitializePeriph.o
+nios2-elf-gcc -xc -MP -MMD -c -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp//drivers/inc/iniche -I../MOD_socket_server_bsp//iniche/inc -I../MOD_socket_server_bsp//iniche/src/h -I../MOD_socket_server_bsp//iniche/src/h/nios2 -I../MOD_socket_server_bsp//iniche/src/nios2 -I../MOD_socket_server_bsp//UCOSII/inc -I../MOD_socket_server_bsp//HAL/inc -I../MOD_socket_server_bsp/ -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALTERA_TRIPLE_SPEED_MAC -DALT_INICHE -D__ucosii__ -DALTERA_AUTONEG_TIMEOUT_THRESHOLD=2500 -DALTERA_CHECKLINK_TIMEOUT_THRESHOLD=10000 -DALTERA_NOMDIO_TIMEOUT_THRESHOLD=1000000    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/InitializePeriph.o InitializePeriph.c
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:117: warning: "LITTLE_ENDIAN" redefined
+  117 | #define LITTLE_ENDIAN 1234
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:17: note: this is the location of the previous definition
+   17 | #define LITTLE_ENDIAN _LITTLE_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:118: warning: "BIG_ENDIAN" redefined
+  118 | #define BIG_ENDIAN    4321
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:18: note: this is the location of the previous definition
+   18 | #define BIG_ENDIAN _BIG_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:119: warning: "BYTE_ORDER" redefined
+  119 | #define BYTE_ORDER    LITTLE_ENDIAN
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:20: note: this is the location of the previous definition
+   20 | #define BYTE_ORDER _BYTE_ORDER
+      | 
+Info: Linking MOD_socket_server.elf
+nios2-elf-g++  -T'../MOD_socket_server_bsp//linker.x' -msys-crt0='../MOD_socket_server_bsp//obj/HAL/src/crt0.o' -msys-lib=ucosii_bsp -L../MOD_socket_server_bsp/ -L../MOD_socket_server_bsp   -Wl,-Map=MOD_socket_server.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o MOD_socket_server.elf obj/default/ClockModInit.o obj/default/DELHProtocol.o obj/default/InitializePeriph.o obj/default/alt_error_handler.o obj/default/iniche_init.o obj/default/led.o obj/default/network_utilities.o obj/default/simple_socket_server.o obj/default/tse_my_system.o -lm -msys-lib=m
+nios2-elf-insert MOD_socket_server.elf --thread_model ucosii --cpu_name cpu --qsys true --simulation_enabled false --id 4207856382 --sidp 0x18003ff0 --timestamp 1670954945 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name q_sys --quartus_project_dir "/home/tom/TSDR-Dev/devkit_simple_socket_server-17_project" --jdi ../..//output_files/top.jdi --sopcinfo /home/tom/TSDR-Dev/devkit_simple_socket_server-17_project/software/MOD_socket_server_bsp/../../q_sys.sopcinfo
+Info: (MOD_socket_server.elf) 389 KBytes program size (code + initialized data).
+Info:                         130682 KBytes free for stack + heap.
+Info: Creating MOD_socket_server.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source MOD_socket_server.elf >MOD_socket_server.objdump
+[MOD_socket_server build complete]
+10:41:41 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+10:41:41 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+[MOD_socket_server build complete]
+10:46:04 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+10:46:04 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+Info: Compiling InitializePeriph.c to obj/default/InitializePeriph.o
+nios2-elf-gcc -xc -MP -MMD -c -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp//drivers/inc/iniche -I../MOD_socket_server_bsp//iniche/inc -I../MOD_socket_server_bsp//iniche/src/h -I../MOD_socket_server_bsp//iniche/src/h/nios2 -I../MOD_socket_server_bsp//iniche/src/nios2 -I../MOD_socket_server_bsp//UCOSII/inc -I../MOD_socket_server_bsp//HAL/inc -I../MOD_socket_server_bsp/ -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALTERA_TRIPLE_SPEED_MAC -DALT_INICHE -D__ucosii__ -DALTERA_AUTONEG_TIMEOUT_THRESHOLD=2500 -DALTERA_CHECKLINK_TIMEOUT_THRESHOLD=10000 -DALTERA_NOMDIO_TIMEOUT_THRESHOLD=1000000    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/InitializePeriph.o InitializePeriph.c
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:117: warning: "LITTLE_ENDIAN" redefined
+  117 | #define LITTLE_ENDIAN 1234
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:17: note: this is the location of the previous definition
+   17 | #define LITTLE_ENDIAN _LITTLE_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:118: warning: "BIG_ENDIAN" redefined
+  118 | #define BIG_ENDIAN    4321
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:18: note: this is the location of the previous definition
+   18 | #define BIG_ENDIAN _BIG_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:119: warning: "BYTE_ORDER" redefined
+  119 | #define BYTE_ORDER    LITTLE_ENDIAN
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:20: note: this is the location of the previous definition
+   20 | #define BYTE_ORDER _BYTE_ORDER
+      | 
+InitializePeriph.c: In function 'GPSInit':
+InitializePeriph.c:238:5: warning: this 'for' clause does not guard... [-Wmisleading-indentation]
+  238 |     for (int index = 0; index <count; index++)
+      |     ^~~
+InitializePeriph.c:241:2: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'for'
+  241 |  return 0;
+      |  ^~~~~~
+Info: Linking MOD_socket_server.elf
+nios2-elf-g++  -T'../MOD_socket_server_bsp//linker.x' -msys-crt0='../MOD_socket_server_bsp//obj/HAL/src/crt0.o' -msys-lib=ucosii_bsp -L../MOD_socket_server_bsp/ -L../MOD_socket_server_bsp   -Wl,-Map=MOD_socket_server.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o MOD_socket_server.elf obj/default/ClockModInit.o obj/default/DELHProtocol.o obj/default/InitializePeriph.o obj/default/alt_error_handler.o obj/default/iniche_init.o obj/default/led.o obj/default/network_utilities.o obj/default/simple_socket_server.o obj/default/tse_my_system.o -lm -msys-lib=m
+nios2-elf-insert MOD_socket_server.elf --thread_model ucosii --cpu_name cpu --qsys true --simulation_enabled false --id 4207856382 --sidp 0x18003ff0 --timestamp 1670954945 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name q_sys --quartus_project_dir "/home/tom/TSDR-Dev/devkit_simple_socket_server-17_project" --jdi ../..//output_files/top.jdi --sopcinfo /home/tom/TSDR-Dev/devkit_simple_socket_server-17_project/software/MOD_socket_server_bsp/../../q_sys.sopcinfo
+Info: (MOD_socket_server.elf) 389 KBytes program size (code + initialized data).
+Info:                         130682 KBytes free for stack + heap.
+Info: Creating MOD_socket_server.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source MOD_socket_server.elf >MOD_socket_server.objdump
+[MOD_socket_server build complete]
+10:47:11 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+10:47:11 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+[MOD_socket_server build complete]
+10:48:01 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+10:48:01 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+[MOD_socket_server build complete]
+10:48:47 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+10:48:48 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+[MOD_socket_server build complete]
+10:50:28 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+10:50:29 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+[MOD_socket_server build complete]
+10:51:33 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+10:51:34 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+Info: Compiling InitializePeriph.c to obj/default/InitializePeriph.o
+nios2-elf-gcc -xc -MP -MMD -c -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp//drivers/inc/iniche -I../MOD_socket_server_bsp//iniche/inc -I../MOD_socket_server_bsp//iniche/src/h -I../MOD_socket_server_bsp//iniche/src/h/nios2 -I../MOD_socket_server_bsp//iniche/src/nios2 -I../MOD_socket_server_bsp//UCOSII/inc -I../MOD_socket_server_bsp//HAL/inc -I../MOD_socket_server_bsp/ -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALTERA_TRIPLE_SPEED_MAC -DALT_INICHE -D__ucosii__ -DALTERA_AUTONEG_TIMEOUT_THRESHOLD=2500 -DALTERA_CHECKLINK_TIMEOUT_THRESHOLD=10000 -DALTERA_NOMDIO_TIMEOUT_THRESHOLD=1000000    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/InitializePeriph.o InitializePeriph.c
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:117: warning: "LITTLE_ENDIAN" redefined
+  117 | #define LITTLE_ENDIAN 1234
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:17: note: this is the location of the previous definition
+   17 | #define LITTLE_ENDIAN _LITTLE_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:118: warning: "BIG_ENDIAN" redefined
+  118 | #define BIG_ENDIAN    4321
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:18: note: this is the location of the previous definition
+   18 | #define BIG_ENDIAN _BIG_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:119: warning: "BYTE_ORDER" redefined
+  119 | #define BYTE_ORDER    LITTLE_ENDIAN
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:20: note: this is the location of the previous definition
+   20 | #define BYTE_ORDER _BYTE_ORDER
+      | 
+InitializePeriph.c: In function 'GPSInit':
+InitializePeriph.c:238:5: warning: this 'for' clause does not guard... [-Wmisleading-indentation]
+  238 |     for (int index = 0; index <count; index++)
+      |     ^~~
+InitializePeriph.c:241:2: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'for'
+  241 |  return 0;
+      |  ^~~~~~
+Info: Linking MOD_socket_server.elf
+nios2-elf-g++  -T'../MOD_socket_server_bsp//linker.x' -msys-crt0='../MOD_socket_server_bsp//obj/HAL/src/crt0.o' -msys-lib=ucosii_bsp -L../MOD_socket_server_bsp/ -L../MOD_socket_server_bsp   -Wl,-Map=MOD_socket_server.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o MOD_socket_server.elf obj/default/ClockModInit.o obj/default/DELHProtocol.o obj/default/InitializePeriph.o obj/default/alt_error_handler.o obj/default/iniche_init.o obj/default/led.o obj/default/network_utilities.o obj/default/simple_socket_server.o obj/default/tse_my_system.o -lm -msys-lib=m
+nios2-elf-insert MOD_socket_server.elf --thread_model ucosii --cpu_name cpu --qsys true --simulation_enabled false --id 4207856382 --sidp 0x18003ff0 --timestamp 1670954945 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name q_sys --quartus_project_dir "/home/tom/TSDR-Dev/devkit_simple_socket_server-17_project" --jdi ../..//output_files/top.jdi --sopcinfo /home/tom/TSDR-Dev/devkit_simple_socket_server-17_project/software/MOD_socket_server_bsp/../../q_sys.sopcinfo
+Info: (MOD_socket_server.elf) 389 KBytes program size (code + initialized data).
+Info:                         130682 KBytes free for stack + heap.
+Info: Creating MOD_socket_server.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source MOD_socket_server.elf >MOD_socket_server.objdump
+[MOD_socket_server build complete]
+10:51:38 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+10:51:39 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+[MOD_socket_server build complete]
+11:13:57 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+11:13:58 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+Info: Compiling InitializePeriph.c to obj/default/InitializePeriph.o
+nios2-elf-gcc -xc -MP -MMD -c -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp//drivers/inc/iniche -I../MOD_socket_server_bsp//iniche/inc -I../MOD_socket_server_bsp//iniche/src/h -I../MOD_socket_server_bsp//iniche/src/h/nios2 -I../MOD_socket_server_bsp//iniche/src/nios2 -I../MOD_socket_server_bsp//UCOSII/inc -I../MOD_socket_server_bsp//HAL/inc -I../MOD_socket_server_bsp/ -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALTERA_TRIPLE_SPEED_MAC -DALT_INICHE -D__ucosii__ -DALTERA_AUTONEG_TIMEOUT_THRESHOLD=2500 -DALTERA_CHECKLINK_TIMEOUT_THRESHOLD=10000 -DALTERA_NOMDIO_TIMEOUT_THRESHOLD=1000000    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/InitializePeriph.o InitializePeriph.c
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:117: warning: "LITTLE_ENDIAN" redefined
+  117 | #define LITTLE_ENDIAN 1234
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:17: note: this is the location of the previous definition
+   17 | #define LITTLE_ENDIAN _LITTLE_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:118: warning: "BIG_ENDIAN" redefined
+  118 | #define BIG_ENDIAN    4321
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:18: note: this is the location of the previous definition
+   18 | #define BIG_ENDIAN _BIG_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:119: warning: "BYTE_ORDER" redefined
+  119 | #define BYTE_ORDER    LITTLE_ENDIAN
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:20: note: this is the location of the previous definition
+   20 | #define BYTE_ORDER _BYTE_ORDER
+      | 
+InitializePeriph.c: In function 'GPSInit':
+InitializePeriph.c:241:5: warning: this 'for' clause does not guard... [-Wmisleading-indentation]
+  241 |     for (int index = 0; index <count; index++)
+      |     ^~~
+InitializePeriph.c:244:2: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'for'
+  244 |  return 0;
+      |  ^~~~~~
+Info: Linking MOD_socket_server.elf
+nios2-elf-g++  -T'../MOD_socket_server_bsp//linker.x' -msys-crt0='../MOD_socket_server_bsp//obj/HAL/src/crt0.o' -msys-lib=ucosii_bsp -L../MOD_socket_server_bsp/ -L../MOD_socket_server_bsp   -Wl,-Map=MOD_socket_server.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o MOD_socket_server.elf obj/default/ClockModInit.o obj/default/DELHProtocol.o obj/default/InitializePeriph.o obj/default/alt_error_handler.o obj/default/iniche_init.o obj/default/led.o obj/default/network_utilities.o obj/default/simple_socket_server.o obj/default/tse_my_system.o -lm -msys-lib=m
+nios2-elf-insert MOD_socket_server.elf --thread_model ucosii --cpu_name cpu --qsys true --simulation_enabled false --id 4207856382 --sidp 0x18003ff0 --timestamp 1670954945 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name q_sys --quartus_project_dir "/home/tom/TSDR-Dev/devkit_simple_socket_server-17_project" --jdi ../..//output_files/top.jdi --sopcinfo /home/tom/TSDR-Dev/devkit_simple_socket_server-17_project/software/MOD_socket_server_bsp/../../q_sys.sopcinfo
+Info: (MOD_socket_server.elf) 389 KBytes program size (code + initialized data).
+Info:                         130682 KBytes free for stack + heap.
+Info: Creating MOD_socket_server.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source MOD_socket_server.elf >MOD_socket_server.objdump
+[MOD_socket_server build complete]
+13:33:59 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+13:34:00 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+Info: Compiling InitializePeriph.c to obj/default/InitializePeriph.o
+nios2-elf-gcc -xc -MP -MMD -c -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp//drivers/inc/iniche -I../MOD_socket_server_bsp//iniche/inc -I../MOD_socket_server_bsp//iniche/src/h -I../MOD_socket_server_bsp//iniche/src/h/nios2 -I../MOD_socket_server_bsp//iniche/src/nios2 -I../MOD_socket_server_bsp//UCOSII/inc -I../MOD_socket_server_bsp//HAL/inc -I../MOD_socket_server_bsp/ -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALTERA_TRIPLE_SPEED_MAC -DALT_INICHE -D__ucosii__ -DALTERA_AUTONEG_TIMEOUT_THRESHOLD=2500 -DALTERA_CHECKLINK_TIMEOUT_THRESHOLD=10000 -DALTERA_NOMDIO_TIMEOUT_THRESHOLD=1000000    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/InitializePeriph.o InitializePeriph.c
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:117: warning: "LITTLE_ENDIAN" redefined
+  117 | #define LITTLE_ENDIAN 1234
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:17: note: this is the location of the previous definition
+   17 | #define LITTLE_ENDIAN _LITTLE_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:118: warning: "BIG_ENDIAN" redefined
+  118 | #define BIG_ENDIAN    4321
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:18: note: this is the location of the previous definition
+   18 | #define BIG_ENDIAN _BIG_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:119: warning: "BYTE_ORDER" redefined
+  119 | #define BYTE_ORDER    LITTLE_ENDIAN
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:20: note: this is the location of the previous definition
+   20 | #define BYTE_ORDER _BYTE_ORDER
+      | 
+InitializePeriph.c: In function 'GPSInit':
+InitializePeriph.c:206:9: warning: 'status' may be used uninitialized in this function [-Wmaybe-uninitialized]
+  206 |  status -= alt_avalon_i2c_master_tx(i2c_dev, UbxCmd1, 40, ALT_AVALON_I2C_NO_INTERRUPTS);
+      |         ^~
+Info: Linking MOD_socket_server.elf
+nios2-elf-g++  -T'../MOD_socket_server_bsp//linker.x' -msys-crt0='../MOD_socket_server_bsp//obj/HAL/src/crt0.o' -msys-lib=ucosii_bsp -L../MOD_socket_server_bsp/ -L../MOD_socket_server_bsp   -Wl,-Map=MOD_socket_server.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o MOD_socket_server.elf obj/default/ClockModInit.o obj/default/DELHProtocol.o obj/default/InitializePeriph.o obj/default/alt_error_handler.o obj/default/iniche_init.o obj/default/led.o obj/default/network_utilities.o obj/default/simple_socket_server.o obj/default/tse_my_system.o -lm -msys-lib=m
+nios2-elf-insert MOD_socket_server.elf --thread_model ucosii --cpu_name cpu --qsys true --simulation_enabled false --id 4207856382 --sidp 0x18003ff0 --timestamp 1670954945 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name q_sys --quartus_project_dir "/home/tom/TSDR-Dev/devkit_simple_socket_server-17_project" --jdi ../..//output_files/top.jdi --sopcinfo /home/tom/TSDR-Dev/devkit_simple_socket_server-17_project/software/MOD_socket_server_bsp/../../q_sys.sopcinfo
+Info: (MOD_socket_server.elf) 389 KBytes program size (code + initialized data).
+Info:                         130682 KBytes free for stack + heap.
+Info: Creating MOD_socket_server.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source MOD_socket_server.elf >MOD_socket_server.objdump
+[MOD_socket_server build complete]
+13:34:48 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+13:34:48 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+Info: Compiling InitializePeriph.c to obj/default/InitializePeriph.o
+nios2-elf-gcc -xc -MP -MMD -c -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp//drivers/inc/iniche -I../MOD_socket_server_bsp//iniche/inc -I../MOD_socket_server_bsp//iniche/src/h -I../MOD_socket_server_bsp//iniche/src/h/nios2 -I../MOD_socket_server_bsp//iniche/src/nios2 -I../MOD_socket_server_bsp//UCOSII/inc -I../MOD_socket_server_bsp//HAL/inc -I../MOD_socket_server_bsp/ -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALTERA_TRIPLE_SPEED_MAC -DALT_INICHE -D__ucosii__ -DALTERA_AUTONEG_TIMEOUT_THRESHOLD=2500 -DALTERA_CHECKLINK_TIMEOUT_THRESHOLD=10000 -DALTERA_NOMDIO_TIMEOUT_THRESHOLD=1000000    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/InitializePeriph.o InitializePeriph.c
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:117: warning: "LITTLE_ENDIAN" redefined
+  117 | #define LITTLE_ENDIAN 1234
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:17: note: this is the location of the previous definition
+   17 | #define LITTLE_ENDIAN _LITTLE_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:118: warning: "BIG_ENDIAN" redefined
+  118 | #define BIG_ENDIAN    4321
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:18: note: this is the location of the previous definition
+   18 | #define BIG_ENDIAN _BIG_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:119: warning: "BYTE_ORDER" redefined
+  119 | #define BYTE_ORDER    LITTLE_ENDIAN
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:20: note: this is the location of the previous definition
+   20 | #define BYTE_ORDER _BYTE_ORDER
+      | 
+Info: Linking MOD_socket_server.elf
+nios2-elf-g++  -T'../MOD_socket_server_bsp//linker.x' -msys-crt0='../MOD_socket_server_bsp//obj/HAL/src/crt0.o' -msys-lib=ucosii_bsp -L../MOD_socket_server_bsp/ -L../MOD_socket_server_bsp   -Wl,-Map=MOD_socket_server.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o MOD_socket_server.elf obj/default/ClockModInit.o obj/default/DELHProtocol.o obj/default/InitializePeriph.o obj/default/alt_error_handler.o obj/default/iniche_init.o obj/default/led.o obj/default/network_utilities.o obj/default/simple_socket_server.o obj/default/tse_my_system.o -lm -msys-lib=m
+nios2-elf-insert MOD_socket_server.elf --thread_model ucosii --cpu_name cpu --qsys true --simulation_enabled false --id 4207856382 --sidp 0x18003ff0 --timestamp 1670954945 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name q_sys --quartus_project_dir "/home/tom/TSDR-Dev/devkit_simple_socket_server-17_project" --jdi ../..//output_files/top.jdi --sopcinfo /home/tom/TSDR-Dev/devkit_simple_socket_server-17_project/software/MOD_socket_server_bsp/../../q_sys.sopcinfo
+Info: (MOD_socket_server.elf) 389 KBytes program size (code + initialized data).
+Info:                         130682 KBytes free for stack + heap.
+Info: Creating MOD_socket_server.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source MOD_socket_server.elf >MOD_socket_server.objdump
+[MOD_socket_server build complete]
+13:37:10 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+13:37:10 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+Info: Compiling InitializePeriph.c to obj/default/InitializePeriph.o
+nios2-elf-gcc -xc -MP -MMD -c -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp//drivers/inc/iniche -I../MOD_socket_server_bsp//iniche/inc -I../MOD_socket_server_bsp//iniche/src/h -I../MOD_socket_server_bsp//iniche/src/h/nios2 -I../MOD_socket_server_bsp//iniche/src/nios2 -I../MOD_socket_server_bsp//UCOSII/inc -I../MOD_socket_server_bsp//HAL/inc -I../MOD_socket_server_bsp/ -I../MOD_socket_server_bsp//drivers/inc -I../MOD_socket_server_bsp  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALTERA_TRIPLE_SPEED_MAC -DALT_INICHE -D__ucosii__ -DALTERA_AUTONEG_TIMEOUT_THRESHOLD=2500 -DALTERA_CHECKLINK_TIMEOUT_THRESHOLD=10000 -DALTERA_NOMDIO_TIMEOUT_THRESHOLD=1000000    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/InitializePeriph.o InitializePeriph.c
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:117: warning: "LITTLE_ENDIAN" redefined
+  117 | #define LITTLE_ENDIAN 1234
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:17: note: this is the location of the previous definition
+   17 | #define LITTLE_ENDIAN _LITTLE_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:118: warning: "BIG_ENDIAN" redefined
+  118 | #define BIG_ENDIAN    4321
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:18: note: this is the location of the previous definition
+   18 | #define BIG_ENDIAN _BIG_ENDIAN
+      | 
+In file included from DELHProtocol.h:24,
+                 from InitializePeriph.c:20:
+../MOD_socket_server_bsp//iniche/src/h/nios2/ipport.h:119: warning: "BYTE_ORDER" redefined
+  119 | #define BYTE_ORDER    LITTLE_ENDIAN
+      | 
+In file included from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/sys/types.h:49,
+                 from /home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/stdio.h:61,
+                 from InitializePeriph.c:15:
+/home/tom/intelFPGA_lite/20.1/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/nios2-elf/include/machine/endian.h:20: note: this is the location of the previous definition
+   20 | #define BYTE_ORDER _BYTE_ORDER
+      | 
+Info: Linking MOD_socket_server.elf
+nios2-elf-g++  -T'../MOD_socket_server_bsp//linker.x' -msys-crt0='../MOD_socket_server_bsp//obj/HAL/src/crt0.o' -msys-lib=ucosii_bsp -L../MOD_socket_server_bsp/ -L../MOD_socket_server_bsp   -Wl,-Map=MOD_socket_server.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o MOD_socket_server.elf obj/default/ClockModInit.o obj/default/DELHProtocol.o obj/default/InitializePeriph.o obj/default/alt_error_handler.o obj/default/iniche_init.o obj/default/led.o obj/default/network_utilities.o obj/default/simple_socket_server.o obj/default/tse_my_system.o -lm -msys-lib=m
+nios2-elf-insert MOD_socket_server.elf --thread_model ucosii --cpu_name cpu --qsys true --simulation_enabled false --id 4207856382 --sidp 0x18003ff0 --timestamp 1670954945 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name q_sys --quartus_project_dir "/home/tom/TSDR-Dev/devkit_simple_socket_server-17_project" --jdi ../..//output_files/top.jdi --sopcinfo /home/tom/TSDR-Dev/devkit_simple_socket_server-17_project/software/MOD_socket_server_bsp/../../q_sys.sopcinfo
+Info: (MOD_socket_server.elf) 389 KBytes program size (code + initialized data).
+Info:                         130682 KBytes free for stack + heap.
+Info: Creating MOD_socket_server.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source MOD_socket_server.elf >MOD_socket_server.objdump
+[MOD_socket_server build complete]
+13:37:54 **** Incremental Build of configuration Nios II for project MOD_socket_server_bsp ****
+make all 
+[BSP build complete]
+13:37:55 **** Incremental Build of configuration Nios II for project MOD_socket_server ****
+make all 
+Info: Building ../MOD_socket_server_bsp/
+make --no-print-directory -C ../MOD_socket_server_bsp/
+[BSP build complete]
+[MOD_socket_server build complete]

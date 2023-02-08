@@ -7,7 +7,8 @@
    <irq preferredWidth="127" />
   </columns>
  </systemtable>
- <library expandedCategories="Library,Project" />
+ <library
+   expandedCategories="Library/Basic Functions,Library/University Program,Library/Qsys Interconnect/Memory-Mapped,Project,Library/Basic Functions/On Chip Memory,Library/Qsys Interconnect,Library/University Program/Audio &amp; Video/Video,Library/Qsys Interconnect/Memory-Mapped Alpha,Library/University Program/Audio &amp; Video,Library" />
  <window width="2496" height="1413" x="64" y="27" />
  <generation synthesis="VERILOG" />
  <hdlexample language="VERILOG" />
