@@ -1607,7 +1607,7 @@ alt_32 alt_tse_phy_restart_an(alt_tse_phy_info *pphy, alt_u32 timeout_threshold)
            
            return TSE_PHY_AN_NOT_COMPLETE;
         }
-        usleep(2000);
+        usleep(2500);
     }
     tse_dprintf(5, "INFO    : PHY[%d.%d] - Auto-Negotiation PASSED\n", mac_group_index, mac_info_index);
     

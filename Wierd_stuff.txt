@@ -36,7 +36,7 @@ on-console text instructions that DO NOT WORK.  Instead you must:
   F One change is needed in the
   <your-project-location>/MOD_socket_server_bsp/drivers/src/altera-avalon-tse.c
   file (this is the ethernet driver).
-  F. Change the value in line 1610 from sleep(1000)   to   sleep(2000)
+  F. Change the value in line 1610 from sleep(1000)   to   sleep(2500)
   
 ----------------------------------------------
 

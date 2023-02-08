@@ -32,7 +32,8 @@ int initPeriph()		// List all peripheral initializers that need to run
 	int status = 0;
 	status = GPSInit();
 	status -= SynthInit();
-//	status -= GPSInit();  // Try it again to see if it's dead again.
+// Try it again to see if it's dead again.
+//	status += GPSPostTest();	// Post test seems to pass OK.
 	return status;
 }
 
@@ -243,6 +244,75 @@ int GPSInit()			// Configure ZED-F9T GPS module
     }
 
     printf("\n");
+
+	return 0;
+}
+
+int GPSPostTest()
+{
+	alt_32 status;						// Altera defines this as unsigned, but then uses it as signed
+	ALT_AVALON_I2C_DEV_t *i2c_dev; 		//pointer to instance structure
+	alt_u8 msgbuf[256];
+
+
+	i2c_dev = alt_avalon_i2c_open(ItfcTable[GPSINTFC].name);
+
+	if (NULL==i2c_dev)
+	{
+		printf("Device Error: Cannot find: %s\n", ItfcTable[GPSINTFC].name);
+		return -1;
+	}
+
+    // ZEDF9T slave address is 0x84. Then slave address >> 1 is:  0x42
+
+	printf("GPS Post Test\n");
+
+	alt_u32 slave_addr = 0x42;  	  // Right shifted by one bit
+
+	alt_avalon_i2c_master_target_set(i2c_dev, slave_addr);
+
+	alt_u8 UbxMonVer[8] = { 0xB5, 0x62, 0x0A, 0x04, 0x00, 0x00, 0x0E, 0x34 };
+	status = alt_avalon_i2c_master_tx(i2c_dev, UbxMonVer, 8, ALT_AVALON_I2C_NO_INTERRUPTS);
+
+	alt_u8 regnum = 0xFE;  // address auto-increments
+	status += alt_avalon_i2c_master_tx(i2c_dev, &regnum, 1, ALT_AVALON_I2C_NO_INTERRUPTS);
+	alt_u8 LScount;
+	status += alt_avalon_i2c_master_rx(i2c_dev, &LScount, 1, ALT_AVALON_I2C_NO_INTERRUPTS);
+
+	printf("InitPeripheral: GPS: LSCount = %0x\n", LScount);
+
+	alt_u32 count = LScount;
+
+	status += alt_avalon_i2c_master_rx(i2c_dev, msgbuf, count, ALT_AVALON_I2C_NO_INTERRUPTS);
+
+    printf("InitPeripheral : GPS Post Test : response : ");
+
+    for (int index = 0; index <count; index++)
+    {
+    	printf("%02X ", msgbuf[index]);
+    }
+
+    printf("\n Retry\n");
+
+	status += alt_avalon_i2c_master_tx(i2c_dev, &regnum, 1, ALT_AVALON_I2C_NO_INTERRUPTS);
+	status += alt_avalon_i2c_master_rx(i2c_dev, &LScount, 1, ALT_AVALON_I2C_NO_INTERRUPTS);
+
+	printf("InitPeripheral: GPS: LSCount = %0x\n", LScount);
+
+	count = LScount;
+
+	status += alt_avalon_i2c_master_rx(i2c_dev, msgbuf, count, ALT_AVALON_I2C_NO_INTERRUPTS);
+
+    printf("InitPeripheral : GPS Post Test : response : ");
+
+    for (int index = 0; index <count; index++)
+    {
+    	printf("%02X ", msgbuf[index]);
+    }
+
+    printf("\n");
+
+
 
 	return 0;
 }
