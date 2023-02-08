@@ -5,13 +5,17 @@
 ### A new repository will be created when the Data Engine replaces the FPGA Development Kit + Adapter board.
 
 -------------------------------
-The Verilog and C software at this time is pretty much guaranteed not to work. The current contents have not yet passed Test Stage 1A due to errors. At this point:
+The Verilog and C software at this time is pretty much guaranteed not to do much useful. The current contents has passed Test Stage 1A. At this point:
 
-1. Gigabit Ethernet interface works with a hard-coded MAC address and IPv4. It must use DHCP and cannot be set for a static address.
+1. Gigabit Ethernet interface works with a hard-coded MAC address and DHCP assigned IPv4. It MUST use DHCP and cannot be set for a static address.
 
 2. OpenHPSDR discovery and Provisioning Channel creation works.
 
 3. Provising Channel accepts a limited subset of the LH_DE commands.
+
+4. The software now automatically configures the ZEDF9T module and Clock synthesizer. It produces 10.0000 MHz on Ref_Clk and 1 PPS on PPS out. The GPS
+produces an output reference frequency of 4.687500 MHz which should produce a lower phase noise clock signal. The synthesizer generates 122.88, 10, and
+1 PPS from this.
 
 **Prerequisites:** You will need Quartus version 20.1 installed under a Linux OS (probably Centos 7) to sucessfully build. The Verilog for DDR3 memory does not correctly synthesize code on the associated Windows version.
 
